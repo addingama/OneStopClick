@@ -12,6 +12,7 @@
    "forgotPassword": "Forgot Password",
    "username": "Username",
    "password": "Password",
+   "email": "Email",
    "cancel": "Cancel",
    "welcome": "Welcome",
    "login": "Login",
@@ -22,5 +23,7 @@
    "themeSettings": "Theme Settings",
    "deviceDetails": "Device Details",
    "noItems": "No Items",
-   "search": "Search"
+   "search": "Search",
+   "email": "Email",
+   "password_confirmation": "Password Confirmation"
 }
