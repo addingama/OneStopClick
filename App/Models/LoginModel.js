@@ -1,4 +1,4 @@
-export const Login = {
+export const login = {
   email: {
     name: 'email',
     secureText: false,

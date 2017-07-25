@@ -13,22 +13,19 @@ import styles from './Styles/LoginScreenStyle'
 class LoginScreen extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      username: '',
-      password: ''
-    }
+    this.state = LoginModel.login
+    this.updateState = this.updateState.bind(this)
   }
 
-  updateState (e) {
-    var state = {}
-    state[e.target.name] = e.target.value
-    this.setState(state)
+  updateState (newFieldState) {
+    this.setState(newFieldState)
+    console.tron.log(newFieldState)
   }
 
   render () {
-    const {email, password} = LoginModel.Login
+    const {email, password} = Object.assign({}, this.state)
 
-    return (
+    return ( 
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -36,17 +33,18 @@ class LoginScreen extends Component {
             <View style={styles.formContainer}>
               <OscInputField
                 field={email}
-                onChangeText={(text) => console.tron.log(text)}
-                onSubmitEditing={(event) => console.tron.log(event)}
+                state={Object.assign({}, this.state)}
+                updateState={this.updateState}
               />
               <OscInputField
                 field={password}
-                onChangeText={(text) => console.tron.log(text)}
-                onSubmitEditing={(event) => alert('loggin in')}
+                state={Object.assign({}, this.state)}
+                updateState={this.updateState}
               />
 
               <OscButton
-                title='Sign In'
+                style={styles.btnSignIn}
+                title={I18n.t('signIn')}
               />
             </View>
 
