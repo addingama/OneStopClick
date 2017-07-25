@@ -5,7 +5,6 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
-    marginTop: Metrics.navBarHeight,
     justifyContent: 'center'
   },
   formContainer: {

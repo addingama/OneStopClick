@@ -24,5 +24,7 @@
    "deviceDetails": "Device Details",
    "noItems": "No Items",
    "search": "Search",
-   "password_confirmation": "Password Confirmation"
+   "password_confirmation": "Password Confirmation",
+   "emailRequired": "Wrong email format",
+   "fieldRequired": "This field is required"
 }

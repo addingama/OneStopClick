@@ -31,6 +31,7 @@ class LoginScreen extends Component {
     var isValid = true
     Object.keys(state.fields).map((field) => {
       const result = validateField(state.fields, field)
+      this.updateState(result)
       if (!result[field].valid) {
         isValid = false
       }
