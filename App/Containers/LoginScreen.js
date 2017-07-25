@@ -42,9 +42,17 @@ class LoginScreen extends Component {
   handlePressLogin() {
     if (this.validateFields()) {
       alert('loggin in')
-    } else {
-      alert('field error')
     }
+  }
+
+  goToRegistrationScreen() {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'RegistrationScreen' })
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   render () {
@@ -56,6 +64,7 @@ class LoginScreen extends Component {
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
           <View style={styles.container}>
             <View style={styles.formContainer}>
+               <Text style={styles.titleLoginText}>Login</Text>
               <OscInputField
                 field={email}
                 state={Object.assign({}, this.state.fields)}
@@ -72,6 +81,11 @@ class LoginScreen extends Component {
                 style={styles.btnSignIn}
                 title={I18n.t('signIn')}
               />
+
+              <View style={styles.doNotHaveAccount}>
+                <Text>Do not have an account?</Text>
+                <Text style={[styles.registerText]} onPress={() => this.goToRegistrationScreen()}> Register!</Text>
+              </View>
             </View>
 
           </View>
