@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StatusBar } from 'react-native'
+import { View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
@@ -16,12 +16,18 @@ class RootContainer extends Component {
     }
   }
 
+  dismissKeyboard () {
+    Keyboard.dismiss()
+  }
+
   render () {
     return (
-      <View style={styles.applicationView}>
-        <StatusBar barStyle='light-content' />
-        <ReduxNavigation />
-      </View>
+      <TouchableWithoutFeedback onPress={this.dismissKeyboard}>
+        <View style={styles.applicationView} o>
+          <StatusBar barStyle='light-content' />
+          <ReduxNavigation />
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
