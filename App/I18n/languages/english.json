@@ -12,6 +12,7 @@
    "forgotPassword": "Forgot Password",
    "username": "Username",
    "password": "Password",
+   "email": "Email",
    "cancel": "Cancel",
    "welcome": "Welcome",
    "login": "Login",
