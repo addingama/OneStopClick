@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import { OscInputField, OscButton } from '../Lib/formGenerator'
 import * as LoginModel from '../Models/LoginModel'
+import { validateField } from '../Lib/validator'
 
 import styles from './Styles/LoginScreenStyle'
 
@@ -17,11 +18,32 @@ class LoginScreen extends Component {
       fields: LoginModel.login
     }
     this.updateState = this.updateState.bind(this)
+    this.handlePressLogin = this.handlePressLogin.bind(this)
   }
 
   updateState (newFieldState) {
     this.setState({ fields: newFieldState})
     console.tron.log(this.state)
+  }
+
+  validateFields() {
+    var state = Object.assign({}, this.state)
+    var isValid = true
+    Object.keys(state.fields).map((field) => {
+      const result = validateField(state.fields, field)
+      if (!result[field].valid) {
+        isValid = false
+      }
+    })
+    return isValid
+  }
+
+  handlePressLogin() {
+    if (this.validateFields()) {
+      alert('loggin in')
+    } else {
+      alert('field error')
+    }
   }
 
   render () {
@@ -45,6 +67,7 @@ class LoginScreen extends Component {
               />
 
               <OscButton
+                onPress={() => this.handlePressLogin()}
                 style={styles.btnSignIn}
                 title={I18n.t('signIn')}
               />
