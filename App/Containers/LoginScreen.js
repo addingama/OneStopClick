@@ -13,17 +13,19 @@ import styles from './Styles/LoginScreenStyle'
 class LoginScreen extends Component {
   constructor (props) {
     super(props)
-    this.state = LoginModel.login
+    this.state = { 
+      fields: LoginModel.login
+    }
     this.updateState = this.updateState.bind(this)
   }
 
   updateState (newFieldState) {
-    this.setState(newFieldState)
-    console.tron.log(newFieldState)
+    this.setState({ fields: newFieldState})
+    console.tron.log(this.state)
   }
 
   render () {
-    const {email, password} = Object.assign({}, this.state)
+    const {email, password} = Object.assign({}, this.state.fields)
 
     return ( 
       <View style={styles.mainContainer}>
@@ -33,12 +35,12 @@ class LoginScreen extends Component {
             <View style={styles.formContainer}>
               <OscInputField
                 field={email}
-                state={Object.assign({}, this.state)}
+                state={Object.assign({}, this.state.fields)}
                 updateState={this.updateState}
               />
               <OscInputField
                 field={password}
-                state={Object.assign({}, this.state)}
+                state={Object.assign({}, this.state.fields)}
                 updateState={this.updateState}
               />
 
