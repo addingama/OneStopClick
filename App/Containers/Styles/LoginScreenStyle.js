@@ -9,9 +9,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 20
   },
+  scrollContainer: {
+    flexGrow: 1
+  },
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: Metrics.navBarHeight
   },
   formContainer: {
     backgroundColor: Colors.snow,

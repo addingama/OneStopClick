@@ -16,7 +16,7 @@ export const login = {
     valid: true,
     edited: false,
     validation: ['required'],
-    returnKeyType: 'go',
+    returnKeyType: 'done',
     keyboardType: 'default'
   }
 }
