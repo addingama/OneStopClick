@@ -7,6 +7,7 @@ export function * login (api, {username, password}) {
   const response = yield call(api.login, username, password)
   console.tron.log('data', response)
   const { message, access_token, refresh_token } = response.data
+  // const message = 'on progress'
   if (response.status !== 200) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)

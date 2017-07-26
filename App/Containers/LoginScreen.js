@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
-import { OscInputField, OscButton } from '../Lib/formGenerator'
+import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
 
@@ -78,20 +78,20 @@ class LoginScreen extends Component {
           <View style={styles.container}>
             <View style={styles.formContainer}>
               <Text style={styles.titleLoginText}>Login</Text>
-              <OscInputField
+              <CustomInputField
                 field={email}
                 editable={!loggingIn}
                 state={Object.assign({}, this.state.fields)}
                 updateState={this.updateState}
               />
-              <OscInputField
+              <CustomInputField
                 field={password}
                 editable={!loggingIn}
                 state={Object.assign({}, this.state.fields)}
                 updateState={this.updateState}
               />
 
-              <OscButton
+              <CustomButton
                 disabled={loggingIn}
                 onPress={() => this.handlePressLogin()}
                 style={styles.btnSignIn}

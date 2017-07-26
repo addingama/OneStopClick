@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { validateField } from '../Lib/validator'
 
-export class OscInputField extends Component {
+export class CustomInputField extends Component {
   setValue (fieldName, newValue, existingState) {
     existingState[fieldName].value = newValue
     return existingState
@@ -32,7 +32,7 @@ export class OscInputField extends Component {
   }
 }
 
-export class OscButton extends React.Component {
+export class CustomButton extends React.Component {
   render () {
     return <Button
       {...this.props}

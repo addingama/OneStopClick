@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView, View, Image } from 'react-native'
 import { connect } from 'react-redux'
-import { OscInputField, OscButton } from '../Lib/formGenerator'
+import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import { NavigationActions } from 'react-navigation'
 import * as Registration from '../Models/RegistrationModel'
 import { Grid, Col, Row, Button } from 'react-native-elements';
@@ -41,28 +41,28 @@ class RegistrationScreen extends Component {
           <View style={styles.container}>
             <View style={styles.registrationContent}>
               <Text style={styles.titeRegText}>Registration</Text>
-              <OscInputField
+              <CustomInputField
                 field={this.registration.username}
                 refs={this.refs}
                 onChangeText={(text) => console.log()}
                 onSubmitEditing={() => this.focusNextField('email')}
               />
-              <OscInputField
+              <CustomInputField
                 field={this.registration.email}
                 onChangeText={(text) => console.log()}
                 onSubmitEditing={() => this.focusNextField('password')}
               />
-              <OscInputField
+              <CustomInputField
                 field={this.registration.password}
                 onChangeText={(text) => console.log()}
                 onSubmitEditing={() => this.focusNextField('password_confirmation')}
               />
-              <OscInputField
+              <CustomInputField
                 field={this.registration.password_confirmation}
                 onChangeText={(text) => console.log()}
                 onSubmitEditing={() => console.log()}
               />
-              <OscButton
+              <CustomButton
                 title='Register'
               />
               <View style={styles.alreadyHaveAccountContent}>
