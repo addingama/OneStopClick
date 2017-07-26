@@ -22,10 +22,20 @@ export default StyleSheet.create({
   btnSignIn: {
     marginTop: Metrics.doubleBaseMargin
   },
+  forgotPassword: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: Metrics.doubleBaseMargin,
+    marginBottom: Metrics.doubleBaseMargin
+  },
   doNotHaveAccount: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: Metrics.doubleBaseMargin
+  },
+  registerText: {
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })
