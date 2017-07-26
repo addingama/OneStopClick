@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text } from 'react-native'
+import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -68,6 +68,10 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+  goToForgotPasswordScreen() {
+    alert('Go to forgot password screen')
+  }
+
   render () {
     const {email, password} = Object.assign({}, this.state.fields)
     const { loggingIn, error } = this.props
@@ -98,9 +102,18 @@ class LoginScreen extends Component {
                 title={I18n.t('signIn')}
               />
 
+              <View style={styles.forgotPassword}>
+                <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
+                  <Text>forgot your password?</Text>
+                </TouchableOpacity>
+              </View>
+
               <View style={styles.doNotHaveAccount}>
                 <Text>Do not have an account?</Text>
-                <Text style={[styles.registerText]} onPress={() => this.goToRegistrationScreen()}> Register!</Text>
+                <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
+                  <Text style={[styles.registerText]}> Create One!</Text>
+                </TouchableOpacity>
+                
               </View>
             </View>
             <ProgressIndicator show={loggingIn} text='Loggin you in' />

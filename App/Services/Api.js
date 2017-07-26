@@ -14,11 +14,10 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Cache-Control': 'no-cache'
     },
     // 10 second timeout...
-    timeout: 10000
+    timeout: 60000
   })
 
   // Wrap api's addMonitor to allow the calling code to attach
