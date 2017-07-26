@@ -1,6 +1,6 @@
 export const registration = {
-  username: {
-    name: 'username',
+  name: {
+    name: 'name',
     secureText: false,
     value: '',
     valid: true,
@@ -25,7 +25,7 @@ export const registration = {
     value: '',
     valid: true,
     edited: false,
-    validation: ['required'],
+    validation: ['required', {minLength: 6}],
     returnKeyType: 'next',
     keyboardType: 'default'
   },
@@ -35,7 +35,7 @@ export const registration = {
     value: '',
     valid: true,
     edited: false,
-    validation: ['required'],
+    validation: ['required', {minLength: 6}],
     returnKeyType: 'go',
     keyboardType: 'default'
   }

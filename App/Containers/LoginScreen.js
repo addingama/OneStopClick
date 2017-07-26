@@ -78,7 +78,7 @@ class LoginScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.container}>
             <View style={styles.formContainer}>
               <Text style={styles.titleLoginText}>Login</Text>

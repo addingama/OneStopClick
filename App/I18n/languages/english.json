@@ -30,5 +30,8 @@
    "alreadyHaveAnAccount?": "Already have an account?",
    "register": "Register",
    "registration": "Registration",
-   "unmatchedPassword": "Unmatched Password"
+   "unmatchedPassword": "Unmatched Password",
+   "name": "name",
+   "minLength": "Minimum length is ",
+   "registering": "Registering your account"
 }
