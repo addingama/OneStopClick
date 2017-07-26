@@ -25,8 +25,8 @@ export default StyleSheet.create({
     margin: Metrics.baseMargin,
     paddingBottom: Metrics.baseMargin
   },
-  container : {
-    flex:1,
+  container: {
+    flex: 1,
     justifyContent: 'center'
   }
 })

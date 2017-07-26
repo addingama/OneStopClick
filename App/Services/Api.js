@@ -2,7 +2,7 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = 'http://onestopclick.tk/') => {
   // ------
   // STEP 1
   // ------
@@ -14,11 +14,19 @@ const create = (baseURL = 'https://api.github.com/') => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
     // 10 second timeout...
     timeout: 10000
   })
+
+  // Wrap api's addMonitor to allow the calling code to attach
+  // additional monitors in the future. But only in __DEV__ and only
+  // if we've attached Reactotron to console (it isn't during unit tests).
+  if (__DEV__ && console.tron) {
+    api.addMonitor(console.tron.apisauce)
+  }
 
   // ------
   // STEP 2
@@ -34,6 +42,9 @@ const create = (baseURL = 'https://api.github.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
+  const login = (username, password) => api.post('api/auth/token', {
+    username, password
+  })
 
   // ------
   // STEP 3
@@ -49,6 +60,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   //
   return {
     // a list of the API functions from step 2
+    login
   }
 }
 

@@ -23,13 +23,13 @@ class RegistrationScreen extends Component {
   }
 
   goToLoginScreen() {
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({ routeName: 'LoginScreen' })
-    //   ]
-    // })
-    // this.props.navigation.dispatch(resetAction)
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'LoginScreen' })
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   render() {
