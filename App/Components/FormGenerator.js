@@ -22,6 +22,8 @@ export class CustomInputField extends Component {
         secureTextEntry={secureText}
         returnKeyType={returnKeyType}
         keyboardType={keyboardType}
+        autoCapitalize='none'
+        autoCorrect={false}
         onChangeText={(text) => this.props.updateState(this.setValue(name, text, state))}
         onSubmitEditing={(event) => this.props.updateState(validateField(state, name))}
         onBlur={(event) => this.props.updateState(validateField(state, name))}
