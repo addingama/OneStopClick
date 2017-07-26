@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../Themes/'
+import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -8,6 +8,19 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 20
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  formContainer: {
+    backgroundColor: Colors.snow,
+    margin: Metrics.baseMargin,
+    borderRadius: Metrics.buttonRadius,
+    paddingBottom: Metrics.baseMargin
+  },
+  btnReg: {
+    marginTop: Metrics.doubleBaseMargin
   },
   alreadyHaveAccountContent: {
     flexDirection: 'row',
@@ -19,14 +32,5 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textDecorationLine: 'underline'
-  },
-  registrationContent: {
-    backgroundColor: 'white',
-    margin: Metrics.baseMargin,
-    paddingBottom: Metrics.baseMargin
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center'
   }
 })
