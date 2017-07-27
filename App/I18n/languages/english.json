@@ -12,6 +12,7 @@
    "forgotPassword": "Forgot Password",
    "username": "Username",
    "password": "Password",
+   "email": "Email",
    "cancel": "Cancel",
    "welcome": "Welcome",
    "login": "Login",
@@ -22,5 +23,18 @@
    "themeSettings": "Theme Settings",
    "deviceDetails": "Device Details",
    "noItems": "No Items",
-   "search": "Search"
+   "search": "Search",
+   "password_confirmation": "Password Confirmation",
+   "emailRequired": "Wrong email format",
+   "fieldRequired": "This field is required",
+   "alreadyHaveAnAccount?": "Already have an account?",
+   "register": "Register",
+   "registration": "Registration",
+   "unmatchedPassword": "Unmatched Password",
+   "name": "Name",
+   "minLength": "Minimum length is ",
+   "registering": "Registering your account",
+   "doNotHaveAnAccount?": "Do not have an account?",
+   "forgotYourPassword?": "forgot your password?",
+   "LogginIn": "Loggin you in"
 }

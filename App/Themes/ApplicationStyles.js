@@ -44,6 +44,30 @@ const ApplicationStyles = {
       ...Fonts.style.h2,
       fontSize: 14,
       color: Colors.text
+    },
+    screenTitleText: {
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginTop: 20
+    },
+    scrollCenterContainer: {
+      flexGrow: 1
+    },
+    customContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      marginTop: Metrics.navBarHeight
+    },
+    formContainer: {
+      backgroundColor: Colors.snow,
+      margin: Metrics.baseMargin,
+      borderRadius: Metrics.buttonRadius,
+      paddingBottom: Metrics.baseMargin
+    },
+    linkActionText: {
+      fontSize: 16,
+      fontWeight: 'bold'
     }
   },
   darkLabelContainer: {
