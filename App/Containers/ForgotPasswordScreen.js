@@ -4,6 +4,7 @@ import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import ProgressIndicator from '../Components/ProgressIndicator'
+import ForgotActions from '../Redux/ForgotPasswordRedux'
 import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as ForgotModel from '../Models/ForgotPasswordModel'
@@ -20,7 +21,7 @@ class ForgotPasswordScreen extends Component {
     processing: PropTypes.bool,
     error: PropTypes.bool,
     message: PropTypes.string,
-    attempResetPassword: PropTypes.func
+    attempResetPassword: PropTypes.func.isRequired
   }
 
   constructor (props) {
@@ -29,6 +30,7 @@ class ForgotPasswordScreen extends Component {
       fields: cloneDeep(ForgotModel.fields)
     }
     this.updateState = this.updateState.bind(this)
+    this.handlePressReset = this.handlePressReset.bind(this)
   }
 
   updateState (newFieldState) {
@@ -46,6 +48,13 @@ class ForgotPasswordScreen extends Component {
       }
     })
     return isValid
+  }
+
+  handlePressReset () {
+    if (this.validateFields()) {
+      const { email } = this.state.fields
+      this.props.attempResetPassword(email.value)
+    }
   }
   
   goToLoginScreen () {
@@ -78,7 +87,7 @@ class ForgotPasswordScreen extends Component {
             
               <CustomButton
                 disabled={processing}
-                onPress={() => alert('pressed')}
+                onPress={() => this.handlePressReset()}
                 style={styles.btnReset}
                 title={I18n.t('sendPasswordResetLink')}
               />
@@ -99,11 +108,15 @@ class ForgotPasswordScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    processing: state.forgotPassword.processing,
+    error: state.forgotPassword.error,
+    message: state.forgotPassword.message
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attempResetPassword: (email) => dispatch(ForgotActions.forgotPasswordRequest(email))
   }
 }
 

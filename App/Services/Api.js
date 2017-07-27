@@ -49,6 +49,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     name, email, password, password_confirmation
   })
 
+  const forgotPassword = (email) => api.post('api/forgot_password', { email })
+
   // ------
   // STEP 3
   // ------
@@ -64,7 +66,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
   return {
     // a list of the API functions from step 2
     login,
-    registration
+    registration,
+    forgotPassword
   }
 }
 

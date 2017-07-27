@@ -6,7 +6,7 @@ export const fields = {
     valid: true,
     edited: false,
     validation: ['required', 'email'],
-    returnKeyType: 'next',
+    returnKeyType: 'done',
     keyboardType: 'email-address'
   }
 }

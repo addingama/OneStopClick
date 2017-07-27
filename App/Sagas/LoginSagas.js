@@ -5,7 +5,6 @@ import LoginActions from '../Redux/LoginRedux'
 export function * login (api, {username, password}) {
   // make the call to the api
   const response = yield call(api.login, username, password)
-  console.tron.log('data', response)
   const { message, access_token, refresh_token } = response.data
   // const message = 'on progress'
   if (response.status !== 200) {

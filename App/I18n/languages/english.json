@@ -38,5 +38,6 @@
    "forgotYourPassword?": "forgot your password?",
    "LogginIn": "Loggin you in",
    "sendPasswordResetLink": "Recover my password",
-   "rememberYourPassword?": "remember your password?"
+   "rememberYourPassword?": "remember your password?",
+   "loading": "Please wait..."
 }
