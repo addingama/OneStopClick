@@ -69,7 +69,13 @@ class LoginScreen extends Component {
   }
 
   goToForgotPasswordScreen() {
-    alert('Go to forgot password screen')
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'ForgotPasswordScreen' })
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   render () {
@@ -78,10 +84,10 @@ class LoginScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+          <View style={styles.customContainer}>
             <View style={styles.formContainer}>
-              <Text style={styles.titleLoginText}>{I18n.t('login')}</Text>
+              <Text style={styles.screenTitleText}>{I18n.t('login')}</Text>
               <CustomInputField
                 field={email}
                 editable={!loggingIn}
@@ -111,7 +117,7 @@ class LoginScreen extends Component {
               <View style={styles.doNotHaveAccount}>
                 <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
                 <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
-                  <Text style={[styles.registerText]}> {I18n.t('register')}</Text>
+                  <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
                 </TouchableOpacity>
                 
               </View>
