@@ -9,6 +9,7 @@ import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
+import { cloneDeep } from 'lodash'
 
 import styles from './Styles/LoginScreenStyle'
 
@@ -27,7 +28,7 @@ class LoginScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      fields: LoginModel.login
+      fields: cloneDeep(LoginModel.login)
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressLogin = this.handlePressLogin.bind(this)
@@ -38,7 +39,7 @@ class LoginScreen extends Component {
   }
 
   validateFields () {
-    var state = Object.assign({}, this.state)
+    var state = this.state
     var isValid = true
     Object.keys(state.fields).map((field) => {
       const result = validateField(state.fields, field)
@@ -53,7 +54,6 @@ class LoginScreen extends Component {
   handlePressLogin () {
     if (this.validateFields()) {
       const { email, password } = this.state.fields
-      console.tron.log(email, password)
       this.props.attemptLogin(email.value, password.value)
     }
   }
@@ -73,7 +73,7 @@ class LoginScreen extends Component {
   }
 
   render () {
-    const {email, password} = Object.assign({}, this.state.fields)
+    const {email, password} = this.state.fields
     const { loggingIn, error } = this.props
     return (
       <View style={styles.mainContainer}>
@@ -85,13 +85,13 @@ class LoginScreen extends Component {
               <CustomInputField
                 field={email}
                 editable={!loggingIn}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
               <CustomInputField
                 field={password}
                 editable={!loggingIn}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
 
