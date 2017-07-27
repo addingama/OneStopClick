@@ -26,5 +26,12 @@
    "search": "Search",
    "password_confirmation": "Password Confirmation",
    "emailRequired": "Wrong email format",
-   "fieldRequired": "This field is required"
+   "fieldRequired": "This field is required",
+   "alreadyHaveAnAccount?": "Already have an account?",
+   "register": "Register",
+   "registration": "Registration",
+   "unmatchedPassword": "Unmatched Password",
+   "name": "name",
+   "minLength": "Minimum length is ",
+   "registering": "Registering your account"
 }

@@ -1,25 +1,79 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View, Image } from 'react-native'
+import React, { Component, PropTypes } from 'react'
+import { ScrollView, Text, View, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import { NavigationActions } from 'react-navigation'
-import * as Registration from '../Models/RegistrationModel'
-import { Grid, Col, Row, Button } from 'react-native-elements';
+import ProgressIndicator from '../Components/ProgressIndicator'
+import * as RegistrationModel from '../Models/RegistrationModel'
 import { Images } from '../Themes'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import I18n from 'react-native-i18n'
+import { validateField } from '../Lib/validator'
+import RegistrationActions from '../Redux/RegistrationRedux'
+import {cloneDeep} from 'lodash'
 
-// Styles
 import styles from './Styles/RegistrationScreenStyle'
 
 class RegistrationScreen extends Component {
-  registration = {}
-  constructor(props) {
-    super(props)
+
+  static propTypes = {
+    dispatch: PropTypes.func,
+    registering: PropTypes.bool,
+    error: PropTypes.bool,
+    message: PropTypes.string,
+    attemptRegister: PropTypes.func.isRequired
   }
 
-  focusNextField(nextField) {
-    //  this.refs[nextField].focus();
+  constructor(props) {
+    super(props)
+    this.state = {
+      fields: cloneDeep(RegistrationModel.registration)
+    }
+    this.updateState = this.updateState.bind(this)
+    this.handlePressRegister = this.handlePressRegister.bind(this)
+  }
+
+  updateState(newFieldState) {
+    this.setState({ fields: newFieldState })
+    console.tron.log(this.state)
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.forceUpdate()
+    // alert(JSON.stringify(newProps))
+    if (!newProps.registering && !newProps.error) {
+      this.goToLoginScreen()
+    }
+  }
+
+  validateFields() {
+    var state = Object.assign({}, this.state)
+    var isValid = true
+    Object.keys(state.fields).map((field) => {
+      const result = validateField(state.fields, field)
+      this.updateState(result)
+      if (!result[field].valid) {
+        isValid = false
+      }
+
+      if (isValid && field === 'password_confirmation') {
+        if (state.fields.password.value !== state.fields.password_confirmation.value) {
+          isValid = false
+          state.fields.password_confirmation.message = I18n.t('unmatchedPassword')
+          state.fields.password_confirmation.valid = false
+        } else {
+          field.message = ''
+          field.valid = true
+        }
+      }
+    })
+    return isValid
+  }
+
+  handlePressRegister() {
+    if (this.validateFields()) {
+      const { name, email, password, password_confirmation } = this.state.fields
+      this.props.attemptRegister(name.value, email.value, password.value, password_confirmation.value)
+    }
   }
 
   goToLoginScreen() {
@@ -33,43 +87,55 @@ class RegistrationScreen extends Component {
   }
 
   render() {
-    this.registration = Registration.Registration
+    const { password, email, name, password_confirmation } = Object.assign({}, this.state.fields)
+    const { registering, error } = this.props
+
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={{flexGrow:1}}>
+        <Image
+          source={Images.background}
+          style={styles.backgroundImage}
+          resizeMode='stretch' />
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.container}>
-            <View style={styles.registrationContent}>
-              <Text style={styles.titeRegText}>Registration</Text>
+            <View style={styles.formContainer}>
+              <Text style={styles.titeRegText}>{I18n.t('registration')}</Text>
               <CustomInputField
-                field={this.registration.username}
-                refs={this.refs}
-                onChangeText={(text) => console.log()}
-                onSubmitEditing={() => this.focusNextField('email')}
+                field={name}
+                editable={!registering}
+                state={Object.assign({}, this.state.fields)}
+                updateState={this.updateState}
               />
               <CustomInputField
-                field={this.registration.email}
-                onChangeText={(text) => console.log()}
-                onSubmitEditing={() => this.focusNextField('password')}
+                field={email}
+                editable={!registering}
+                state={Object.assign({}, this.state.fields)}
+                updateState={this.updateState}
               />
               <CustomInputField
-                field={this.registration.password}
-                onChangeText={(text) => console.log()}
-                onSubmitEditing={() => this.focusNextField('password_confirmation')}
+                field={password}
+                editable={!registering}
+                state={Object.assign({}, this.state.fields)}
+                updateState={this.updateState}
               />
               <CustomInputField
-                field={this.registration.password_confirmation}
-                onChangeText={(text) => console.log()}
-                onSubmitEditing={() => console.log()}
+                field={password_confirmation}
+                editable={!registering}
+                state={Object.assign({}, this.state.fields)}
+                updateState={this.updateState}
               />
               <CustomButton
-                title='Register'
+                disabled={registering}
+                onPress={() => this.handlePressRegister()}
+                style={styles.btnReg}
+                title={I18n.t('register')}
               />
               <View style={styles.alreadyHaveAccountContent}>
-                <Text>Already have an account?</Text>
-                <Text style={[styles.loginText]} onPress={() => this.goToLoginScreen()}> Login!</Text>
+                <Text>{I18n.t('alreadyHaveAnAccount?')} </Text>
+                <Text style={[styles.loginText]} onPress={() => this.goToLoginScreen()}>{I18n.t('login')}!</Text>
               </View>
             </View>
+            <ProgressIndicator show={registering} text={I18n.t('registering')} />
           </View>
         </ScrollView>
       </View>
@@ -79,19 +145,17 @@ class RegistrationScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    registering: state.registration.registering,
+    error: state.registration.error,
+    message: state.registration.message
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptRegister: (name, email, password, password_confirmation) => dispatch(RegistrationActions.registrationRequest(name, email, password, password_confirmation))
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationScreen)
-
-
-    /*<View style={[styles.mainContainer,styles.backgroundImage]}>
-        <ScrollView style={[styles.container,styles.backgroundImage]}>
-
-      </ScrollView>
-    </View>*/

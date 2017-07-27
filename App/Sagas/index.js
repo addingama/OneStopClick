@@ -7,11 +7,13 @@ import DebugConfig from '../Config/DebugConfig'
 
 import { StartupTypes } from '../Redux/StartupRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
+import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
+import { registration } from './RegistrationSagas'
 
 /* ------------- API ------------- */
 
@@ -23,6 +25,7 @@ const api = API.create()
 
 export default function * root () {
   yield [
-    takeLatest(LoginTypes.LOGIN_REQUEST, login, api)
+    takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
+    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api)
   ]
 }
