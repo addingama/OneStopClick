@@ -81,7 +81,7 @@ class LoginScreen extends Component {
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.container}>
             <View style={styles.formContainer}>
-              <Text style={styles.titleLoginText}>Login</Text>
+              <Text style={styles.titleLoginText}>{I18n.t('login')}</Text>
               <CustomInputField
                 field={email}
                 editable={!loggingIn}
@@ -104,19 +104,19 @@ class LoginScreen extends Component {
 
               <View style={styles.forgotPassword}>
                 <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
-                  <Text>forgot your password?</Text>
+                  <Text>{I18n.t('forgotYourPassword?')}</Text>
                 </TouchableOpacity>
               </View>
 
               <View style={styles.doNotHaveAccount}>
-                <Text>Do not have an account?</Text>
+                <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
                 <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
-                  <Text style={[styles.registerText]}> Create One!</Text>
+                  <Text style={[styles.registerText]}> {I18n.t('register')}</Text>
                 </TouchableOpacity>
                 
               </View>
             </View>
-            <ProgressIndicator show={loggingIn} text='Loggin you in' />
+            <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
           </View>
         </ScrollView>
       </View>

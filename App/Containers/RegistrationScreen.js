@@ -34,7 +34,6 @@ class RegistrationScreen extends Component {
 
   updateState(newFieldState) {
     this.setState({ fields: newFieldState })
-    console.tron.log(this.state)
   }
 
   componentWillReceiveProps(newProps) {
@@ -46,7 +45,7 @@ class RegistrationScreen extends Component {
   }
 
   validateFields() {
-    var state = Object.assign({}, this.state)
+    var state = this.state
     var isValid = true
     Object.keys(state.fields).map((field) => {
       const result = validateField(state.fields, field)
@@ -87,7 +86,7 @@ class RegistrationScreen extends Component {
   }
 
   render() {
-    const { password, email, name, password_confirmation } = Object.assign({}, this.state.fields)
+    const { password, email, name, password_confirmation } = this.state.fields
     const { registering, error } = this.props
 
     return (
@@ -103,25 +102,25 @@ class RegistrationScreen extends Component {
               <CustomInputField
                 field={name}
                 editable={!registering}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
               <CustomInputField
                 field={email}
                 editable={!registering}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
               <CustomInputField
                 field={password}
                 editable={!registering}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
               <CustomInputField
                 field={password_confirmation}
                 editable={!registering}
-                state={Object.assign({}, this.state.fields)}
+                state={this.state.fields}
                 updateState={this.updateState}
               />
               <CustomButton

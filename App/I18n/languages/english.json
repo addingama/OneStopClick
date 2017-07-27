@@ -31,7 +31,10 @@
    "register": "Register",
    "registration": "Registration",
    "unmatchedPassword": "Unmatched Password",
-   "name": "name",
+   "name": "Name",
    "minLength": "Minimum length is ",
-   "registering": "Registering your account"
+   "registering": "Registering your account",
+   "doNotHaveAnAccount?": "Do not have an account?",
+   "forgotYourPassword?": "forgot your password?",
+   "LogginIn": "Loggin you in"
 }

@@ -48,7 +48,7 @@ export function validateRequired (field) {
 }
 
 export function validateMinLength (field, minLength) {
-  if (field.value.length <= minLength) {
+  if (field.value.length < minLength) {
     field.message = I18n.t('minLength') + minLength
     field.valid = false
   } else {
