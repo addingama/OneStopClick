@@ -95,10 +95,10 @@ class RegistrationScreen extends Component {
           source={Images.background}
           style={styles.backgroundImage}
           resizeMode='stretch' />
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+          <View style={styles.customContainer}>
             <View style={styles.formContainer}>
-              <Text style={styles.titeRegText}>{I18n.t('registration')}</Text>
+              <Text style={styles.screenTitleText}>{I18n.t('registration')}</Text>
               <CustomInputField
                 field={name}
                 editable={!registering}
@@ -131,7 +131,7 @@ class RegistrationScreen extends Component {
               />
               <View style={styles.alreadyHaveAccountContent}>
                 <Text>{I18n.t('alreadyHaveAnAccount?')} </Text>
-                <Text style={[styles.loginText]} onPress={() => this.goToLoginScreen()}>{I18n.t('login')}!</Text>
+                <Text style={[styles.linkActionText]} onPress={() => this.goToLoginScreen()}>{I18n.t('login')}!</Text>
               </View>
             </View>
             <ProgressIndicator show={registering} text={I18n.t('registering')} />
