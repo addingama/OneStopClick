@@ -37,10 +37,10 @@
    "doNotHaveAnAccount?": "Do not have an account?",
    "forgotYourPassword?": "forgot your password?",
    "LogginIn": "Loggin you in",
-   "sendPasswordResetLink": "Recover my password",
-   "rememberYourPassword?": "remember your password?",
-   "loading": "Please wait...",
    "message": "Message",
    "logoutConfirmation": "Are you sure to logout?",
-   "ok": "Ok"
+   "ok": "Ok",
+   "sendPasswordResetLink": "Recover my password",
+   "rememberYourPassword?": "remember your password?",
+   "loading": "Please wait..."
 }
