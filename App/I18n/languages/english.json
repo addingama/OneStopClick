@@ -39,5 +39,8 @@
    "LogginIn": "Loggin you in",
    "sendPasswordResetLink": "Recover my password",
    "rememberYourPassword?": "remember your password?",
-   "loading": "Please wait..."
+   "loading": "Please wait...",
+   "message": "Message",
+   "logoutConfirmation": "Are you sure to logout?",
+   "ok": "Ok"
 }

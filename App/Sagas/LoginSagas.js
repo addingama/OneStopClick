@@ -13,7 +13,6 @@ export function * login (api, {username, password}) {
       yield put(LoginActions.loginFailure(true, message))
     }
   } else {
-    Alert.alert('Success', 'Login success and will be redirected to Home screen')
     yield put(LoginActions.loginSuccess(access_token, refresh_token))
   }
 }
