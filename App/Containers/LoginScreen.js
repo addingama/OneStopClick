@@ -25,7 +25,7 @@ class LoginScreen extends Component {
     attemptLogin: PropTypes.func.isRequired
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       fields: cloneDeep(LoginModel.login)
@@ -34,11 +34,11 @@ class LoginScreen extends Component {
     this.handlePressLogin = this.handlePressLogin.bind(this)
   }
 
-  updateState (newFieldState) {
-    this.setState({fields: newFieldState})
+  updateState(newFieldState) {
+    this.setState({ fields: newFieldState })
   }
 
-  validateFields () {
+  validateFields() {
     var state = this.state
     var isValid = true
     Object.keys(state.fields).map((field) => {
@@ -51,14 +51,21 @@ class LoginScreen extends Component {
     return isValid
   }
 
-  handlePressLogin () {
+  handlePressLogin() {
     if (this.validateFields()) {
       const { email, password } = this.state.fields
       this.props.attemptLogin(email.value, password.value)
     }
   }
 
-  goToRegistrationScreen () {
+  componentWillReceiveProps(newProps) {
+    this.forceUpdate()
+    if (!newProps.loggingIn && !newProps.error) {
+      this.goToHomeScreen()
+    }
+  }
+
+  goToRegistrationScreen() {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -68,20 +75,36 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
-  goToForgotPasswordScreen() {
-    alert('Go to forgot password screen')
+  goToHomeScreen() {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'HomeScreen' })
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
-  render () {
-    const {email, password} = this.state.fields
+  goToForgotPasswordScreen() {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'ForgotPasswordScreen' })
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
+  }
+
+  render() {
+    const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+          <View style={styles.customContainer}>
             <View style={styles.formContainer}>
-              <Text style={styles.titleLoginText}>{I18n.t('login')}</Text>
+              <Text style={styles.screenTitleText}>{I18n.t('login')}</Text>
               <CustomInputField
                 field={email}
                 editable={!loggingIn}
@@ -111,9 +134,9 @@ class LoginScreen extends Component {
               <View style={styles.doNotHaveAccount}>
                 <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
                 <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
-                  <Text style={[styles.registerText]}> {I18n.t('register')}</Text>
+                  <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
                 </TouchableOpacity>
-                
+
               </View>
             </View>
             <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />

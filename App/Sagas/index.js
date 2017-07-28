@@ -5,15 +5,15 @@ import DebugConfig from '../Config/DebugConfig'
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from '../Redux/StartupRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
+import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
 import { registration } from './RegistrationSagas'
+import { forgotPassword } from './ForgotPasswordSagas'
 
 /* ------------- API ------------- */
 
@@ -26,6 +26,7 @@ const api = API.create()
 export default function * root () {
   yield [
     takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api)
+    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
+    takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api)
   ]
 }

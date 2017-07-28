@@ -1,7 +1,7 @@
-import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
+import { FormLabel, FormInput, FormValidationMessage, Button, Icon } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { validateField } from '../Lib/validator'
 
 export class CustomInputField extends Component {
@@ -41,5 +41,22 @@ export class CustomButton extends React.Component {
       backgroundColor='#86b200'
       fontWeight='bold'
     />
+  }
+}
+
+export class HamburgerMenu extends React.Component {
+  render () {
+    return (
+      <TouchableOpacity
+        style={{ marginTop: 7, marginLeft: 9 }}
+        {...this.props}
+        underlayColor='transparent'>
+        <Icon
+          color='white'
+          name='menu'
+          size={28}
+        />
+      </TouchableOpacity>
+    )
   }
 }

@@ -1,21 +1,15 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../Themes/'
+import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  btnSignIn: {
+  btnReset: {
     marginTop: Metrics.doubleBaseMargin
   },
-  forgotPassword: {
+  rememberPassword: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: Metrics.doubleBaseMargin,
     marginBottom: Metrics.doubleBaseMargin
-  },
-  doNotHaveAccount: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: Metrics.doubleBaseMargin
   }
 })
