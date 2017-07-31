@@ -17,5 +17,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: Metrics.doubleBaseMargin
+  },
+  facebookButton: {
+    marginTop: Metrics.doubleBaseMargin,
+    margin: 0
   }
 })

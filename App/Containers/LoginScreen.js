@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -10,8 +11,14 @@ import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
 import { cloneDeep } from 'lodash'
-
+import { LoginManager } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyle'
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken
+} = FBSDK;
+
 
 class LoginScreen extends Component {
 
@@ -32,6 +39,8 @@ class LoginScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressLogin = this.handlePressLogin.bind(this)
+    this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
+    this.goToHomeScreen = this.goToHomeScreen.bind(this)
   }
 
   updateState(newFieldState) {
@@ -95,6 +104,21 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+  handleFacebookLogin() {
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
+      // LoginManager.logOut()
+      if (result.isCancelled) {
+      } else {
+        // alert('Login success with permissions: ' + result.grantedPermissions.toString())
+        this.goToHomeScreen()
+      }
+    },
+      function (error) {
+        alert('Login fail with error: ' + error)
+      }
+    )
+  }
+
   render() {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
@@ -138,6 +162,36 @@ class LoginScreen extends Component {
                 </TouchableOpacity>
 
               </View>
+              <View style={styles.facebookButton}>
+                <Button
+                  onPress={this.handleFacebookLogin}
+                  title="Continue with Facebook"
+                  color="white"
+                  backgroundColor="#4267B2"
+                  fontWeight='bold'
+                  marginTop='20'
+                />
+              </View>
+
+              {/*<LoginButton
+                  publishPermissions={["publish_actions"]}
+                  onLoginFinished={
+                    (error, result) => {
+                      if (error) {
+                        alert("login has error: " + result.error);
+                      } else if (result.isCancelled) {
+                        alert("login is cancelled.");
+                      } else {
+                        AccessToken.getCurrentAccessToken().then(
+                          (data) => {
+                            alert(data.accessToken.toString())
+                          }
+                        )
+                      }
+                    }
+                  }
+                  onLogoutFinished={() => alert("logout.")} />*/}
+
             </View>
             <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
           </View>
