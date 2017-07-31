@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, Image, ScrollView, Text, TouchableOpacity, Alert } from 'react-native'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
@@ -16,7 +16,9 @@ import styles from './Styles/LoginScreenStyle'
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
-  AccessToken
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager
 } = FBSDK;
 
 
@@ -41,6 +43,7 @@ class LoginScreen extends Component {
     this.handlePressLogin = this.handlePressLogin.bind(this)
     this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
+    this.responseInfoCallback = this.responseInfoCallback.bind(this)
   }
 
   updateState(newFieldState) {
@@ -104,13 +107,39 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+
+  //Create response callback.
+  responseInfoCallback(error: ?Object, result: ?Object) {
+    if (error) {
+      alert('Error fetching data: ' + error.toString())
+    } else {
+      Alert.alert('Message', 'Welcome ' + result.last_name)
+      this.goToHomeScreen()
+    }
+  }
+
+
+
+
+
   handleFacebookLogin() {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
       // LoginManager.logOut()
       if (result.isCancelled) {
       } else {
-        // alert('Login success with permissions: ' + result.grantedPermissions.toString())
-        this.goToHomeScreen()
+        AccessToken.getCurrentAccessToken().then(
+          (data) => {
+            // alert(data.accessToken.toString())
+            // Create a graph request asking for user information with a callback to handle the response.
+            const infoRequest = new GraphRequest(
+              '/me?fields=id,name, last_name',
+              null,
+              this.responseInfoCallback,
+            )
+            // Start the graph request.
+            new GraphRequestManager().addRequest(infoRequest).start()
+          }
+        )
       }
     },
       function (error) {
