@@ -18,7 +18,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: Metrics.doubleBaseMargin
   },
-  facebookButton: {
+  socialAccountButton: {
     marginTop: Metrics.doubleBaseMargin,
     margin: 0
   }

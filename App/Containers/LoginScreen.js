@@ -13,6 +13,8 @@ import { validateField } from '../Lib/validator'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyle'
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
@@ -148,6 +150,29 @@ class LoginScreen extends Component {
     )
   }
 
+
+  handleGoogleLogin() {
+    GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+      GoogleSignin.configure({
+      })
+        .then(() => {
+          GoogleSignin.signIn()
+            .then((user) => {
+              Alert.alert('Message', 'Welcome ' + user.name)
+              this.goToHomeScreen()
+            })
+            .catch((err) => {
+              alert(err);
+            })
+            .done();
+        });
+      // play services are available. can now configure library
+    })
+      .catch((err) => {
+        alert("Play services error", err.code, err.message);
+      })
+  }
+
   render() {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
@@ -191,7 +216,7 @@ class LoginScreen extends Component {
                 </TouchableOpacity>
 
               </View>
-              <View style={styles.facebookButton}>
+              <View style={styles.socialAccountButton}>
                 <Button
                   onPress={this.handleFacebookLogin}
                   title="Continue with Facebook"
@@ -201,26 +226,16 @@ class LoginScreen extends Component {
                   marginTop='20'
                 />
               </View>
-
-              {/*<LoginButton
-                  publishPermissions={["publish_actions"]}
-                  onLoginFinished={
-                    (error, result) => {
-                      if (error) {
-                        alert("login has error: " + result.error);
-                      } else if (result.isCancelled) {
-                        alert("login is cancelled.");
-                      } else {
-                        AccessToken.getCurrentAccessToken().then(
-                          (data) => {
-                            alert(data.accessToken.toString())
-                          }
-                        )
-                      }
-                    }
-                  }
-                  onLogoutFinished={() => alert("logout.")} />*/}
-
+              <View style={styles.socialAccountButton}>
+                <Button
+                  onPress={this.handleGoogleLogin.bind(this)}
+                  title="Continue with Google"
+                  color="white"
+                  backgroundColor="#db3236"
+                  fontWeight='bold'
+                  marginTop='20'
+                />
+              </View>
             </View>
             <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
           </View>
