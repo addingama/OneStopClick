@@ -113,6 +113,7 @@ class LoginScreen extends Component {
   //Create response callback.
   responseInfoCallback(error: ?Object, result: ?Object) {
     if (error) {
+      console.tron.log(error, result)
       alert('Error fetching data: ' + error.toString())
     } else {
       this.props.attemptSocialLogin(result.email, result.name)
