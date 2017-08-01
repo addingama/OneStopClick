@@ -45,6 +45,10 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     username, password
   })
 
+  const socialLogin = (email, name) => api.post('api/social_login', {
+    email, name
+  })
+
   const registration = (name, email, password, password_confirmation) => api.post('api/auth/register', {
     name, email, password, password_confirmation
   })
@@ -67,7 +71,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     // a list of the API functions from step 2
     login,
     registration,
-    forgotPassword
+    forgotPassword,
+    socialLogin
   }
 }
 

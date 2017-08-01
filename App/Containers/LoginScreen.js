@@ -115,14 +115,9 @@ class LoginScreen extends Component {
     if (error) {
       alert('Error fetching data: ' + error.toString())
     } else {
-      Alert.alert('Message', 'Welcome ' + result.last_name)
-      this.goToHomeScreen()
+      this.props.attemptSocialLogin(result.email, result.name)
     }
   }
-
-
-
-
 
   handleFacebookLogin() {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
@@ -134,7 +129,7 @@ class LoginScreen extends Component {
             // alert(data.accessToken.toString())
             // Create a graph request asking for user information with a callback to handle the response.
             const infoRequest = new GraphRequest(
-              '/me?fields=id,name, last_name',
+              '/me?fields=id,name, last_name, email',
               null,
               this.responseInfoCallback,
             )
@@ -158,8 +153,7 @@ class LoginScreen extends Component {
         .then(() => {
           GoogleSignin.signIn()
             .then((user) => {
-              Alert.alert('Message', 'Welcome ' + user.name)
-              this.goToHomeScreen()
+              this.props.attemptSocialLogin(user.email, user.name)
             })
             .catch((err) => {
               alert(err);
@@ -220,6 +214,7 @@ class LoginScreen extends Component {
                 <Button
                   onPress={this.handleFacebookLogin}
                   title="Continue with Facebook"
+                  disabled={loggingIn}
                   color="white"
                   backgroundColor="#4267B2"
                   fontWeight='bold'
@@ -230,6 +225,7 @@ class LoginScreen extends Component {
                 <Button
                   onPress={this.handleGoogleLogin.bind(this)}
                   title="Continue with Google"
+                  disabled={loggingIn}
                   color="white"
                   backgroundColor="#db3236"
                   fontWeight='bold'
@@ -258,7 +254,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    attemptSocialLogin: (username, name) => dispatch(LoginActions.socialLoginRequest(username, name))
   }
 }
 
