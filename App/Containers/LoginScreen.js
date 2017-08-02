@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Image, ScrollView, Text, TouchableOpacity, Alert, Platform } from 'react-native'
-import { Button } from 'react-native-elements'
+import { Button, SocialIcon } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -223,25 +223,24 @@ class LoginScreen extends Component {
 
               </View>
               <View style={styles.socialAccountButton}>
-                <Button
+                <SocialIcon
                   onPress={this.handleFacebookLogin}
-                  title="Continue with Facebook"
+                  button
+                  raised
+                  type='facebook'
+                  title={I18n.t('continueWithFacebook')}
                   disabled={loggingIn}
-                  color="white"
-                  backgroundColor="#4267B2"
-                  fontWeight='bold'
-                  marginTop='20'
                 />
               </View>
               <View style={styles.socialAccountButton}>
-                <Button
+                <SocialIcon
+                  button
+                  raised
+                  type='google'
                   onPress={this.handleGoogleLogin.bind(this)}
-                  title="Continue with Google"
+                  title={I18n.t('continueWithGoogle')}
                   disabled={loggingIn}
-                  color="white"
-                  backgroundColor="#db3236"
-                  fontWeight='bold'
-                  marginTop='20'
+                  style={styles.googleButton}
                 />
               </View>
             </View>
