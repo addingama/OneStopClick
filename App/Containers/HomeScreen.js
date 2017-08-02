@@ -13,6 +13,7 @@ import { cloneDeep } from 'lodash'
 import { List, ListItem, Header, SideMenu, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import * as MenuModel from '../Models/MenuModel'
+import StorageService from '../Services/StorageService'
 
 class HomeScreen extends Component {
 
@@ -62,6 +63,8 @@ class HomeScreen extends Component {
       ]
     })
     this.props.navigation.dispatch(resetAction)
+    // clear async storage
+    StorageService.removeSession()
   }
 
   render() {

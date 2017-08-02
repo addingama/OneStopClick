@@ -4,24 +4,25 @@ import { Button, SocialIcon } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import { cloneDeep } from 'lodash'
+import { LoginManager } from 'react-native-fbsdk'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
-import { cloneDeep } from 'lodash'
-import { LoginManager } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyle'
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-const FBSDK = require('react-native-fbsdk');
+
+const FBSDK = require('react-native-fbsdk')
 const {
   LoginButton,
   AccessToken,
   GraphRequest,
   GraphRequestManager
-} = FBSDK;
+} = FBSDK
 
 
 class LoginScreen extends Component {
@@ -49,7 +50,7 @@ class LoginScreen extends Component {
   }
 
   updateState(newFieldState) {
-    this.setState({ fields: newFieldState })
+    this.setState({ fields: newFieldState }) 
   }
 
   validateFields() {
@@ -173,10 +174,10 @@ class LoginScreen extends Component {
           this.responseInfoCallback(false, user)
         })
         .catch((err) => {
-          alert(err);
+          alert(err)
         })
-        .done();
-    });
+        .done()
+    })
   }
 
   render() {
