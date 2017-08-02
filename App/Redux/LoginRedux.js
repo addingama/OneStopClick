@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['access_token', 'refresh_token'],
   loginFailure: ['error', 'message'],
-  socialLoginRequest: ['email', 'name'],
+  socialLoginRequest: ['name', 'email', 'password'],
   socialLoginSuccess: ['access_token', 'refresh_token'],
   socialLoginFailure: ['error', 'message'],
   logout: null
@@ -35,8 +35,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state, { username, password }) =>
   state.merge({ loggingIn: true, username, password })
 
-export const socialRequest = (state, { email, name }) =>
-  state.merge({ loggingIn: true, email, name })
+export const socialRequest = (state, { name, email, password }) =>
+  state.merge({ loggingIn: true, name, email, password })
 
 // successful api lookup
 export const success = (state, { access_token, refresh_token }) => {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity, Alert } from 'react-native'
+import { View, Image, ScrollView, Text, TouchableOpacity, Alert, Platform } from 'react-native'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
@@ -116,7 +116,8 @@ class LoginScreen extends Component {
       console.tron.log(error, result)
       alert('Error fetching data: ' + error.toString())
     } else {
-      this.props.attemptSocialLogin(result.email, result.name)
+      let password = Math.random().toString(36).substring(7)
+      this.props.attemptSocialLogin(result.email, result.name, password)
     }
   }
 
@@ -148,24 +149,33 @@ class LoginScreen extends Component {
 
 
   handleGoogleLogin() {
-    GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
-      GoogleSignin.configure({
+    if (Platform.OS === 'ios') {
+      this.doGoogleLogin()
+    } else {
+      GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+        this.doGoogleLogin()
       })
-        .then(() => {
-          GoogleSignin.signIn()
-            .then((user) => {
-              this.props.attemptSocialLogin(user.email, user.name)
-            })
-            .catch((err) => {
-              alert(err);
-            })
-            .done();
-        });
-      // play services are available. can now configure library
-    })
       .catch((err) => {
-        alert("Play services error", err.code, err.message);
+        console.tron.log(err)
+        alert("Play services error", err.code, err.message)
       })
+    }
+  }
+
+  doGoogleLogin() {
+    GoogleSignin.configure({
+      clientID: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com'
+    })
+    .then(() => {
+      GoogleSignin.signIn()
+        .then((user) => {
+          this.props.attemptSocialLogin(user.email, user.name)
+        })
+        .catch((err) => {
+          alert(err);
+        })
+        .done();
+    });
   }
 
   render() {
@@ -256,7 +266,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
-    attemptSocialLogin: (username, name) => dispatch(LoginActions.socialLoginRequest(username, name))
+    attemptSocialLogin: (name, email, password) => dispatch(LoginActions.socialLoginRequest(name, email, password))
   }
 }
 
