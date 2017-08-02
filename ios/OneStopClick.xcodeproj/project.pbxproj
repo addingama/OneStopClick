@@ -47,6 +47,7 @@
 		4373CD6EB0D741F9AB153C82 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7EEF391E974F27B8649F21 /* Ionicons.ttf */; };
 		5229F5573BEE4ABF9C3CCB9B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C33A259917444172978AA6E9 /* FontAwesome.ttf */; };
 		582A6D45D8A7D917BD9FA43E /* libPods-OneStopClickTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E28CCC14D488A2970AE0EAE6 /* libPods-OneStopClickTests.a */; };
+		5D37A6491F31680800BB3B28 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D37A6481F31680800BB3B28 /* GoogleSignIn.framework */; };
 		5DA4C7B81F305DE400FCC9EE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA4C7B51F305DE400FCC9EE /* FBSDKCoreKit.framework */; };
 		5DA4C7B91F305DE400FCC9EE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA4C7B61F305DE400FCC9EE /* FBSDKLoginKit.framework */; };
 		5DA4C7BA1F305DE400FCC9EE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA4C7B71F305DE400FCC9EE /* FBSDKShareKit.framework */; };
@@ -373,6 +374,7 @@
 		3EB68E29127147768904BA9B /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		478A8C1C35B24E649308B02F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		525EC15FA94240E0AE455661 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libyoga.a; sourceTree = "<group>"; };
+		5D37A6481F31680800BB3B28 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Pods/GoogleSignIn/Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
 		5DA4C7B51F305DE400FCC9EE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		5DA4C7B61F305DE400FCC9EE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		5DA4C7B71F305DE400FCC9EE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				5DA4C7BA1F305DE400FCC9EE /* FBSDKShareKit.framework in Frameworks */,
 				7AE9D8E4929F47E38032D3A6 /* SystemConfiguration.framework in Frameworks */,
 				61DF06BE52F34F8CBF2ECB54 /* AddressBook.framework in Frameworks */,
+				5D37A6491F31680800BB3B28 /* GoogleSignIn.framework in Frameworks */,
 				9A28C7B50A756DC7D0B4F47B /* libPods-OneStopClick.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +764,7 @@
 		E933C5FB134B4B2B972FFC2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D37A6481F31680800BB3B28 /* GoogleSignIn.framework */,
 				5DA4C7B51F305DE400FCC9EE /* FBSDKCoreKit.framework */,
 				5DA4C7B61F305DE400FCC9EE /* FBSDKLoginKit.framework */,
 				5DA4C7B71F305DE400FCC9EE /* FBSDKShareKit.framework */,
@@ -1664,6 +1668,7 @@
 					"\"${PODS_ROOT}/Google/Frameworks\"",
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"~/Documents/FacebookSDK/**",
+					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1714,6 +1719,7 @@
 					"\"${PODS_ROOT}/Google/Frameworks\"",
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"~/Documents/FacebookSDK/**",
+					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

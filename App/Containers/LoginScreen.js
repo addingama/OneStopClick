@@ -151,12 +151,11 @@ class LoginScreen extends Component {
   handleGoogleLogin() {
     if (Platform.OS === 'ios') {
       this.doGoogleLogin()
-    } else {
+    } else if (Platform.OS === 'android') {
       GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
         this.doGoogleLogin()
       })
       .catch((err) => {
-        console.tron.log(err)
         alert("Play services error", err.code, err.message)
       })
     }
@@ -164,12 +163,14 @@ class LoginScreen extends Component {
 
   doGoogleLogin() {
     GoogleSignin.configure({
-      clientID: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com'
+      iosClientId: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com',
+      scopes: ['openid', 'email', 'profile'],
+      shouldFetchBasicProfile: true
     })
     .then(() => {
       GoogleSignin.signIn()
         .then((user) => {
-          this.props.attemptSocialLogin(user.email, user.name)
+          this.responseInfoCallback(false, user)
         })
         .catch((err) => {
           alert(err);
