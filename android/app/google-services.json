@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "959083237888",
+    "project_id": "onestopclick-92758"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959083237888:android:214165050a1389d5",
+        "android_client_info": {
+          "package_name": "com.onestopclick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959083237888-2nm44v7jqk5ebhgu9lsmls973b0ljrb0.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "959083237888-gcitt1tbn1852qvhfqo5k0fhlgb1kefl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onestopclick",
+            "certificate_hash": "f2edb31962996280c1cdf439b1e820a95e976af6"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-ADrWvDtqQqYLg8Q6LfRkc2eyRtcSJFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

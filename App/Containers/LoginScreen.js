@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, Image, ScrollView, Text, TouchableOpacity, Alert, Platform } from 'react-native'
+import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -10,8 +11,18 @@ import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
 import { cloneDeep } from 'lodash'
-
+import { LoginManager } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyle'
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager
+} = FBSDK;
+
 
 class LoginScreen extends Component {
 
@@ -32,6 +43,9 @@ class LoginScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressLogin = this.handlePressLogin.bind(this)
+    this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
+    this.goToHomeScreen = this.goToHomeScreen.bind(this)
+    this.responseInfoCallback = this.responseInfoCallback.bind(this)
   }
 
   updateState(newFieldState) {
@@ -95,6 +109,76 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+
+  //Create response callback.
+  responseInfoCallback(error: ?Object, result: ?Object) {
+    if (error) {
+      console.tron.log(error, result)
+      alert('Error fetching data: ' + error.toString())
+    } else {
+      let password = Math.random().toString(36).substring(7)
+      this.props.attemptSocialLogin(result.email, result.name, password)
+    }
+  }
+
+  handleFacebookLogin() {
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
+      // LoginManager.logOut()
+      if (result.isCancelled) {
+      } else {
+        AccessToken.getCurrentAccessToken().then(
+          (data) => {
+            // alert(data.accessToken.toString())
+            // Create a graph request asking for user information with a callback to handle the response.
+            const infoRequest = new GraphRequest(
+              '/me?fields=id,name,last_name,email',
+              null,
+              this.responseInfoCallback,
+            )
+            // Start the graph request.
+            new GraphRequestManager().addRequest(infoRequest).start()
+          }
+        )
+      }
+    },
+      function (error) {
+        alert('Login fail with error: ' + error)
+      }
+    )
+  }
+
+
+  handleGoogleLogin() {
+    if (Platform.OS === 'ios') {
+      this.doGoogleLogin()
+    } else if (Platform.OS === 'android') {
+      GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+        this.doGoogleLogin()
+      })
+      .catch((err) => {
+        alert("Play services error", err.code, err.message)
+      })
+    }
+  }
+
+  doGoogleLogin() {
+    GoogleSignin.configure({
+      iosClientId: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com',
+      scopes: ['openid', 'email', 'profile'],
+      shouldFetchBasicProfile: true
+    })
+    .then(() => {
+      GoogleSignin.signIn()
+        .then((user) => {
+          this.responseInfoCallback(false, user)
+        })
+        .catch((err) => {
+          alert(err);
+        })
+        .done();
+    });
+  }
+
   render() {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
@@ -138,6 +222,28 @@ class LoginScreen extends Component {
                 </TouchableOpacity>
 
               </View>
+              <View style={styles.socialAccountButton}>
+                <Button
+                  onPress={this.handleFacebookLogin}
+                  title="Continue with Facebook"
+                  disabled={loggingIn}
+                  color="white"
+                  backgroundColor="#4267B2"
+                  fontWeight='bold'
+                  marginTop='20'
+                />
+              </View>
+              <View style={styles.socialAccountButton}>
+                <Button
+                  onPress={this.handleGoogleLogin.bind(this)}
+                  title="Continue with Google"
+                  disabled={loggingIn}
+                  color="white"
+                  backgroundColor="#db3236"
+                  fontWeight='bold'
+                  marginTop='20'
+                />
+              </View>
             </View>
             <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
           </View>
@@ -160,7 +266,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    attemptSocialLogin: (name, email, password) => dispatch(LoginActions.socialLoginRequest(name, email, password))
   }
 }
 

@@ -11,7 +11,7 @@ import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
 
 /* ------------- Sagas ------------- */
 
-import { login } from './LoginSagas'
+import { login, socialLogin } from './LoginSagas'
 import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
 
@@ -27,6 +27,7 @@ export default function * root () {
   yield [
     takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
     takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
-    takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api)
+    takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
+    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api)
   ]
 }
