@@ -19,8 +19,7 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   socialAccountButton: {
-    marginTop: Metrics.doubleBaseMargin,
-    margin: 0
+    margin: Metrics.baseMargin
   },
   googleButton: {
     backgroundColor: Colors.google

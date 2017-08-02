@@ -226,7 +226,6 @@ class LoginScreen extends Component {
                 <SocialIcon
                   onPress={this.handleFacebookLogin}
                   button
-                  raised
                   type='facebook'
                   title={I18n.t('continueWithFacebook')}
                   disabled={loggingIn}
@@ -235,7 +234,6 @@ class LoginScreen extends Component {
               <View style={styles.socialAccountButton}>
                 <SocialIcon
                   button
-                  raised
                   type='google'
                   onPress={this.handleGoogleLogin.bind(this)}
                   title={I18n.t('continueWithGoogle')}
