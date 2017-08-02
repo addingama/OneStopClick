@@ -130,7 +130,7 @@ class LoginScreen extends Component {
             // alert(data.accessToken.toString())
             // Create a graph request asking for user information with a callback to handle the response.
             const infoRequest = new GraphRequest(
-              '/me?fields=id,name, last_name, email',
+              '/me?fields=id,name,last_name,email',
               null,
               this.responseInfoCallback,
             )
