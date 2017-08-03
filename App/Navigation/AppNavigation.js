@@ -1,4 +1,5 @@
-import { DrawerNavigator, StackNavigator, DrawerItem } from 'react-navigation'
+import { DrawerNavigator, StackNavigator } from 'react-navigation'
+import AccountScreen from '../Containers/AccountScreen'
 import ForgotPasswordScreen from '../Containers/ForgotPasswordScreen'
 import HomeScreen from '../Containers/HomeScreen'
 import RegistrationScreen from '../Containers/RegistrationScreen'
@@ -7,9 +8,13 @@ import LoginScreen from '../Containers/LoginScreen'
 import styles from './Styles/NavigationStyles'
 
 const PrimaryNav = DrawerNavigator(
+
   {
     Home: {
       screen: HomeScreen
+    },
+    AccountScreen: {
+      screen: AccountScreen
     }
   },
   {
@@ -18,6 +23,7 @@ const PrimaryNav = DrawerNavigator(
   }
 
 )
+
 // // Manifest of possible screens
 const StackNav = StackNavigator({
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
@@ -31,9 +37,10 @@ const StackNav = StackNavigator({
       header: {
         visible: false
       }
-    }}
+    }
+  }
 }, {
-  // Default config for all screens
+    // Default config for all screens
   headerMode: 'none',
   initialRouteName: 'LoginScreen',
   navigationOptions: {
