@@ -18,9 +18,9 @@ export function * login (api, {username, password}) {
   }
 }
 
-export function * socialLogin (api, {email, name}) {
+export function * socialLogin (api, {name, email}) {
   // make the call to the api
-  const response = yield call(api.socialLogin, email, name)
+  const response = yield call(api.socialLogin, name, email)
   const { message, access_token, refresh_token } = response.data
   if (response.status !== 200) {
     if (message !== '' || message != null) {

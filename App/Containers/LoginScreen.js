@@ -118,7 +118,7 @@ class LoginScreen extends Component {
       alert('Error fetching data: ' + error.toString())
     } else {
       let password = Math.random().toString(36).substring(7)
-      this.props.attemptSocialLogin(result.email, result.name, password)
+      this.props.attemptSocialLogin(result.name, result.email, password)
     }
   }
 
