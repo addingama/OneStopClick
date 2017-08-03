@@ -45,6 +45,7 @@ class LoginScreen extends Component {
     this.handlePressLogin = this.handlePressLogin.bind(this)
     this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
+    this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
   }
 
@@ -90,10 +91,11 @@ class LoginScreen extends Component {
   }
 
   goToHomeScreen() {
+    // this.props.navigation.navigate('Home')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'HomeScreen' })
+        NavigationActions.navigate({ routeName: 'Drawer' })
       ]
     })
     this.props.navigation.dispatch(resetAction)

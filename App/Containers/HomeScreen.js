@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { Alert, ScrollView, Text, View, Image, TouchableOpacity, TouchableHighlight } from 'react-native'
+import { Alert, ScrollView, Text, View, Image, Button, TouchableOpacity, TouchableHighlight, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { DrawerNavigator } from 'react-navigation'
 import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, } from 'react-navigation'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProgressIndicator from '../Components/ProgressIndicator'
 import * as RegistrationModel from '../Models/RegistrationModel'
 import { Images } from '../Themes'
@@ -13,8 +15,22 @@ import { cloneDeep } from 'lodash'
 import { List, ListItem, Header, SideMenu, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import * as MenuModel from '../Models/MenuModel'
-
+// import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 class HomeScreen extends Component {
+
+  static navigationOptions = {
+    title: 'Home',
+    drawerIcon:({tintColor}) => {
+      return (
+        <MaterialIcons
+            name='home'
+            size={24}
+            style={{color:tintColor}}
+        >
+        </MaterialIcons>
+      )
+    }
+  }
 
   static propTypes = {}
 
@@ -46,7 +62,7 @@ class HomeScreen extends Component {
       I18n.t('message'),
       I18n.t('logoutConfirmation'),
       [
-        { text: I18n.t('cancel'), onPress: () => console.log('Cancel Pressed')},
+        { text: I18n.t('cancel'), onPress: () => console.log('Cancel Pressed') },
         { text: I18n.t('ok'), onPress: () => this.logout() },
       ],
       { cancelable: false }
@@ -64,8 +80,20 @@ class HomeScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+  test() {
+    // navigation.navigate('DrawerOpen')
+    this.props.navigation.navigate('DrawerOpen')
+  }
+
   render() {
-    var list = MenuModel.menuList
+    return (
+      <Header
+        backgroundColor='#86b200'
+        leftComponent={<HamburgerMenu onPress={this.test.bind(this)} />}
+        centerComponent={{ text: 'Home', style: { color: '#fff' } }}
+      />
+    )
+    /*var list = MenuModel.menuList
     const MenuComponent = (
       <View style={{ flex: 1, backgroundColor: '#ededed', paddingTop: 50 }}>
         <List containerStyle={{ marginBottom: 20 }}>
@@ -96,7 +124,7 @@ class HomeScreen extends Component {
           />
         </View>
       </SideMenu>
-    )
+    )*/
   }
 }
 
