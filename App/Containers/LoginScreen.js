@@ -4,24 +4,25 @@ import { Button, SocialIcon } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import { cloneDeep } from 'lodash'
+import { LoginManager } from 'react-native-fbsdk'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
-import { cloneDeep } from 'lodash'
-import { LoginManager } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyle'
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-const FBSDK = require('react-native-fbsdk');
+
+const FBSDK = require('react-native-fbsdk')
 const {
   LoginButton,
   AccessToken,
   GraphRequest,
   GraphRequestManager
-} = FBSDK;
+} = FBSDK
 
 
 class LoginScreen extends Component {
@@ -45,11 +46,12 @@ class LoginScreen extends Component {
     this.handlePressLogin = this.handlePressLogin.bind(this)
     this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
+    this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
   }
 
   updateState(newFieldState) {
-    this.setState({ fields: newFieldState })
+    this.setState({ fields: newFieldState }) 
   }
 
   validateFields() {
@@ -90,10 +92,11 @@ class LoginScreen extends Component {
   }
 
   goToHomeScreen() {
+    // this.props.navigation.navigate('Home')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'HomeScreen' })
+        NavigationActions.navigate({ routeName: 'Drawer' })
       ]
     })
     this.props.navigation.dispatch(resetAction)
@@ -117,7 +120,7 @@ class LoginScreen extends Component {
       alert('Error fetching data: ' + error.toString())
     } else {
       let password = Math.random().toString(36).substring(7)
-      this.props.attemptSocialLogin(result.email, result.name, password)
+      this.props.attemptSocialLogin(result.name, result.email, password)
     }
   }
 
@@ -173,10 +176,10 @@ class LoginScreen extends Component {
           this.responseInfoCallback(false, user)
         })
         .catch((err) => {
-          alert(err);
+          alert(err)
         })
-        .done();
-    });
+        .done()
+    })
   }
 
   render() {

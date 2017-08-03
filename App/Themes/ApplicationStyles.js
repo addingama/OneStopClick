@@ -56,18 +56,21 @@ const ApplicationStyles = {
     },
     customContainer: {
       flex: 1,
-      justifyContent: 'center',
-      marginTop: Metrics.navBarHeight
+      justifyContent: 'center'
+      // marginTop: Metrics.navBarHeight
     },
     formContainer: {
-      backgroundColor: Colors.snow,
-      margin: Metrics.baseMargin,
-      borderRadius: Metrics.buttonRadius,
-      paddingBottom: Metrics.baseMargin
+      backgroundColor: Colors.silver,
+      marginLeft: Metrics.baseMargin,
+      marginRight: Metrics.baseMargin,
+      borderRadius: Metrics.buttonRadius
     },
     linkActionText: {
       fontSize: 16,
       fontWeight: 'bold'
+    },
+    hasNavbar: {
+      marginBottom: Metrics.navBarHeight + 20
     }
   },
   darkLabelContainer: {
