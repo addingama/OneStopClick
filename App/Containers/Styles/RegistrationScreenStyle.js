@@ -10,6 +10,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: Metrics.doubleBaseMargin,
+    marginBottom: Metrics.baseMargin
   }
 })

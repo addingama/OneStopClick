@@ -4,13 +4,11 @@ import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
 
 /* ------------- Types ------------- */
-
 import { LoginTypes } from '../Redux/LoginRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
 
 /* ------------- Sagas ------------- */
-
 import { login, socialLogin } from './LoginSagas'
 import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
