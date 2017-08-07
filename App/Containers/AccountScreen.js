@@ -8,12 +8,14 @@ import { NavigationActions } from 'react-navigation'
 import HideableView from 'react-native-hideable-view'
 import StorageService from '../Services/StorageService'
 import { CustomButton, HamburgerMenu } from '../Components/FormGenerator'
+import { isLoggedIn } from '../Redux/LoginRedux'
 
 // Styles
 import styles from './Styles/AccountScreenStyle'
 
 
 class AccountScreen extends Component {
+  
   static navigationOptions = {
     drawerIcon: ({ tintColor }) => {
       return (
@@ -28,10 +30,12 @@ class AccountScreen extends Component {
   }
 
   componentWillMount() {
-    const isLoggedIn = StorageService.isLoggedIn()
-    if(!isLoggedIn) {
-      this.goToLogin()
-    }
+    StorageService.isLoggedIn().then((isLoggedIn) => {
+      if (!isLoggedIn) {
+        this.goToLogin()
+      }
+    })
+    
   }
 
   openMenu() {
@@ -51,7 +55,6 @@ class AccountScreen extends Component {
   }
 
   goToLogin() {
-    // clear data here
     const resetAction = NavigationActions.navigate({ 
       routeName: 'Account',
       params: {},

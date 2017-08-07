@@ -7,10 +7,11 @@ import { connect } from 'react-redux'
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
+import { Header, Icon } from 'react-native-elements'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
-import { CustomInputField, CustomButton } from '../Components/FormGenerator'
+import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
 import styles from './Styles/LoginScreenStyle'
@@ -48,6 +49,10 @@ class LoginScreen extends Component {
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
     this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
+  }
+
+  openMenu() {
+    this.props.navigation.navigate('DrawerOpen')
   }
 
   updateState(newFieldState) {
@@ -92,12 +97,10 @@ class LoginScreen extends Component {
   }
 
   goToHomeScreen() {
-    // this.props.navigation.navigate('Home')
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'Drawer' })
-      ]
+    const resetAction = NavigationActions.navigate({ 
+      routeName: 'Home',
+      params: {},
+      action: NavigationActions.navigate({ routeName: 'Home'})
     })
     this.props.navigation.dispatch(resetAction)
   }
@@ -186,70 +189,76 @@ class LoginScreen extends Component {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
-          <View style={styles.customContainer}>
-            <View style={styles.formContainer}>
-              <Text style={styles.screenTitleText}>{I18n.t('login')}</Text>
-              <CustomInputField
-                field={email}
-                editable={!loggingIn}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomInputField
-                field={password}
-                editable={!loggingIn}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-
-              <CustomButton
-                disabled={loggingIn}
-                onPress={() => this.handlePressLogin()}
-                style={styles.btnSignIn}
-                title={I18n.t('signIn')}
-              />
-
-              <View style={styles.forgotPassword}>
-                <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
-                  <Text>{I18n.t('forgotYourPassword?')}</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.doNotHaveAccount}>
-                <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
-                <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
-                  <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
-                </TouchableOpacity>
-
-              </View>
-              <View style={styles.socialAccountButton}>
-                <SocialIcon
-                  onPress={this.handleFacebookLogin}
-                  button
-                  type='facebook'
-                  title={I18n.t('continueWithFacebook')}
-                  disabled={loggingIn}
+      <View>
+        <View style={styles.hasNavbar}>
+          <Header
+            backgroundColor='#2F1F37'
+            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
+            centerComponent={{ text: I18n.t('signIn'), style: { color: '#fff' } }}
+          />
+        </View>
+        <View style={styles.fragmentContainer}>
+          <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+            <View style={styles.customContainer}>
+              <View style={styles.formContainer}>
+                <CustomInputField
+                  field={email}
+                  editable={!loggingIn}
+                  state={this.state.fields}
+                  updateState={this.updateState}
                 />
-              </View>
-              <View style={styles.socialAccountButton}>
-                <SocialIcon
-                  button
-                  type='google'
-                  onPress={this.handleGoogleLogin.bind(this)}
-                  title={I18n.t('continueWithGoogle')}
-                  disabled={loggingIn}
-                  style={styles.googleButton}
+                <CustomInputField
+                  field={password}
+                  editable={!loggingIn}
+                  state={this.state.fields}
+                  updateState={this.updateState}
                 />
+
+                <CustomButton
+                  disabled={loggingIn}
+                  onPress={() => this.handlePressLogin()}
+                  style={styles.btnSignIn}
+                  title={I18n.t('signIn')}
+                />
+
+                <View style={styles.forgotPassword}>
+                  <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
+                    <Text>{I18n.t('forgotYourPassword?')}</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.doNotHaveAccount}>
+                  <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
+                  <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
+                    <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
+                  </TouchableOpacity>
+
+                </View>
+                <View style={styles.socialAccountButton}>
+                  <SocialIcon
+                    onPress={this.handleFacebookLogin}
+                    button
+                    type='facebook'
+                    title={I18n.t('continueWithFacebook')}
+                    disabled={loggingIn}
+                  />
+                </View>
+                <View style={styles.socialAccountButton}>
+                  <SocialIcon
+                    button
+                    type='google'
+                    onPress={this.handleGoogleLogin.bind(this)}
+                    title={I18n.t('continueWithGoogle')}
+                    disabled={loggingIn}
+                    style={styles.googleButton}
+                  />
+                </View>
               </View>
+              <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
             </View>
-            <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
-
     )
   }
 }

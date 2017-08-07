@@ -9,23 +9,19 @@ class StorageService {
     // AsyncStorage.setItem(REFRESH_TOKEN, refreshToken)
   }
 
+  static removeSession () {
+    AsyncStorage.removeItem(ACCESS_TOKEN)
+    // AsyncStorage.removeItem(REFRESH_TOKEN)
+  }
+
   static getAccessToken () {
-    AsyncStorage.getItem(ACCESS_TOKEN).then((accessToken) => {
-      return accessToken
-    })
+    return AsyncStorage.getItem(ACCESS_TOKEN)
   }
 
   static isLoggedIn () {
-    const accessToken = this.getAccessToken()
-    if (accessToken != null) {
-      return true
-    }
-    return false
-  }
-
-  static removeSession () {
-    AsyncStorage.setItem(ACCESS_TOKEN, '')
-    // AsyncStorage.removeItem(REFRESH_TOKEN)
+    return this.getAccessToken().then((accessToken) => {
+      return accessToken
+    })
   }
 }
 

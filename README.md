@@ -11,6 +11,8 @@
 
 **Step 3:** Install the Application with `yarn` or `npm i`
 
+**Step 4:** Download [FBSDK](https://developers.facebook.com/docs/ios/) and place it under `Documents` and rename to `FacebookSDK`
+
 
 ## :arrow_forward: How to Run App
 
@@ -60,3 +62,6 @@ Secrets.GOOGLE_MAPS_API_KEY  // 'abcdefgh'
 
 The `.env` file is ignored by git keeping those secrets out of your repo.
 
+## Troubleshooting
+
+Make sure to run `react-native link` on source root directory and run `pod install` on ios directory
