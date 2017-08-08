@@ -12,11 +12,12 @@ import { Images } from '../Themes'
 import { validateField } from '../Lib/validator'
 import RegistrationActions from '../Redux/RegistrationRedux'
 import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
 
 
 import styles from './Styles/RegistrationScreenStyle'
 
-class RegistrationScreen extends Component {
+class RegistrationScreen extends AccountDrawerBase {
 
   static propTypes = {
     dispatch: PropTypes.func,
@@ -26,18 +27,7 @@ class RegistrationScreen extends Component {
     attemptRegister: PropTypes.func.isRequired
   }
 
-  static navigationOptions = {
-    drawerIcon: ({ tintColor }) => {
-      return (
-        <MaterialIcons
-          name='account-circle'
-          size={24}
-          style={{ color: tintColor }}
-        >
-        </MaterialIcons>
-      )
-    }
-  }
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
   constructor(props) {
     super(props)
@@ -46,10 +36,6 @@ class RegistrationScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressRegister = this.handlePressRegister.bind(this)
-  }
-
-  openMenu() {
-    this.props.navigation.navigate('DrawerOpen')
   }
 
   updateState(newFieldState) {
@@ -112,11 +98,7 @@ class RegistrationScreen extends Component {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <Header
-            backgroundColor='#2F1F37'
-            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
-            centerComponent={{ text: I18n.t('registration'), style: { color: '#fff' } }}
-          />
+          {this.generateNavbar(I18n.t('registration'))}
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView contentContainerStyle={styles.scrollCenterContainer}>

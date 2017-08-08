@@ -11,12 +11,13 @@ import { Images } from '../Themes'
 import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import * as ForgotModel from '../Models/ForgotPasswordModel'
 import { validateField } from '../Lib/validator'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
 import { cloneDeep } from 'lodash'
 
 // Styles
 import styles from './Styles/ForgotPasswordStyle'
 
-class ForgotPasswordScreen extends Component {
+class ForgotPasswordScreen extends AccountDrawerBase {
 
   static propTypes = {
     dispatch: PropTypes.func,
@@ -26,18 +27,7 @@ class ForgotPasswordScreen extends Component {
     attempResetPassword: PropTypes.func.isRequired
   }
 
-  static navigationOptions = {
-    drawerIcon: ({ tintColor }) => {
-      return (
-        <MaterialIcons
-          name='account-circle'
-          size={24}
-          style={{ color: tintColor }}
-        >
-        </MaterialIcons>
-      )
-    }
-  }
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
   constructor (props) {
     super(props)
@@ -46,10 +36,6 @@ class ForgotPasswordScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressReset = this.handlePressReset.bind(this)
-  }
-
-  openMenu() {
-    this.props.navigation.navigate('DrawerOpen')
   }
 
   updateState (newFieldState) {
@@ -93,11 +79,7 @@ class ForgotPasswordScreen extends Component {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <Header
-            backgroundColor='#2F1F37'
-            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
-            centerComponent={{ text: I18n.t('forgotPassword'), style: { color: '#fff' } }}
-          />
+          {this.generateNavbar(I18n.t('forgotPassword'))}
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView contentContainerStyle={styles.scrollCenterContainer}>

@@ -9,25 +9,15 @@ import HideableView from 'react-native-hideable-view'
 import StorageService from '../Services/StorageService'
 import { CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import { isLoggedIn } from '../Redux/LoginRedux'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
 
 // Styles
 import styles from './Styles/AccountScreenStyle'
 
 
-class AccountScreen extends Component {
+class AccountScreen extends AccountDrawerBase {
   
-  static navigationOptions = {
-    drawerIcon: ({ tintColor }) => {
-      return (
-        <MaterialIcons
-          name='account-circle'
-          size={24}
-          style={{ color: tintColor }}
-        >
-        </MaterialIcons>
-      )
-    }
-  }
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
   componentWillMount() {
     StorageService.isLoggedIn().then((isLoggedIn) => {
@@ -36,10 +26,6 @@ class AccountScreen extends Component {
       }
     })
     
-  }
-
-  openMenu() {
-    this.props.navigation.navigate('DrawerOpen')
   }
 
   handlePresslogout() {

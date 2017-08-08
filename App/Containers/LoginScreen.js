@@ -8,13 +8,13 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
 import { Header, Icon } from 'react-native-elements'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
 import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
 import styles from './Styles/LoginScreenStyle'
 
 
@@ -27,8 +27,7 @@ const {
 } = FBSDK
 
 
-class LoginScreen extends Component {
-
+class LoginScreen extends AccountDrawerBase {
   static propTypes = {
     dispatch: PropTypes.func,
     loggingIn: PropTypes.bool,
@@ -39,18 +38,7 @@ class LoginScreen extends Component {
     attemptLogin: PropTypes.func.isRequired
   }
 
-  static navigationOptions = {
-    drawerIcon: ({ tintColor }) => {
-      return (
-        <MaterialIcons
-          name='account-circle'
-          size={24}
-          style={{ color: tintColor }}
-        >
-        </MaterialIcons>
-      )
-    }
-  }
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
   constructor(props) {
     super(props)
@@ -63,10 +51,8 @@ class LoginScreen extends Component {
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
     this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
-  }
 
-  openMenu() {
-    this.props.navigation.navigate('DrawerOpen')
+    console.tron.log(this)
   }
 
   updateState(newFieldState) {
@@ -209,11 +195,7 @@ class LoginScreen extends Component {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <Header
-            backgroundColor='#2F1F37'
-            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
-            centerComponent={{ text: I18n.t('signIn'), style: { color: '#fff' } }}
-          />
+          {this.generateNavbar(I18n.t('signIn'))}
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
