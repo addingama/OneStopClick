@@ -120,10 +120,14 @@ class LoginScreen extends Component {
   }
 
   goToForgotPasswordScreen() {
+    console.tron.log('go to forgot')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'ForgotPasswordScreen' })
+        NavigationActions.navigate({ 
+          routeName: 'ForgotPasswordScreen',
+          params: {}
+        })
       ]
     })
     this.props.navigation.dispatch(resetAction)
