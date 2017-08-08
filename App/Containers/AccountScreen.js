@@ -55,10 +55,14 @@ class AccountScreen extends Component {
   }
 
   goToLogin() {
-    const resetAction = NavigationActions.navigate({ 
-      routeName: 'Account',
-      params: {},
-      action: NavigationActions.navigate({ routeName: 'LoginScreen'})
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ 
+          routeName: 'LoginScreen',
+          params: {}
+        })
+      ]
     })
     this.props.navigation.dispatch(resetAction)
   }
