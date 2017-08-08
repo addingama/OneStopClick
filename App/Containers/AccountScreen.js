@@ -10,6 +10,7 @@ import StorageService from '../Services/StorageService'
 import { CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import { isLoggedIn } from '../Redux/LoginRedux'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 
 // Styles
 import styles from './Styles/AccountScreenStyle'
@@ -68,11 +69,7 @@ class AccountScreen extends AccountDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <Header
-            backgroundColor='#2F1F37'
-            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
-            centerComponent={{ text: I18n.t('account'), style: { color: '#fff' } }}
-          />
+          <DrawerHeader title={I18n.t('account')} {...this.props}/>
         </View>
         <ScrollView contentContainerStyle={[styles.scrollCenterContainer]}>
           <View style={styles.customContainer}>

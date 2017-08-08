@@ -1,8 +1,7 @@
-import React from 'react'
-import DrawerBase from './DrawerBase'
+import React, { Component } from 'react'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-class AccountDrawerBase extends DrawerBase {
+class AccountDrawerBase extends Component {
   static getNavigationOptions () {
     return {
       drawerIcon: ({ tintColor }) => {

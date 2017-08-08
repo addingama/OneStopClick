@@ -14,7 +14,7 @@ test('CustomInputField component renders correctly if field props set for unsecu
     returnKeyType: 'next',
     keyboardType: 'email-address'
   }
-  const tree = renderer.create(<CustomInputField field={email}/>).toJSON()
+  const tree = renderer.create(<CustomInputField field={email} />).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
@@ -29,6 +29,6 @@ test('CustomInputField component renders correctly if field props set for unsecu
     returnKeyType: 'done',
     keyboardType: 'default'
   }
-  const tree = renderer.create(<CustomInputField field={password}/>).toJSON()
+  const tree = renderer.create(<CustomInputField field={password} />).toJSON()
   expect(tree).toMatchSnapshot()
 })

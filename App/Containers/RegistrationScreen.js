@@ -13,6 +13,7 @@ import { validateField } from '../Lib/validator'
 import RegistrationActions from '../Redux/RegistrationRedux'
 import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 
 
 import styles from './Styles/RegistrationScreenStyle'
@@ -98,7 +99,7 @@ class RegistrationScreen extends AccountDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          {this.generateNavbar(I18n.t('registration'))}
+          <DrawerHeader title={I18n.t('registration')} {...this.props}/>
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView contentContainerStyle={styles.scrollCenterContainer}>

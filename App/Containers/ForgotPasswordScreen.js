@@ -12,6 +12,7 @@ import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/For
 import * as ForgotModel from '../Models/ForgotPasswordModel'
 import { validateField } from '../Lib/validator'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 import { cloneDeep } from 'lodash'
 
 // Styles
@@ -79,7 +80,7 @@ class ForgotPasswordScreen extends AccountDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          {this.generateNavbar(I18n.t('forgotPassword'))}
+          <DrawerHeader title={I18n.t('forgotPassword')} {...this.props}/>
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
