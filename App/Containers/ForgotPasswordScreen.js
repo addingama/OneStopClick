@@ -3,10 +3,12 @@ import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import { Header, Icon } from 'react-native-elements'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import ForgotActions from '../Redux/ForgotPasswordRedux'
 import { Images } from '../Themes'
-import { CustomInputField, CustomButton } from '../Components/FormGenerator'
+import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
 import * as ForgotModel from '../Models/ForgotPasswordModel'
 import { validateField } from '../Lib/validator'
 import { cloneDeep } from 'lodash'
@@ -24,6 +26,19 @@ class ForgotPasswordScreen extends Component {
     attempResetPassword: PropTypes.func.isRequired
   }
 
+  static navigationOptions = {
+    drawerIcon: ({ tintColor }) => {
+      return (
+        <MaterialIcons
+          name='account-circle'
+          size={24}
+          style={{ color: tintColor }}
+        >
+        </MaterialIcons>
+      )
+    }
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -31,6 +46,10 @@ class ForgotPasswordScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressReset = this.handlePressReset.bind(this)
+  }
+
+  openMenu() {
+    this.props.navigation.navigate('DrawerOpen')
   }
 
   updateState (newFieldState) {
@@ -72,35 +91,42 @@ class ForgotPasswordScreen extends Component {
     const {email} = this.state.fields
     const { processing, error } = this.props
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
-          <View style={styles.customContainer}>
-            <View style={styles.formContainer}>
-              <Text style={styles.screenTitleText}>{I18n.t('forgotPassword')}</Text>
-              <CustomInputField
-                field={email}
-                editable={!processing}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-            
-              <CustomButton
-                disabled={processing}
-                onPress={() => this.handlePressReset()}
-                style={styles.btnReset}
-                title={I18n.t('sendPasswordResetLink')}
-              />
+      <View>
+        <View style={styles.hasNavbar}>
+          <Header
+            backgroundColor='#2F1F37'
+            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
+            centerComponent={{ text: I18n.t('forgotPassword'), style: { color: '#fff' } }}
+          />
+        </View>
+        <View style={styles.fragmentContainer}>
+          <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+            <View style={styles.customContainer}>
+              <View style={styles.formContainer}>
+                <CustomInputField
+                  field={email}
+                  editable={!processing}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
+              
+                <CustomButton
+                  disabled={processing}
+                  onPress={() => this.handlePressReset()}
+                  style={styles.btnReset}
+                  title={I18n.t('sendPasswordResetLink')}
+                />
 
-              <View style={styles.rememberPassword}>
-                <TouchableOpacity onPress={() => this.goToLoginScreen()}>
-                  <Text>{I18n.t('rememberYourPassword?')}</Text>
-                </TouchableOpacity>
+                <View style={styles.rememberPassword}>
+                  <TouchableOpacity onPress={() => this.goToLoginScreen()}>
+                    <Text>{I18n.t('rememberYourPassword?')}</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
+              <ProgressIndicator show={processing} />
             </View>
-            <ProgressIndicator show={processing} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     )
   }

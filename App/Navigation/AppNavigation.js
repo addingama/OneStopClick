@@ -13,7 +13,6 @@ const AccountStack = StackNavigator({
   RegistrationScreen: { screen: RegistrationScreen },
   LoginScreen: { screen: LoginScreen }
 }, {
-    // Default config for all screens
   headerMode: 'none',
   initialRouteName: 'AccountScreen',
   navigationOptions: {

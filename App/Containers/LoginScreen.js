@@ -8,6 +8,7 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
 import { Header, Icon } from 'react-native-elements'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
@@ -36,6 +37,19 @@ class LoginScreen extends Component {
     access_token: PropTypes.string,
     refresh_token: PropTypes.string,
     attemptLogin: PropTypes.func.isRequired
+  }
+
+  static navigationOptions = {
+    drawerIcon: ({ tintColor }) => {
+      return (
+        <MaterialIcons
+          name='account-circle'
+          size={24}
+          style={{ color: tintColor }}
+        >
+        </MaterialIcons>
+      )
+    }
   }
 
   constructor(props) {
@@ -106,10 +120,14 @@ class LoginScreen extends Component {
   }
 
   goToForgotPasswordScreen() {
+    console.tron.log('go to forgot')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'ForgotPasswordScreen' })
+        NavigationActions.navigate({ 
+          routeName: 'ForgotPasswordScreen',
+          params: {}
+        })
       ]
     })
     this.props.navigation.dispatch(resetAction)

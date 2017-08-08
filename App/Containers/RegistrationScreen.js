@@ -1,15 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import { ScrollView, Text, View, Image } from 'react-native'
 import { connect } from 'react-redux'
-import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import { NavigationActions } from 'react-navigation'
+import { Header, Icon } from 'react-native-elements'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import {cloneDeep} from 'lodash'
+import I18n from 'react-native-i18n'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import * as RegistrationModel from '../Models/RegistrationModel'
 import { Images } from '../Themes'
-import I18n from 'react-native-i18n'
 import { validateField } from '../Lib/validator'
 import RegistrationActions from '../Redux/RegistrationRedux'
-import {cloneDeep} from 'lodash'
+import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
+
 
 import styles from './Styles/RegistrationScreenStyle'
 
@@ -23,6 +26,19 @@ class RegistrationScreen extends Component {
     attemptRegister: PropTypes.func.isRequired
   }
 
+  static navigationOptions = {
+    drawerIcon: ({ tintColor }) => {
+      return (
+        <MaterialIcons
+          name='account-circle'
+          size={24}
+          style={{ color: tintColor }}
+        >
+        </MaterialIcons>
+      )
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -30,6 +46,10 @@ class RegistrationScreen extends Component {
     }
     this.updateState = this.updateState.bind(this)
     this.handlePressRegister = this.handlePressRegister.bind(this)
+  }
+
+  openMenu() {
+    this.props.navigation.navigate('DrawerOpen')
   }
 
   updateState(newFieldState) {
@@ -90,53 +110,57 @@ class RegistrationScreen extends Component {
     const { registering, error } = this.props
 
     return (
-      <View style={styles.mainContainer}>
-        <Image
-          source={Images.background}
-          style={styles.backgroundImage}
-          resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
-          <View style={styles.customContainer}>
-            <View style={styles.formContainer}>
-              <Text style={styles.screenTitleText}>{I18n.t('registration')}</Text>
-              <CustomInputField
-                field={name}
-                editable={!registering}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomInputField
-                field={email}
-                editable={!registering}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomInputField
-                field={password}
-                editable={!registering}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomInputField
-                field={password_confirmation}
-                editable={!registering}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomButton
-                disabled={registering}
-                onPress={() => this.handlePressRegister()}
-                style={styles.btnReg}
-                title={I18n.t('register')}
-              />
-              <View style={styles.alreadyHaveAccountContent}>
-                <Text>{I18n.t('alreadyHaveAnAccount?')} </Text>
-                <Text style={[styles.linkActionText]} onPress={() => this.goToLoginScreen()}>{I18n.t('login')}!</Text>
+      <View>
+        <View style={styles.hasNavbar}>
+          <Header
+            backgroundColor='#2F1F37'
+            leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
+            centerComponent={{ text: I18n.t('registration'), style: { color: '#fff' } }}
+          />
+        </View>
+        <View style={styles.fragmentContainer}>
+          <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+            <View style={styles.customContainer}>
+              <View style={styles.formContainer}>
+                <CustomInputField
+                  field={name}
+                  editable={!registering}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
+                <CustomInputField
+                  field={email}
+                  editable={!registering}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
+                <CustomInputField
+                  field={password}
+                  editable={!registering}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
+                <CustomInputField
+                  field={password_confirmation}
+                  editable={!registering}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
+                <CustomButton
+                  disabled={registering}
+                  onPress={() => this.handlePressRegister()}
+                  style={styles.btnReg}
+                  title={I18n.t('register')}
+                />
+                <View style={styles.alreadyHaveAccountContent}>
+                  <Text>{I18n.t('alreadyHaveAnAccount?')} </Text>
+                  <Text style={[styles.linkActionText]} onPress={() => this.goToLoginScreen()}>{I18n.t('login')}!</Text>
+                </View>
               </View>
+              <ProgressIndicator show={registering} text={I18n.t('registering')} />
             </View>
-            <ProgressIndicator show={registering} text={I18n.t('registering')} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     )
   }
