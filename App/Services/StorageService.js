@@ -9,20 +9,19 @@ class StorageService {
     // AsyncStorage.setItem(REFRESH_TOKEN, refreshToken)
   }
 
+  static removeSession () {
+    AsyncStorage.removeItem(ACCESS_TOKEN)
+    // AsyncStorage.removeItem(REFRESH_TOKEN)
+  }
+
   static getAccessToken () {
     return AsyncStorage.getItem(ACCESS_TOKEN)
   }
 
   static isLoggedIn () {
-    if (this.getAccessToken() !== '') {
-      return true
-    }
-    return false
-  }
-
-  static removeSession () {
-    AsyncStorage.removeItem(ACCESS_TOKEN)
-    // AsyncStorage.removeItem(REFRESH_TOKEN)
+    return this.getAccessToken().then((accessToken) => {
+      return accessToken
+    })
   }
 }
 

@@ -11,6 +11,10 @@ const ApplicationStyles = {
       flex: 1,
       backgroundColor: Colors.transparent
     },
+    fragmentContainer: {
+      marginTop: Metrics.doubleBaseMargin,
+      backgroundColor: Colors.transparent
+    },
     backgroundImage: {
       position: 'absolute',
       top: 0,
@@ -70,7 +74,7 @@ const ApplicationStyles = {
       fontWeight: 'bold'
     },
     hasNavbar: {
-      marginBottom: Metrics.navBarHeight + 20
+      marginBottom: Metrics.navBarHeight
     }
   },
   darkLabelContainer: {

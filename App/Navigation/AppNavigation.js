@@ -7,14 +7,27 @@ import LaunchScreen from '../Containers/LaunchScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import styles from './Styles/NavigationStyles'
 
-const PrimaryNav = DrawerNavigator(
+const AccountStack = StackNavigator({
+  ForgotPasswordScreen: { screen: ForgotPasswordScreen },
+  AccountScreen: { screen: AccountScreen },
+  RegistrationScreen: { screen: RegistrationScreen },
+  LoginScreen: { screen: LoginScreen }
+}, {
+    // Default config for all screens
+  headerMode: 'none',
+  initialRouteName: 'AccountScreen',
+  navigationOptions: {
+    headerStyle: styles.header
+  }
+})
 
+const PrimaryNav = DrawerNavigator(
   {
     Home: {
       screen: HomeScreen
     },
-    AccountScreen: {
-      screen: AccountScreen
+    Account: {
+      screen: AccountStack
     }
   },
   {
@@ -24,28 +37,4 @@ const PrimaryNav = DrawerNavigator(
 
 )
 
-// // Manifest of possible screens
-const StackNav = StackNavigator({
-  ForgotPasswordScreen: { screen: ForgotPasswordScreen },
-  HomeScreen: { screen: HomeScreen },
-  RegistrationScreen: { screen: RegistrationScreen },
-  LaunchScreen: { screen: LaunchScreen },
-  LoginScreen: { screen: LoginScreen },
-  Drawer: {
-    screen: PrimaryNav,
-    navigationOptions: {
-      header: {
-        visible: false
-      }
-    }
-  }
-}, {
-    // Default config for all screens
-  headerMode: 'none',
-  initialRouteName: 'LoginScreen',
-  navigationOptions: {
-    headerStyle: styles.header
-  }
-})
-
-export default StackNav
+export default PrimaryNav
