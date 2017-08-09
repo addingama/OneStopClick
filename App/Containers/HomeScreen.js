@@ -15,6 +15,7 @@ import { cloneDeep } from 'lodash'
 import { Header, Icon, Card, ListItem, SearchBar, Grid, Col } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 
 class HomeScreen extends HomeDrawerBase {
   static navigationOptions = HomeDrawerBase.getNavigationOptions()
@@ -83,7 +84,7 @@ class HomeScreen extends HomeDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          {this.generateNavbar(I18n.t('home'))}
+          <DrawerHeader title={I18n.t('home')} {...this.props} />
         </View>
         <ScrollView contentContainerStyle={[styles.scrollCenterContainer]}>
           <View style={styles.customContainer}>
