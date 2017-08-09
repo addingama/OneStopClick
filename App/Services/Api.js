@@ -55,6 +55,7 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
 
   const forgotPassword = (email) => api.post('api/forgot_password', { email })
 
+  const getProducts = () => api.get('home/products')
   // ------
   // STEP 3
   // ------
@@ -72,7 +73,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     login,
     registration,
     forgotPassword,
-    socialLogin
+    socialLogin,
+    getProducts
   }
 }
 

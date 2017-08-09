@@ -60,7 +60,8 @@ const ApplicationStyles = {
     },
     customContainer: {
       flex: 1,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      paddingBottom: Metrics.navBarHeight + 20
       // marginTop: Metrics.navBarHeight
     },
     formContainer: {
@@ -74,7 +75,7 @@ const ApplicationStyles = {
       fontWeight: 'bold'
     },
     hasNavbar: {
-      marginBottom: Metrics.navBarHeight
+      marginBottom: Metrics.navBarHeight + 20
     }
   },
   darkLabelContainer: {

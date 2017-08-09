@@ -7,11 +7,13 @@ import DebugConfig from '../Config/DebugConfig'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
+import { ProductTypes } from '../Redux/ProductRedux'
 
 /* ------------- Sagas ------------- */
 import { login, socialLogin } from './LoginSagas'
 import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
+import { getProducts } from './productSagas'
 
 /* ------------- API ------------- */
 
@@ -26,6 +28,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
     takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
     takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
-    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api)
+    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
+    takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api)
   ]
 }

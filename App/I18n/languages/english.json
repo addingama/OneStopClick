@@ -46,5 +46,6 @@
    "continueWithFacebook": "Continue with Facebook",
    "continueWithGoogle": "Continue with Google",
    "account": "Account",
-   "home": "Home"
+   "home": "Home",
+   "fetching": "Fetching"
 }
