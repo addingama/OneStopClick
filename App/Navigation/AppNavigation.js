@@ -13,6 +13,7 @@ const AccountStack = StackNavigator({
   RegistrationScreen: { screen: RegistrationScreen },
   LoginScreen: { screen: LoginScreen }
 }, {
+  stateName: 'AccountStack',
   headerMode: 'none',
   initialRouteName: 'AccountScreen',
   navigationOptions: {
@@ -30,6 +31,7 @@ const PrimaryNav = DrawerNavigator(
     }
   },
   {
+    stateName: 'PrimaryNav',
     initialRouteName: 'Home',
     drawerPosition: 'left'
   }

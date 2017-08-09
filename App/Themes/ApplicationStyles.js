@@ -12,7 +12,9 @@ const ApplicationStyles = {
       backgroundColor: Colors.transparent
     },
     fragmentContainer: {
+      flex: 1,
       marginTop: Metrics.doubleBaseMargin,
+      marginBottom: Metrics.doubleBaseMargin,
       backgroundColor: Colors.transparent
     },
     backgroundImage: {
@@ -64,6 +66,7 @@ const ApplicationStyles = {
       // marginTop: Metrics.navBarHeight
     },
     formContainer: {
+      flex: 1,
       backgroundColor: Colors.silver,
       marginLeft: Metrics.baseMargin,
       marginRight: Metrics.baseMargin,

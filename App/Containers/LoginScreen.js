@@ -100,8 +100,7 @@ class LoginScreen extends AccountDrawerBase {
   goToHomeScreen() {
     const resetAction = NavigationActions.navigate({ 
       routeName: 'Home',
-      params: {},
-      action: NavigationActions.navigate({ routeName: 'Home'})
+      params: {}
     })
     this.props.navigation.dispatch(resetAction)
   }
@@ -194,12 +193,12 @@ class LoginScreen extends AccountDrawerBase {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View style={styles.hasNavbar}>
           <DrawerHeader title={I18n.t('signIn')} {...this.props} />
         </View>
         <View style={styles.fragmentContainer}>
-          <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+          <ScrollView >
             <View style={styles.customContainer}>
               <View style={styles.formContainer}>
                 <CustomInputField

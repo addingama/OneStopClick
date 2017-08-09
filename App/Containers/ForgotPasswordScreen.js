@@ -78,12 +78,12 @@ class ForgotPasswordScreen extends AccountDrawerBase {
     const {email} = this.state.fields
     const { processing, error } = this.props
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View style={styles.hasNavbar}>
           <DrawerHeader title={I18n.t('forgotPassword')} {...this.props}/>
         </View>
         <View style={styles.fragmentContainer}>
-          <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
+          <ScrollView >
             <View style={styles.customContainer}>
               <View style={styles.formContainer}>
                 <CustomInputField
