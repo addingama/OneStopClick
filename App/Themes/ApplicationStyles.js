@@ -79,6 +79,23 @@ const ApplicationStyles = {
     },
     hasNavbar: {
       marginBottom: Metrics.navBarHeight + 20
+    },
+    cardContent: {
+      width: (Metrics.screenWidth / 2) - 25,
+      minWidth: (Metrics.screenWidth / 2) - 25,
+      maxWidth: (Metrics.screenWidth / 2) - 25,
+      height: 360,
+      minHeight: 360,
+      maxHeight: 360,
+      borderColor: 'grey',
+      borderWidth: 2,
+      borderRadius: Metrics.buttonRadius,
+      margin: 7
+    },
+    titleLabel: {
+      backgroundColor: '#2F1F37',
+      color: 'white',
+      padding: 5
     }
   },
   darkLabelContainer: {

@@ -1,8 +1,10 @@
-import { FormLabel, FormInput, FormValidationMessage, Button, Icon } from 'react-native-elements'
+import { FormLabel, FormInput, FormValidationMessage, Card, Button, Icon, Button as RneButton } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import React, { Component } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, Text, TouchableHighlight, FlatList } from 'react-native'
 import { validateField } from '../Lib/validator'
+import styles from './Styles/FormGeneratorStyle'
+var uuid = require('react-native-uuid')
 
 export class CustomInputField extends Component {
   setValue (fieldName, newValue, existingState) {
@@ -58,5 +60,60 @@ export class HamburgerMenu extends React.Component {
         />
       </TouchableOpacity>
     )
+  }
+}
+
+export class Category extends Component {
+  render () {
+    const { name } = this.props.category
+    return (<Text style={[styles.titleLabel]}>{name}</Text>)
+  }
+}
+
+export class Products extends Component {
+  render () {
+    const { data } = this.props
+    console.log(data)
+    var products = Object.assign([], data)
+    for (let j = 0; j < products.length; j++) {
+      var product = Object.assign({}, products[j])
+      product.key = product.id
+      products[j] = product
+    }
+    return (<FlatList
+      data={products}
+      key={uuid.v1()}
+      numColumns='2'
+      renderItem={({ item }) =>
+        <TouchableHighlight onPress={() => alert('will redirect to detail')}>
+          <View>
+            <Card
+              style={styles.cardContent}
+              key={item.id}
+              title={item.product_name}
+              image={{ uri: item.images[0].image_url }}
+            >
+              <Text
+                numberOfLines={2}
+                ellipsizeMode={'tail'}
+                style={{ marginBottom: 10 }}>
+                {item.description}
+              </Text>
+              <Text
+                style={{ marginBottom: 10, color: 'green' }}>
+                {item.price}
+              </Text>
+              <RneButton
+                icon={{ name: 'shopping-cart' }}
+                backgroundColor='green'
+                fontFamily='Lato'
+                style={{ margin: 0, padding: 0 }}
+                onPress={() => this.props.onBuyPress(item)}
+                title={I18n.t('buyNow')} />
+            </Card>
+          </View>
+        </TouchableHighlight>
+      }
+    />)
   }
 }
