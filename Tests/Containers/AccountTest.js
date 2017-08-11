@@ -22,4 +22,26 @@ describe('Account Screen', () => {
     ).toJSON()
     expect(tree).toMatchSnapshot()
     })
+
+    test('user has not been login, render correctly ',() => {
+        const initialState = { isLoggedIn: false}
+        const store = mockStore(initialState)
+        const tree = renderer.create(
+            <Provider store = {store}>
+                <AccountScreen />
+            </Provider>
+        ).toJSON()
+
+        expect(tree).toMatchSnapshot()
+    })
+
+    test('user has been login, render correctly', () => {
+        const initialState = { isLoggedIn: true}
+        const store = mockStore(initialState)
+        const tree = renderer.create(
+            <Provider store= {store}>
+                <AccountScreen />
+            </Provider>
+        )
+    })
 })
