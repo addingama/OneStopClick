@@ -1,20 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity, Alert, Platform } from 'react-native'
-import { Button, SocialIcon } from 'react-native-elements'
+import React, { PropTypes } from 'react'
+import { View, ScrollView, Text, TouchableOpacity, Platform } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import { GoogleSignin } from 'react-native-google-signin'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
+import { SocialIcon } from 'react-native-elements'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
-import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 import styles from './Styles/LoginScreenStyle'
-
 
 const FBSDK = require('react-native-fbsdk')
 const {
@@ -24,9 +24,7 @@ const {
   GraphRequestManager
 } = FBSDK
 
-
-class LoginScreen extends Component {
-
+class LoginScreen extends AccountDrawerBase {
   static propTypes = {
     dispatch: PropTypes.func,
     loggingIn: PropTypes.bool,
@@ -37,7 +35,9 @@ class LoginScreen extends Component {
     attemptLogin: PropTypes.func.isRequired
   }
 
-  constructor(props) {
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
+
+  constructor (props) {
     super(props)
     this.state = {
       fields: cloneDeep(LoginModel.login)
@@ -48,13 +48,15 @@ class LoginScreen extends Component {
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
     this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
+
+    console.tron.log(this)
   }
 
-  updateState(newFieldState) {
-    this.setState({ fields: newFieldState }) 
+  updateState (newFieldState) {
+    this.setState({ fields: newFieldState })
   }
 
-  validateFields() {
+  validateFields () {
     var state = this.state
     var isValid = true
     Object.keys(state.fields).map((field) => {
@@ -67,21 +69,21 @@ class LoginScreen extends Component {
     return isValid
   }
 
-  handlePressLogin() {
+  handlePressLogin () {
     if (this.validateFields()) {
       const { email, password } = this.state.fields
       this.props.attemptLogin(email.value, password.value)
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     this.forceUpdate()
     if (!newProps.loggingIn && !newProps.error) {
       this.goToHomeScreen()
     }
   }
 
-  goToRegistrationScreen() {
+  goToRegistrationScreen () {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -91,30 +93,36 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
-  goToHomeScreen() {
-    // this.props.navigation.navigate('Home')
+  goToHomeScreen () {
     const resetAction = NavigationActions.reset({
       index: 0,
+      stateName: 'PrimaryNav',
       actions: [
-        NavigationActions.navigate({ routeName: 'Drawer' })
+        NavigationActions.navigate({
+          routeName: 'Home',
+          params: {}
+        })
       ]
     })
     this.props.navigation.dispatch(resetAction)
   }
 
-  goToForgotPasswordScreen() {
+  goToForgotPasswordScreen () {
+    console.tron.log('go to forgot')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'ForgotPasswordScreen' })
+        NavigationActions.navigate({
+          routeName: 'ForgotPasswordScreen',
+          params: {}
+        })
       ]
     })
     this.props.navigation.dispatch(resetAction)
   }
 
-
-  //Create response callback.
-  responseInfoCallback(error: ?Object, result: ?Object) {
+  // Create response callback.
+  responseInfoCallback (error: ?Object, result: ?Object) {
     if (error) {
       console.tron.log(error, result)
       alert('Error fetching data: ' + error.toString())
@@ -124,7 +132,7 @@ class LoginScreen extends Component {
     }
   }
 
-  handleFacebookLogin() {
+  handleFacebookLogin () {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
       // LoginManager.logOut()
       if (result.isCancelled) {
@@ -136,7 +144,7 @@ class LoginScreen extends Component {
             const infoRequest = new GraphRequest(
               '/me?fields=id,name,last_name,email',
               null,
-              this.responseInfoCallback,
+              this.responseInfoCallback
             )
             // Start the graph request.
             new GraphRequestManager().addRequest(infoRequest).start()
@@ -150,8 +158,7 @@ class LoginScreen extends Component {
     )
   }
 
-
-  handleGoogleLogin() {
+  handleGoogleLogin () {
     if (Platform.OS === 'ios') {
       this.doGoogleLogin()
     } else if (Platform.OS === 'android') {
@@ -159,12 +166,12 @@ class LoginScreen extends Component {
         this.doGoogleLogin()
       })
       .catch((err) => {
-        alert("Play services error", err.code, err.message)
+        alert('Play services error', err.code, err.message)
       })
     }
   }
 
-  doGoogleLogin() {
+  doGoogleLogin () {
     GoogleSignin.configure({
       iosClientId: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com',
       scopes: ['openid', 'email', 'profile'],
@@ -182,74 +189,76 @@ class LoginScreen extends Component {
     })
   }
 
-  render() {
+  render () {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
-          <View style={styles.customContainer}>
-            <View style={styles.formContainer}>
-              <Text style={styles.screenTitleText}>{I18n.t('login')}</Text>
-              <CustomInputField
-                field={email}
-                editable={!loggingIn}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-              <CustomInputField
-                field={password}
-                editable={!loggingIn}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-
-              <CustomButton
-                disabled={loggingIn}
-                onPress={() => this.handlePressLogin()}
-                style={styles.btnSignIn}
-                title={I18n.t('signIn')}
-              />
-
-              <View style={styles.forgotPassword}>
-                <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
-                  <Text>{I18n.t('forgotYourPassword?')}</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.doNotHaveAccount}>
-                <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
-                <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
-                  <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
-                </TouchableOpacity>
-
-              </View>
-              <View style={styles.socialAccountButton}>
-                <SocialIcon
-                  onPress={this.handleFacebookLogin}
-                  button
-                  type='facebook'
-                  title={I18n.t('continueWithFacebook')}
-                  disabled={loggingIn}
+      <View style={{flex: 1}}>
+        <View style={styles.hasNavbar}>
+          <DrawerHeader title={I18n.t('signIn')} {...this.props} />
+        </View>
+        <View style={styles.fragmentContainer}>
+          <ScrollView >
+            <View style={styles.customContainer}>
+              <View style={styles.formContainer}>
+                <CustomInputField
+                  field={email}
+                  editable={!loggingIn}
+                  state={this.state.fields}
+                  updateState={this.updateState}
                 />
-              </View>
-              <View style={styles.socialAccountButton}>
-                <SocialIcon
-                  button
-                  type='google'
-                  onPress={this.handleGoogleLogin.bind(this)}
-                  title={I18n.t('continueWithGoogle')}
-                  disabled={loggingIn}
-                  style={styles.googleButton}
+                <CustomInputField
+                  field={password}
+                  editable={!loggingIn}
+                  state={this.state.fields}
+                  updateState={this.updateState}
                 />
+
+                <CustomButton
+                  disabled={loggingIn}
+                  onPress={() => this.handlePressLogin()}
+                  style={styles.btnSignIn}
+                  title={I18n.t('signIn')}
+                />
+
+                <View style={styles.forgotPassword}>
+                  <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
+                    <Text>{I18n.t('forgotYourPassword?')}</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.doNotHaveAccount}>
+                  <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
+                  <TouchableOpacity onPress={() => this.goToRegistrationScreen()}>
+                    <Text style={[styles.linkActionText]}> {I18n.t('register')}</Text>
+                  </TouchableOpacity>
+
+                </View>
+                <View style={styles.socialAccountButton}>
+                  <SocialIcon
+                    onPress={this.handleFacebookLogin}
+                    button
+                    type='facebook'
+                    title={I18n.t('continueWithFacebook')}
+                    disabled={loggingIn}
+                  />
+                </View>
+                <View style={styles.socialAccountButton}>
+                  <SocialIcon
+                    button
+                    type='google'
+                    onPress={this.handleGoogleLogin.bind(this)}
+                    title={I18n.t('continueWithGoogle')}
+                    disabled={loggingIn}
+                    style={styles.googleButton}
+                  />
+                </View>
               </View>
+              <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
             </View>
-            <ProgressIndicator show={loggingIn} text={I18n.t('LogginIn')} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
-
     )
   }
 }

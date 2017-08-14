@@ -28,5 +28,12 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5
+  },
+  contentContainer: {
+    borderWidth: 2,
+    borderColor: '#2F1F37',
+    borderRadius: 3,
+    marginBottom: 10,
+    paddingBottom: 20
   }
 })

@@ -11,6 +11,12 @@ const ApplicationStyles = {
       flex: 1,
       backgroundColor: Colors.transparent
     },
+    fragmentContainer: {
+      flex: 1,
+      marginTop: Metrics.doubleBaseMargin,
+      marginBottom: Metrics.doubleBaseMargin,
+      backgroundColor: Colors.transparent
+    },
     backgroundImage: {
       position: 'absolute',
       top: 0,
@@ -56,10 +62,12 @@ const ApplicationStyles = {
     },
     customContainer: {
       flex: 1,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      paddingBottom: Metrics.navBarHeight + 20
       // marginTop: Metrics.navBarHeight
     },
     formContainer: {
+      flex: 1,
       backgroundColor: Colors.silver,
       marginLeft: Metrics.baseMargin,
       marginRight: Metrics.baseMargin,
@@ -71,6 +79,23 @@ const ApplicationStyles = {
     },
     hasNavbar: {
       marginBottom: Metrics.navBarHeight + 20
+    },
+    cardContent: {
+      width: (Metrics.screenWidth / 2) - 25,
+      minWidth: (Metrics.screenWidth / 2) - 25,
+      maxWidth: (Metrics.screenWidth / 2) - 25,
+      height: 360,
+      minHeight: 360,
+      maxHeight: 360,
+      borderColor: 'grey',
+      borderWidth: 2,
+      borderRadius: Metrics.buttonRadius,
+      margin: 7
+    },
+    titleLabel: {
+      backgroundColor: '#2F1F37',
+      color: 'white',
+      padding: 5
     }
   },
   darkLabelContainer: {

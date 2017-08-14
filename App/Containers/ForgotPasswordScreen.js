@@ -1,21 +1,21 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
+import React, { PropTypes } from 'react'
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import ForgotActions from '../Redux/ForgotPasswordRedux'
-import { Images } from '../Themes'
 import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as ForgotModel from '../Models/ForgotPasswordModel'
 import { validateField } from '../Lib/validator'
+import AccountDrawerBase from './Bases/AccountDrawerBase'
+import DrawerHeader from '../Components/DrawerHeader'
 import { cloneDeep } from 'lodash'
 
 // Styles
 import styles from './Styles/ForgotPasswordStyle'
 
-class ForgotPasswordScreen extends Component {
-
+class ForgotPasswordScreen extends AccountDrawerBase {
   static propTypes = {
     dispatch: PropTypes.func,
     processing: PropTypes.bool,
@@ -23,6 +23,8 @@ class ForgotPasswordScreen extends Component {
     message: PropTypes.string,
     attempResetPassword: PropTypes.func.isRequired
   }
+
+  static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
   constructor (props) {
     super(props)
@@ -56,7 +58,7 @@ class ForgotPasswordScreen extends Component {
       this.props.attempResetPassword(email.value)
     }
   }
-  
+
   goToLoginScreen () {
     const resetAction = NavigationActions.reset({
       index: 0,
@@ -66,41 +68,43 @@ class ForgotPasswordScreen extends Component {
     })
     this.props.navigation.dispatch(resetAction)
   }
-  
 
   render () {
     const {email} = this.state.fields
     const { processing, error } = this.props
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView contentContainerStyle={styles.scrollCenterContainer}>
-          <View style={styles.customContainer}>
-            <View style={styles.formContainer}>
-              <Text style={styles.screenTitleText}>{I18n.t('forgotPassword')}</Text>
-              <CustomInputField
-                field={email}
-                editable={!processing}
-                state={this.state.fields}
-                updateState={this.updateState}
-              />
-            
-              <CustomButton
-                disabled={processing}
-                onPress={() => this.handlePressReset()}
-                style={styles.btnReset}
-                title={I18n.t('sendPasswordResetLink')}
-              />
+      <View style={{flex: 1}}>
+        <View style={styles.hasNavbar}>
+          <DrawerHeader title={I18n.t('forgotPassword')} {...this.props} />
+        </View>
+        <View style={styles.fragmentContainer}>
+          <ScrollView >
+            <View style={styles.customContainer}>
+              <View style={styles.formContainer}>
+                <CustomInputField
+                  field={email}
+                  editable={!processing}
+                  state={this.state.fields}
+                  updateState={this.updateState}
+                />
 
-              <View style={styles.rememberPassword}>
-                <TouchableOpacity onPress={() => this.goToLoginScreen()}>
-                  <Text>{I18n.t('rememberYourPassword?')}</Text>
-                </TouchableOpacity>
+                <CustomButton
+                  disabled={processing}
+                  onPress={() => this.handlePressReset()}
+                  style={styles.btnReset}
+                  title={I18n.t('sendPasswordResetLink')}
+                />
+
+                <View style={styles.rememberPassword}>
+                  <TouchableOpacity onPress={() => this.goToLoginScreen()}>
+                    <Text>{I18n.t('rememberYourPassword?')}</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
+              <ProgressIndicator show={processing} />
             </View>
-            <ProgressIndicator show={processing} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     )
   }

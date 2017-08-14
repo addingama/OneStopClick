@@ -8,6 +8,7 @@
     "listview": "ignite-ir-boilerplate",
     "redux": "ignite-ir-boilerplate",
     "saga": "ignite-ir-boilerplate",
-    "screen": "ignite-ir-boilerplate"
+    "screen": "ignite-ir-boilerplate",
+    "tests": "jest"
   }
 }

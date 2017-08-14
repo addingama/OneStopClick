@@ -8,6 +8,8 @@
 	<string>OneStopClick</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -45,6 +47,8 @@
 	<string>125985218018387</string>
 	<key>FacebookDisplayName</key>
 	<string>OneStopClick</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -77,6 +81,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
+		<string>Lato.ttf</string>
 		<string>EvilIcons.ttf</string>
 		<string>FontAwesome.ttf</string>
 		<string>Foundation.ttf</string>
