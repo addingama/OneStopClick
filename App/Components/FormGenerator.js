@@ -106,6 +106,7 @@ export class Products extends Component {
               <RneButton
                 icon={{ name: 'shopping-cart' }}
                 backgroundColor='green'
+                fontFamily='Lato'
                 style={{ margin: 0, padding: 0 }}
                 onPress={() => this.props.onBuyPress(item)}
                 title={I18n.t('buyNow')} />
