@@ -25,10 +25,10 @@ export function * socialLogin (api, {name, email}) {
   if (response.status !== 200) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
-      yield put(LoginActions.socialLoginFailure(true, message))
+      yield put(LoginActions.loginFailure(true, message))
     }
   } else {
     StorageService.saveSession(access_token, refresh_token)
-    yield put(LoginActions.socialLoginSuccess(access_token, refresh_token))
+    yield put(LoginActions.loginSuccess(access_token, refresh_token))
   }
 }

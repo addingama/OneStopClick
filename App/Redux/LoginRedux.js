@@ -8,8 +8,6 @@ const { Types, Creators } = createActions({
   loginSuccess: ['access_token', 'refresh_token'],
   loginFailure: ['error', 'message'],
   socialLoginRequest: ['name', 'email', 'password'],
-  socialLoginSuccess: ['access_token', 'refresh_token'],
-  socialLoginFailure: ['error', 'message'],
   logout: null
 })
 
@@ -43,15 +41,8 @@ export const success = (state, { access_token, refresh_token }) => {
   return state.merge({ loggingIn: false, error: false, message: null, access_token, refresh_token })
 }
 
-export const socialSuccess = (state, { access_token, refresh_token }) => {
-  return state.merge({ loggingIn: false, error: false, message: null, access_token, refresh_token })
-}
-
 // Something went wrong somewhere.
 export const failure = (state, { message }) =>
-  state.merge({ loggingIn: false, error: true, message, access_token: null, refresh_token: null })
-
-export const SocialFailure = (state, { message }) =>
   state.merge({ loggingIn: false, error: true, message, access_token: null, refresh_token: null })
 
 // logout
@@ -64,8 +55,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
   [Types.SOCIAL_LOGIN_REQUEST]: socialRequest,
-  [Types.SOCIAL_LOGIN_SUCCESS]: socialSuccess,
-  [Types.SOCIAL_LOGIN_FAILURE]: SocialFailure,
   [Types.LOGOUT]: logout
 })
 

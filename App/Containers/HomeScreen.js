@@ -12,10 +12,12 @@ import I18n from 'react-native-i18n'
 import { validateField } from '../Lib/validator'
 import ProductActions from '../Redux/ProductRedux'
 import { cloneDeep } from 'lodash'
-import { Header, Icon, Card, ListItem, SearchBar, Grid, Col } from 'react-native-elements'
+import { Header, Icon, Card, ListItem, SearchBar } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
+import Grid from '../Components/Grid'
+import Col from '../Components/Col'
 
 class HomeScreen extends HomeDrawerBase {
   static navigationOptions = HomeDrawerBase.getNavigationOptions()
@@ -41,17 +43,19 @@ class HomeScreen extends HomeDrawerBase {
     var categoriesLabel = [];
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
-        categoriesLabel.push(<Text style={[styles.titleLabel]}>{categories[i].name}</Text>)
-        categoriesLabel.push(this.generateProducts(categories[i].products))
+        categoriesLabel.push(<Text style={[styles.titleLabel]} key={i}>{categories[i].name}</Text>)
+        categoriesLabel.push(this.generateProducts(categories[i].products, i))
       }
     }
     return (categoriesLabel)
   }
 
-  generateProducts(products) {
+  generateProducts(products, i) {
     return (<FlatList
+      key={'item' + i}
       data={products}
       numColumns='2'
+      keyExtractor={(item, index) => item.id}
       renderItem={({ item }) =>
         <Grid>
           <Col>
@@ -70,6 +74,7 @@ class HomeScreen extends HomeDrawerBase {
                 backgroundColor='#03A9F4'
                 fontFamily='Lato'
                 buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+                onPress={()=> alert(item.product_name)}
                 title='BUY NOW' />
             </Card>
           </Col>
