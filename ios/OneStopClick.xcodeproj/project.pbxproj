@@ -67,6 +67,7 @@
 		6E4B6F1B999AC9A0E2E11EE4 /* libPods-OneStopClick-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AACB7D18D9881B72AB2C125 /* libPods-OneStopClick-tvOSTests.a */; };
 		72106D0A3E2944F195B9CBF8 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525EC15FA94240E0AE455661 /* libyoga.a */; };
 		7AE9D8E4929F47E38032D3A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB68E29127147768904BA9B /* SystemConfiguration.framework */; };
+		80839E881F41953D00A7EFE1 /* Lato.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80839E871F41953D00A7EFE1 /* Lato.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		88A14FA82F57482A9DBA7695 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8F167039A3A4D63AB399508 /* Entypo.ttf */; };
 		92A671D992F68A2B6F5C2212 /* libPods-OneStopClick-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8B608FB563325472DE693 /* libPods-OneStopClick-tvOS.a */; };
@@ -392,6 +393,7 @@
 		73D06873966749679002663E /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		78B8B608FB563325472DE693 /* libPods-OneStopClick-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneStopClick-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		80839E871F41953D00A7EFE1 /* Lato.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Lato.ttf; path = Resources/Lato.ttf; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		842AFA6AA48C47DAA7B4B883 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		871E3DC593EC8E77A417477F /* Pods-OneStopClick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClick.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClick/Pods-OneStopClick.release.xcconfig"; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 		4BAC11F9447848DA84DF0554 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				80839E871F41953D00A7EFE1 /* Lato.ttf */,
 				A8F167039A3A4D63AB399508 /* Entypo.ttf */,
 				9BFB8EFE1F5F49CF8E660234 /* EvilIcons.ttf */,
 				C33A259917444172978AA6E9 /* FontAwesome.ttf */,
@@ -1247,6 +1250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80839E881F41953D00A7EFE1 /* Lato.ttf in Resources */,
 				5DB53B3F1F3033F70072076A /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
