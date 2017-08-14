@@ -1,91 +1,50 @@
-import React, { Component, PropTypes } from 'react'
-import { Alert, ScrollView, Text, View, Image, Button, TouchableOpacity, TouchableHighlight, StyleSheet, Picker, FlatList } from 'react-native'
+import React from 'react'
+import { ScrollView, Text, View, Picker } from 'react-native'
 import { connect } from 'react-redux'
-import { DrawerNavigator } from 'react-navigation'
-import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
-import { NavigationActions, } from 'react-navigation'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
-import * as RegistrationModel from '../Models/RegistrationModel'
-import { Images } from '../Themes'
 import I18n from 'react-native-i18n'
-import { validateField } from '../Lib/validator'
 import ProductActions from '../Redux/ProductRedux'
-import { cloneDeep } from 'lodash'
-import { Header, Icon, Card, ListItem, SearchBar } from 'react-native-elements'
+import { SearchBar } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
-import Grid from '../Components/Grid'
-import Col from '../Components/Col'
+var uuid = require('react-native-uuid')
 
 class HomeScreen extends HomeDrawerBase {
   static navigationOptions = HomeDrawerBase.getNavigationOptions()
   static propTypes = {}
 
-  constructor(props) {
-    super(props)
-  }
-
-  openMenu() {
-    this.props.navigation.navigate('DrawerOpen')
-  }
-
-  componentWillMount() {
+  componentWillMount () {
     this.props.getProducts()
   }
 
-  componentWillReceiveProps(newProps) {
-    this.forceUpdate()
-  }
+  generateListProducts (categoriesData) {
+    var categoriesLabel = []
+    var categories = categoriesData
 
-  generateCategories(categories) {
-    var categoriesLabel = [];
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
-        categoriesLabel.push(<Text style={[styles.titleLabel]} key={i}>{categories[i].name}</Text>)
-        categoriesLabel.push(this.generateProducts(categories[i].products, i))
+        categoriesLabel.push(
+          <Category
+            key={i}
+            category={categories[i]}
+          />
+        )
+        categoriesLabel.push(
+          <Products
+            key={uuid.v1()}
+            data={categories[i].products}
+            onBuyPress={(item) => alert('Will redirect to detail')}
+          />
+        )
       }
     }
     return (categoriesLabel)
   }
 
-  generateProducts(products, i) {
-    return (<FlatList
-      key={'item' + i}
-      data={products}
-      numColumns='2'
-      keyExtractor={(item, index) => item.id}
-      renderItem={({ item }) =>
-        <Grid>
-          <Col>
-            <Card
-              title={item.product_name}
-              image={{ uri: item.images[0].image_url }}
-            >
-              <Text style={{ marginBottom: 10 }}>
-                {item.description}
-              </Text>
-              <Text numberOfLines={2} ellipsizeMode={'tail'} style={{ marginBottom: 10, color:'green' }}>
-                {item.price}
-              </Text>
-              <Button
-                icon={{ name: 'code' }}
-                backgroundColor='#03A9F4'
-                fontFamily='Lato'
-                buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                onPress={()=> alert(item.product_name)}
-                title='BUY NOW' />
-            </Card>
-          </Col>
-        </Grid>
-      }
-    />)
-  }
-
-
-  render() {
-    const { fetching, error, products } = this.props
+  render () {
+    var { fetching, error, products } = this.props
     return (
       <View>
         <View style={styles.hasNavbar}>
@@ -95,21 +54,21 @@ class HomeScreen extends HomeDrawerBase {
           <View style={styles.customContainer}>
             <View style={[styles.formContainer]}>
               <View style={[styles.contentContainer]}>
-                <Text style={[styles.titleLabel]}>Search</Text>
+                <Text style={[styles.titleLabel]}>{I18n.t('search')}</Text>
                 <Picker
-                  selectedValue={'aa'}
+                  selectedValue={'movie'}
                   onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-                  <Picker.Item label="Movie" value="movie" />
-                  <Picker.Item label="Music" value="music" />
+                  <Picker.Item label='Movie' value='movie' />
+                  <Picker.Item label='Music' value='music' />
                 </Picker>
                 <SearchBar
                   lightTheme
-                  onChangeText={() => alert()}
-                  placeholder='Type Here...' />
+                  onChangeText={() => console.log()}
+                  placeholder={I18n.t('searchHere')} />
               </View>
               <View style={[styles.contentContainer]}>
                 {
-                  this.generateCategories(products)
+                  this.generateListProducts(products)
                 }
               </View>
             </View>
@@ -135,6 +94,5 @@ const mapDispatchToProps = (dispatch) => {
     getProducts: () => dispatch(ProductActions.getProductsRequest())
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

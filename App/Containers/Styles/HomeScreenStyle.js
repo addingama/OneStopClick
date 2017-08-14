@@ -35,10 +35,5 @@ export default StyleSheet.create({
     borderRadius: 3,
     marginBottom: 10,
     paddingBottom: 20
-  },
-  titleLabel: {
-    backgroundColor: '#2F1F37',
-    color: 'white',
-    padding: 5
   }
 })

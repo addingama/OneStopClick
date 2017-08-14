@@ -1,23 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity, Alert, Platform } from 'react-native'
-import { Button, SocialIcon } from 'react-native-elements'
+import React, { PropTypes } from 'react'
+import { View, ScrollView, Text, TouchableOpacity, Platform } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import { GoogleSignin } from 'react-native-google-signin'
 import { cloneDeep } from 'lodash'
 import { LoginManager } from 'react-native-fbsdk'
-import { Header, Icon } from 'react-native-elements'
+import { SocialIcon } from 'react-native-elements'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import LoginActions from '../Redux/LoginRedux'
-import { Images } from '../Themes'
-import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
+import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as LoginModel from '../Models/LoginModel'
 import { validateField } from '../Lib/validator'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 import styles from './Styles/LoginScreenStyle'
-
 
 const FBSDK = require('react-native-fbsdk')
 const {
@@ -26,7 +23,6 @@ const {
   GraphRequest,
   GraphRequestManager
 } = FBSDK
-
 
 class LoginScreen extends AccountDrawerBase {
   static propTypes = {
@@ -41,7 +37,7 @@ class LoginScreen extends AccountDrawerBase {
 
   static navigationOptions = AccountDrawerBase.getNavigationOptions()
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       fields: cloneDeep(LoginModel.login)
@@ -56,11 +52,11 @@ class LoginScreen extends AccountDrawerBase {
     console.tron.log(this)
   }
 
-  updateState(newFieldState) {
-    this.setState({ fields: newFieldState }) 
+  updateState (newFieldState) {
+    this.setState({ fields: newFieldState })
   }
 
-  validateFields() {
+  validateFields () {
     var state = this.state
     var isValid = true
     Object.keys(state.fields).map((field) => {
@@ -73,21 +69,21 @@ class LoginScreen extends AccountDrawerBase {
     return isValid
   }
 
-  handlePressLogin() {
+  handlePressLogin () {
     if (this.validateFields()) {
       const { email, password } = this.state.fields
       this.props.attemptLogin(email.value, password.value)
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     this.forceUpdate()
     if (!newProps.loggingIn && !newProps.error) {
       this.goToHomeScreen()
     }
   }
 
-  goToRegistrationScreen() {
+  goToRegistrationScreen () {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -97,20 +93,26 @@ class LoginScreen extends AccountDrawerBase {
     this.props.navigation.dispatch(resetAction)
   }
 
-  goToHomeScreen() {
-    const resetAction = NavigationActions.navigate({ 
-      routeName: 'Home',
-      params: {}
+  goToHomeScreen () {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      stateName: 'PrimaryNav',
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Home',
+          params: {}
+        })
+      ]
     })
     this.props.navigation.dispatch(resetAction)
   }
 
-  goToForgotPasswordScreen() {
+  goToForgotPasswordScreen () {
     console.tron.log('go to forgot')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ 
+        NavigationActions.navigate({
           routeName: 'ForgotPasswordScreen',
           params: {}
         })
@@ -119,9 +121,8 @@ class LoginScreen extends AccountDrawerBase {
     this.props.navigation.dispatch(resetAction)
   }
 
-
-  //Create response callback.
-  responseInfoCallback(error: ?Object, result: ?Object) {
+  // Create response callback.
+  responseInfoCallback (error: ?Object, result: ?Object) {
     if (error) {
       console.tron.log(error, result)
       alert('Error fetching data: ' + error.toString())
@@ -131,7 +132,7 @@ class LoginScreen extends AccountDrawerBase {
     }
   }
 
-  handleFacebookLogin() {
+  handleFacebookLogin () {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
       // LoginManager.logOut()
       if (result.isCancelled) {
@@ -143,7 +144,7 @@ class LoginScreen extends AccountDrawerBase {
             const infoRequest = new GraphRequest(
               '/me?fields=id,name,last_name,email',
               null,
-              this.responseInfoCallback,
+              this.responseInfoCallback
             )
             // Start the graph request.
             new GraphRequestManager().addRequest(infoRequest).start()
@@ -157,8 +158,7 @@ class LoginScreen extends AccountDrawerBase {
     )
   }
 
-
-  handleGoogleLogin() {
+  handleGoogleLogin () {
     if (Platform.OS === 'ios') {
       this.doGoogleLogin()
     } else if (Platform.OS === 'android') {
@@ -166,12 +166,12 @@ class LoginScreen extends AccountDrawerBase {
         this.doGoogleLogin()
       })
       .catch((err) => {
-        alert("Play services error", err.code, err.message)
+        alert('Play services error', err.code, err.message)
       })
     }
   }
 
-  doGoogleLogin() {
+  doGoogleLogin () {
     GoogleSignin.configure({
       iosClientId: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com',
       scopes: ['openid', 'email', 'profile'],
@@ -189,7 +189,7 @@ class LoginScreen extends AccountDrawerBase {
     })
   }
 
-  render() {
+  render () {
     const { email, password } = this.state.fields
     const { loggingIn, error } = this.props
     return (

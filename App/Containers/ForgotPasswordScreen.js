@@ -1,14 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native'
+import React, { PropTypes } from 'react'
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import { Header, Icon } from 'react-native-elements'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import ForgotActions from '../Redux/ForgotPasswordRedux'
-import { Images } from '../Themes'
-import { CustomInputField, CustomButton, HamburgerMenu } from '../Components/FormGenerator'
+import { CustomInputField, CustomButton } from '../Components/FormGenerator'
 import * as ForgotModel from '../Models/ForgotPasswordModel'
 import { validateField } from '../Lib/validator'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
@@ -19,7 +16,6 @@ import { cloneDeep } from 'lodash'
 import styles from './Styles/ForgotPasswordStyle'
 
 class ForgotPasswordScreen extends AccountDrawerBase {
-
   static propTypes = {
     dispatch: PropTypes.func,
     processing: PropTypes.bool,
@@ -62,7 +58,7 @@ class ForgotPasswordScreen extends AccountDrawerBase {
       this.props.attempResetPassword(email.value)
     }
   }
-  
+
   goToLoginScreen () {
     const resetAction = NavigationActions.reset({
       index: 0,
@@ -72,7 +68,6 @@ class ForgotPasswordScreen extends AccountDrawerBase {
     })
     this.props.navigation.dispatch(resetAction)
   }
-  
 
   render () {
     const {email} = this.state.fields
@@ -80,7 +75,7 @@ class ForgotPasswordScreen extends AccountDrawerBase {
     return (
       <View style={{flex: 1}}>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('forgotPassword')} {...this.props}/>
+          <DrawerHeader title={I18n.t('forgotPassword')} {...this.props} />
         </View>
         <View style={styles.fragmentContainer}>
           <ScrollView >
@@ -92,7 +87,7 @@ class ForgotPasswordScreen extends AccountDrawerBase {
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
-              
+
                 <CustomButton
                   disabled={processing}
                   onPress={() => this.handlePressReset()}
