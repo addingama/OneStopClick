@@ -18,14 +18,17 @@ import ConvertUserProfile from '../Transforms/ConvertUserProfile'
 export function * getUserProfile (api, { accessToken }) {
   // make the call to the api
   const response = yield call(api.getUserProfile, accessToken)
-  const { error, name, email } = response.data
-  const user = ConvertUserProfile(name, email)
+  const { error, message } = response.data
+
   // success?
   if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-
-    yield put(UserActions.userProfileSuccess(user))
+    if (!error) {
+      const { name, email } = response.data.data.user
+      const user = ConvertUserProfile(name, email)
+      yield put(UserActions.userProfileSuccess(user))
+    } else {
+      Alert.alert('Error', message)
+    }
   } else {
     if (response.status !== 200) {
       if (error !== '' || error != null) {
