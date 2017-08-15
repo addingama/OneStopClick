@@ -21,25 +21,24 @@ class AccountScreen extends AccountDrawerBase {
     fetching: PropTypes.bool,
     error: PropTypes.bool,
     message: PropTypes.string,
-    access_token: PropTypes.string,
+    accessToken: PropTypes.string,
     user: PropTypes.object,
     attempGetProfile: PropTypes.func.isRequired,
     resetLogin: PropTypes.func,
     resetUser: PropTypes.func
   }
 
-  componentDidMount () {
-    StorageService.isLoggedIn().then((isLoggedIn) => {
-      if (!isLoggedIn) {
-        this.goToLogin()
-      }
-    })
+  componentWillMount () {
+    if (this.props.accessToken == null) {
+      return this.goToLogin()
+    }
   }
 
   componentWillReceiveProps (newProps) {
     this.forceUpdate()
-    if (!newProps.fetching && newProps.user == null && !newProps.error && newProps.access_token != null) {
-      this.props.attempGetProfile(newProps.access_token)
+
+    if (!newProps.fetching && newProps.user == null && !newProps.error && newProps.accessToken != null) {
+      this.props.attempGetProfile(newProps.accessToken)
     }
   }
 
@@ -52,7 +51,7 @@ class AccountScreen extends AccountDrawerBase {
       I18n.t('message'),
       I18n.t('logoutConfirmation'),
       [
-        { text: I18n.t('cancel'), onPress: () => console.log('Cancel Pressed') },
+        { text: I18n.t('cancel') },
         { text: I18n.t('ok'), onPress: () => this.logout() }
       ],
       { cancelable: false }
@@ -124,7 +123,7 @@ const mapStateToProps = (state) => {
     fetching: state.user.fetching,
     error: state.user.error,
     message: state.user.message,
-    access_token: state.login.access_token,
+    accessToken: state.login.accessToken,
     user: state.user.user
   }
 }

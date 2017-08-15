@@ -1,7 +1,5 @@
 import { takeLatest } from 'redux-saga/effects'
 import API from '../Services/Api'
-import FixtureAPI from '../Services/FixtureApi'
-import DebugConfig from '../Config/DebugConfig'
 
 /* ------------- Types ------------- */
 import { LoginTypes } from '../Redux/LoginRedux'
@@ -15,7 +13,7 @@ import { login, socialLogin } from './LoginSagas'
 import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
 import { getProducts } from './ProductSagas'
-import { getUserProfile } from './UserSagas'
+import { getUserProfile, updateUserProfile } from './UserSagas'
 
 /* ------------- API ------------- */
 
@@ -32,6 +30,7 @@ export default function * root () {
     takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
     takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
     takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api),
-    takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api)
+    takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api),
+    takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api)
   ]
 }

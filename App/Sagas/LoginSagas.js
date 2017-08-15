@@ -30,7 +30,7 @@ export function * socialLogin (api, {name, email}) {
       yield put(LoginActions.loginFailure(true, message))
     }
   } else {
-    StorageService.saveSession(access_token, refresh_token)
+    // StorageService.saveSession(access_token, refresh_token)
     yield put(LoginActions.loginSuccess(access_token, refresh_token))
     yield put(UserActions.userProfileRequest(access_token))
   }

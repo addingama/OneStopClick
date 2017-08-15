@@ -7,6 +7,9 @@ const { Types, Creators } = createActions({
   userProfileRequest: ['accessToken'],
   userProfileSuccess: ['user'],
   userProfileFailure: null,
+  userProfileUpdateRequest: ['accessToken', 'name', 'email', 'oldPassword', 'newPassword'],
+  userProfileUpdateSuccess: ['user'],
+  userProfileUpdateFailure: null,
   userReset: null
 })
 
@@ -17,17 +20,21 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   user: null,
-  access_token: null,
+  accessToken: null,
   fetching: false,
   error: false,
-  message: null
+  message: null,
+  name: null,
+  email: null,
+  oldPassword: null,
+  newPassword: null
 })
 
 /* ------------- Reducers ------------- */
 
 // request the data from an api
-export const profileRequest = (state, { access_token }) =>
-  state.merge({ fetching: true, access_token, user: null })
+export const profileRequest = (state, { accessToken }) =>
+  state.merge({ fetching: true, accessToken, user: null })
 
 // successful api lookup
 export const profileSuccess = (state, { user }) => {
@@ -38,7 +45,20 @@ export const profileSuccess = (state, { user }) => {
 export const profileFailure = state =>
   state.merge({ fetching: false, error: true, user: null })
 
-export const reset = (state) => INITIAL_STATE
+// request the data from an api
+export const profileUpdateRequest = (state, { accessToken, name, email, oldPassword, newPassword }) =>
+  state.merge({ fetching: true, name, email, oldPassword, newPassword, accessToken })
+
+// successful api lookup
+export const profileUpdateSuccess = (state, { user }) => {
+  return state.merge({ fetching: false, error: false, user })
+}
+
+// Something went wrong somewhere.
+export const profileUpdateFailure = (state, {error, message}) =>
+  state.merge({ fetching: false, error, message })
+
+export const reset = () => INITIAL_STATE
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -46,5 +66,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USER_PROFILE_REQUEST]: profileRequest,
   [Types.USER_PROFILE_SUCCESS]: profileSuccess,
   [Types.USER_PROFILE_FAILURE]: profileFailure,
+  [Types.USER_PROFILE_UPDATE_REQUEST]: profileUpdateRequest,
+  [Types.USER_PROFILE_UPDATE_SUCCESS]: profileUpdateSuccess,
+  [Types.USER_PROFILE_UPDATE_FAILURE]: profileUpdateFailure,
   [Types.USER_RESET]: reset
 })

@@ -29,12 +29,33 @@ export function * getUserProfile (api, { accessToken }) {
     } else {
       Alert.alert('Error', message)
     }
-  } else {
-    if (response.status !== 200) {
-      if (error !== '' || error != null) {
-        Alert.alert('Error', error)
-      }
+  } else if (response.status !== 200) {
+    if (error !== '' || error != null) {
+      Alert.alert('Error', error)
     }
     yield put(UserActions.userProfileFailure())
+  }
+}
+
+export function * updateUserProfile (api, action) {
+  console.tron.display({name: 'ACTION', value: action})
+  const {accessToken, name, email, oldPassword, newPassword} = action
+  const response = yield call(api.updateUserProfile, accessToken, name, email, oldPassword, newPassword)
+  const { error, message } = response.data
+
+  // success?
+  if (response.ok) {
+    if (!error) {
+      const user = ConvertUserProfile(name, email)
+      yield put(UserActions.userProfileUpdateSuccess(user))
+    } else {
+      yield put(UserActions.userProfileUpdateFailure())
+    }
+    Alert.alert('Error', message)
+  } else if (response.status !== 200) {
+    if (error !== '' || error != null) {
+      Alert.alert('Error', error)
+    }
+    yield put(UserActions.userProfileUpdateFailure())
   }
 }
