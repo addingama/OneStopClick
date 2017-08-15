@@ -30,6 +30,10 @@ const metrics = {
     medium: 40,
     large: 60,
     logo: 200
+  },
+  fontSize: {
+    medium: 14,
+    small: 12
   }
 }
 

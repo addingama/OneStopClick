@@ -1,10 +1,10 @@
 import React from 'react'
-import { ScrollView, View, Alert } from 'react-native'
+import { ScrollView, View, Alert, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native-elements'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import StorageService from '../Services/StorageService'
-import { CustomButton } from '../Components/FormGenerator'
 import AccountDrawerBase from './Bases/AccountDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 
@@ -20,6 +20,10 @@ class AccountScreen extends AccountDrawerBase {
         this.goToLogin()
       }
     })
+  }
+
+  handlePressEdit () {
+    alert('Open edit profile')
   }
 
   handlePresslogout () {
@@ -64,14 +68,24 @@ class AccountScreen extends AccountDrawerBase {
         <View style={styles.hasNavbar}>
           <DrawerHeader title={I18n.t('account')} {...this.props} />
         </View>
-        <ScrollView contentContainerStyle={[styles.scrollCenterContainer]}>
-          <View style={styles.customContainer}>
-            <View style={[styles.formContainer]}>
-              <CustomButton
-                onPress={() => this.handlePresslogout()}
-                style={styles.btnSignIn}
-                title={I18n.t('logOut')}
-                />
+        <ScrollView>
+          <View>
+            <View style={[styles.whiteSection, {flex: 1, flexDirection: 'row'}]}>
+              <View>
+                <Text style={styles.boldMediumText}>Addin Gama Bertaqwa</Text>
+                <Text style={styles.smallText}>addingama.bertaqwa@mitrais.com</Text>
+              </View>
+              <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                <TouchableOpacity onPress={() => this.handlePressEdit()}>
+                  <Text style={styles.editButton}>Edit</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={[styles.whiteSection, {flex: 1, alignItems: 'center'}]}>
+              <TouchableOpacity onPress={() => this.handlePresslogout()}>
+                <Text style={styles.logoutButton}>{I18n.t('logOut')}</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
