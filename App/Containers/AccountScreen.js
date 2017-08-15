@@ -44,7 +44,7 @@ class AccountScreen extends AccountDrawerBase {
   }
 
   handlePressEdit () {
-    alert('Open edit profile')
+    this.props.navigation.navigate('EditProfileScreen')
   }
 
   handlePresslogout () {
