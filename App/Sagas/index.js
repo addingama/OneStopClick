@@ -8,12 +8,14 @@ import { LoginTypes } from '../Redux/LoginRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
 import { ProductTypes } from '../Redux/ProductRedux'
+import { UserTypes } from '../Redux/UserRedux'
 
 /* ------------- Sagas ------------- */
 import { login, socialLogin } from './LoginSagas'
 import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
-import { getProducts } from './productSagas'
+import { getProducts } from './ProductSagas'
+import { getUserProfile } from './UserSagas'
 
 /* ------------- API ------------- */
 
@@ -29,6 +31,7 @@ export default function * root () {
     takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
     takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
     takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
-    takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api)
+    takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api),
+    takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api)
   ]
 }

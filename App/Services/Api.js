@@ -56,6 +56,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
   const forgotPassword = (email) => api.post('api/forgot_password', { email })
 
   const getProducts = () => api.get('home/products')
+
+  const getUserProfile = (accessToken) => api.get('api/getuserdetails', {}, {headers: {'Authorization': 'Bearer ' + accessToken}})
   // ------
   // STEP 3
   // ------
@@ -74,7 +76,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     registration,
     forgotPassword,
     socialLogin,
-    getProducts
+    getProducts,
+    getUserProfile
   }
 }
 
