@@ -15,6 +15,15 @@ class HomeScreen extends HomeDrawerBase {
   static navigationOptions = HomeDrawerBase.getNavigationOptions()
   static propTypes = {}
 
+  constructor (props) {
+    super(props)
+    this.state = {
+      searchText: '',
+      selectedCategory:[],
+      listProducts:[]
+    }
+  }
+
   componentWillMount () {
     this.props.getProducts()
   }
@@ -43,8 +52,31 @@ class HomeScreen extends HomeDrawerBase {
     return (categoriesLabel)
   }
 
+  filterProduct(searchText, category){
+   var {products}= this.props
+   var text = searchText.toLowerCase()
+   
+   for (var index = 0; index < products.length; index++) {
+    var element = products[index];
+     if (element.name === category) {
+       var listProducts = element.products
+       var filteredProducts = listProducts.filter((product) =>{
+         return product.product_name.includes(searchText) > -1
+       })
+        this.setState({
+          listProducts: filteredProducts
+        })
+     }
+   }
+}
+
   render () {
     var { fetching, error, products } = this.props
+    if (this.state.searchText === '') {
+      this.setState({
+        listProducts : products
+      })
+    } 
     return (
       <View>
         <View style={styles.hasNavbar}>
@@ -56,19 +88,21 @@ class HomeScreen extends HomeDrawerBase {
               <View style={[styles.contentContainer]}>
                 <Text style={[styles.titleLabel]}>{I18n.t('search')}</Text>
                 <Picker
-                  selectedValue={'movie'}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-                  <Picker.Item label='Movie' value='movie' />
-                  <Picker.Item label='Music' value='music' />
+                  selectedValue={this.state.selectedCategory}
+                  onValueChange={(itemValue, itemIndex) => this.setState({ selectedCategory: itemValue })}>
+                  <Picker.Item label='Movies' value='Movies' id='3' />
+                  <Picker.Item label='Applications' value='Applications' id='4' />
+                  <Picker.Item label='Books' value='Books' id='5'/>
+                  <Picker.Item label='Musics' value='Musics' id='6' />
                 </Picker>
                 <SearchBar
                   lightTheme
-                  onChangeText={() => console.log()}
+                  onChangeText={(text) => this. filterProduct(text,this.state.selectedCategory)}
                   placeholder={I18n.t('searchHere')} />
               </View>
               <View style={[styles.contentContainer]}>
                 {
-                  this.generateListProducts(products)
+                  this.generateListProducts(this.state.listProducts)
                 }
               </View>
             </View>
@@ -81,6 +115,7 @@ class HomeScreen extends HomeDrawerBase {
 }
 
 const mapStateToProps = (state) => {
+  console.tron.log(state)
   return {
     fetching: state.product.fetching,
     error: state.product.error,
