@@ -18,7 +18,6 @@ import styles from './Styles/LoginScreenStyle'
 
 const FBSDK = require('react-native-fbsdk')
 const {
-  LoginButton,
   AccessToken,
   GraphRequest,
   GraphRequestManager
@@ -48,8 +47,6 @@ class LoginScreen extends AccountDrawerBase {
     this.goToHomeScreen = this.goToHomeScreen.bind(this)
     this.goToForgotPasswordScreen = this.goToForgotPasswordScreen.bind(this)
     this.responseInfoCallback = this.responseInfoCallback.bind(this)
-
-    console.tron.log(this)
   }
 
   updateState (newFieldState) {
@@ -108,7 +105,6 @@ class LoginScreen extends AccountDrawerBase {
   }
 
   goToForgotPasswordScreen () {
-    console.tron.log('go to forgot')
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [

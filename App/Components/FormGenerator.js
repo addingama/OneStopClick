@@ -27,8 +27,8 @@ export class CustomInputField extends Component {
         autoCapitalize='none'
         autoCorrect={false}
         onChangeText={(text) => this.props.updateState(this.setValue(name, text, state))}
-        onSubmitEditing={(event) => this.props.updateState(validateField(state, name))}
-        onBlur={(event) => this.props.updateState(validateField(state, name))}
+        onSubmitEditing={() => this.props.updateState(validateField(state, name))}
+        onBlur={() => this.props.updateState(validateField(state, name))}
         {...this.props}
       />
       <FormValidationMessage>{message}</FormValidationMessage>
@@ -73,7 +73,6 @@ export class Category extends Component {
 export class Products extends Component {
   render () {
     const { data } = this.props
-    console.log(data)
     var products = Object.assign([], data)
     for (let j = 0; j < products.length; j++) {
       var product = Object.assign({}, products[j])

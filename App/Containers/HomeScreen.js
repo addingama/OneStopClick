@@ -9,6 +9,7 @@ import { SearchBar } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
+import { cloneDeep } from 'lodash'
 var uuid = require('react-native-uuid')
 
 class HomeScreen extends HomeDrawerBase {
@@ -19,8 +20,8 @@ class HomeScreen extends HomeDrawerBase {
     super(props)
     this.state = {
       searchText: '',
-      selectedCategory:[],
-      listProducts:[]
+      selectedCategory: [],
+      listProducts: []
     }
   }
 
@@ -28,7 +29,13 @@ class HomeScreen extends HomeDrawerBase {
     this.props.getProducts()
   }
 
+  handleSearch (text) {
+    this.setState({searchText: text})
+    this.filterProduct(text, this.state.selectedCategory)
+  }
+
   generateListProducts (categoriesData) {
+    console.tron.log(categoriesData)
     var categoriesLabel = []
     var categories = categoriesData
 
@@ -52,31 +59,33 @@ class HomeScreen extends HomeDrawerBase {
     return (categoriesLabel)
   }
 
-  filterProduct(searchText, category){
-   var {products}= this.props
-   var text = searchText.toLowerCase()
-   
-   for (var index = 0; index < products.length; index++) {
-    var element = products[index];
-     if (element.name === category) {
-       var listProducts = element.products
-       var filteredProducts = listProducts.filter((product) =>{
-         return product.product_name.includes(searchText) > -1
-       })
-        this.setState({
-          listProducts: filteredProducts
-        })
-     }
-   }
-}
+  filterProduct (searchText, categoryName) {
+    var categories = cloneDeep(this.props.products)
+    var text = searchText.toLowerCase()
+
+    var category = categories.filter((cat) => {
+      return cat.name === categoryName
+    })
+
+    if (category.length !== 1) {
+      return // do nothing because category not found
+    }
+
+    var filteredProducts = category[0].products.filter((product) => {
+      return product.product_name.toLowerCase().includes(text)
+    })
+
+    category[0].products = filteredProducts
+    console.tron.display({name: 'Filtered', value: {categories, category}})
+    this.setState({
+      listProducts: category
+    })
+  }
 
   render () {
-    var { fetching, error, products } = this.props
-    if (this.state.searchText === '') {
-      this.setState({
-        listProducts : products
-      })
-    } 
+    const { fetching, products } = this.props
+    const { searchText, listProducts } = this.state
+
     return (
       <View>
         <View style={styles.hasNavbar}>
@@ -89,20 +98,20 @@ class HomeScreen extends HomeDrawerBase {
                 <Text style={[styles.titleLabel]}>{I18n.t('search')}</Text>
                 <Picker
                   selectedValue={this.state.selectedCategory}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ selectedCategory: itemValue })}>
+                  onValueChange={(itemValue) => this.setState({ selectedCategory: itemValue })}>
                   <Picker.Item label='Movies' value='Movies' id='3' />
                   <Picker.Item label='Applications' value='Applications' id='4' />
-                  <Picker.Item label='Books' value='Books' id='5'/>
+                  <Picker.Item label='Books' value='Books' id='5' />
                   <Picker.Item label='Musics' value='Musics' id='6' />
                 </Picker>
                 <SearchBar
                   lightTheme
-                  onChangeText={(text) => this. filterProduct(text,this.state.selectedCategory)}
+                  onChangeText={(text) => this.handleSearch(text)}
                   placeholder={I18n.t('searchHere')} />
               </View>
               <View style={[styles.contentContainer]}>
                 {
-                  this.generateListProducts(this.state.listProducts)
+                  this.generateListProducts(searchText === '' ? products : listProducts)
                 }
               </View>
             </View>
@@ -115,7 +124,6 @@ class HomeScreen extends HomeDrawerBase {
 }
 
 const mapStateToProps = (state) => {
-  console.tron.log(state)
   return {
     fetching: state.product.fetching,
     error: state.product.error,
