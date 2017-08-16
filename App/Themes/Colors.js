@@ -22,7 +22,8 @@ const colors = {
   border: '#483F53',
   banner: '#5F3E63',
   text: '#E0D7E5',
-  google: '#db3236'
+  google: '#db3236',
+  green: '#86b200'
 }
 
 export default colors

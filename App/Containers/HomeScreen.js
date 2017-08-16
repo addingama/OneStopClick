@@ -91,7 +91,7 @@ class HomeScreen extends HomeDrawerBase {
         <View style={styles.hasNavbar}>
           <DrawerHeader title={I18n.t('home')} {...this.props} />
         </View>
-        <ScrollView contentContainerStyle={[styles.scrollCenterContainer]}>
+        <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
             <View style={[styles.formContainer]}>
               <View style={[styles.contentContainer]}>

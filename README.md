@@ -85,6 +85,7 @@ To contribute to this project, you need to install
   - Extensions :
     - ESLint
     - Javascript Standard Style
+    - Sonarqube
 
 Those program and extensions will be helpfull to make the code standarized.
 

@@ -49,13 +49,25 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     name, email
   })
 
-  const registration = (name, email, password, password_confirmation) => api.post('api/auth/register', {
-    name, email, password, password_confirmation
+  const registration = (name, email, password, passwordConfirmation) => api.post('api/auth/register', {
+    name,
+    email,
+    password,
+    password_confirmation: passwordConfirmation
   })
 
   const forgotPassword = (email) => api.post('api/forgot_password', { email })
 
   const getProducts = () => api.get('home/products')
+
+  const getUserProfile = (accessToken) => api.get('api/getuserdetails', {}, {headers: {'Authorization': 'Bearer ' + accessToken}})
+
+  const updateUserProfile = (accessToken, name, email, oldPassword, newPassword) => api.post('api/change-profile', {
+    name,
+    email,
+    old_password: oldPassword,
+    new_password: newPassword
+  }, {headers: {'Authorization': 'Bearer ' + accessToken}})
   // ------
   // STEP 3
   // ------
@@ -74,7 +86,9 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     registration,
     forgotPassword,
     socialLogin,
-    getProducts
+    getProducts,
+    getUserProfile,
+    updateUserProfile
   }
 }
 

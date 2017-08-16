@@ -1,6 +1,7 @@
 import { Alert } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
+import UserActions from '../Redux/UserRedux'
 import StorageService from '../Services/StorageService'
 
 export function * login (api, {username, password}) {
@@ -15,6 +16,7 @@ export function * login (api, {username, password}) {
   } else {
     StorageService.saveSession(access_token, refresh_token)
     yield put(LoginActions.loginSuccess(access_token, refresh_token))
+    yield put(UserActions.userProfileRequest(access_token))
   }
 }
 
@@ -28,7 +30,8 @@ export function * socialLogin (api, {name, email}) {
       yield put(LoginActions.loginFailure(true, message))
     }
   } else {
-    StorageService.saveSession(access_token, refresh_token)
+    // StorageService.saveSession(access_token, refresh_token)
     yield put(LoginActions.loginSuccess(access_token, refresh_token))
+    yield put(UserActions.userProfileRequest(access_token))
   }
 }

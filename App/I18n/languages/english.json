@@ -49,5 +49,10 @@
    "home": "Home",
    "fetching": "Fetching",
    "searchHere": "Search Here",
-   "buyNow": "BUY NOW"
+   "buyNow": "BUY NOW",
+   "profile": "Profile",
+   "updateProfile": "Update Profile",
+   "oldPassword": "Old Password",
+   "newPassword": "New Password",
+   "saving": "Saving. Please wait..."
 }
