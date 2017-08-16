@@ -48,10 +48,11 @@ export function * updateUserProfile (api, action) {
     if (!error) {
       const user = ConvertUserProfile(name, email)
       yield put(UserActions.userProfileUpdateSuccess(user))
+      Alert.alert('Success', message)
     } else {
       yield put(UserActions.userProfileUpdateFailure())
+      Alert.alert('Error', message)
     }
-    Alert.alert('Error', message)
   } else if (response.status !== 200) {
     if (error !== '' || error != null) {
       Alert.alert('Error', error)

@@ -53,5 +53,6 @@
    "profile": "Profile",
    "updateProfile": "Update Profile",
    "oldPassword": "Old Password",
-   "newPassword": "New Password"
+   "newPassword": "New Password",
+   "saving": "Saving. Please wait..."
 }

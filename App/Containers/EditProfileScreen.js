@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import {cloneDeep} from 'lodash'
 import I18n from 'react-native-i18n'
@@ -8,6 +8,7 @@ import * as UserProfileModel from '../Models/UserProfileModel'
 import BackHeader from '../Components/BackHeader'
 import UserActions from '../Redux/UserRedux'
 import { validateField } from '../Lib/validator'
+import ProgressIndicator from '../Components/ProgressIndicator'
 
 // Styles
 import styles from './Styles/EditProfileScreenStyle'
@@ -51,6 +52,18 @@ class EditProfileScreen extends Component {
         isValid = false
       }
     })
+    const { oldPassword, newPassword } = this.state.fields
+    if (isValid) {
+      if (oldPassword.value !== '' && newPassword.value === '') {
+        Alert.alert('Error', 'New password must not empty')
+        isValid = false
+      }
+
+      if (oldPassword.value === '' && newPassword.value !== '') {
+        Alert.alert('Error', 'Old password must not empty')
+        isValid = false
+      }
+    }
     return isValid
   }
 
@@ -69,6 +82,7 @@ class EditProfileScreen extends Component {
 
   render () {
     const { name, email, oldPassword, newPassword } = this.state.fields
+    const { fetching } = this.props
     return (
       <View style={{flex: 1}}>
         <View style={styles.hasNavbar}>
@@ -80,21 +94,25 @@ class EditProfileScreen extends Component {
               <View style={styles.formContainer}>
                 <CustomInputField
                   field={name}
+                  editable={!fetching}
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
                 <CustomInputField
                   field={email}
+                  editable={!fetching}
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
                 <CustomInputField
                   field={oldPassword}
+                  editable={!fetching}
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
                 <CustomInputField
                   field={newPassword}
+                  editable={!fetching}
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
@@ -102,11 +120,13 @@ class EditProfileScreen extends Component {
                   <Text style={styles.smallText}>* Change password fields only if you want to change your password</Text>
                 </View>
                 <CustomButton
+                  disabled={fetching}
                   onPress={() => this.handlePressUpdateProfile()}
                   style={styles.btnUpdate}
                   title={I18n.t('updateProfile')}
                 />
               </View>
+              <ProgressIndicator show={fetching} text={I18n.t('saving')} />
             </View>
           </ScrollView>
         </View>
