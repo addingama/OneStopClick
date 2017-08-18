@@ -9,7 +9,7 @@ import { SearchBar, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
-import CategorySpinner from '../Components/CategorySpinner'
+import CategoryChooser from '../Components/CategoryChooser'
 import BackHeader from '../Components/BackHeader'
 import { cloneDeep } from 'lodash'
 var uuid = require('react-native-uuid')
@@ -38,7 +38,6 @@ class HomeScreen extends HomeDrawerBase {
   }
 
   generateListProducts (categoriesData) {
-    console.tron.log(categoriesData)
     var categoriesLabel = []
     var categories = categoriesData
 
@@ -161,7 +160,7 @@ class HomeScreen extends HomeDrawerBase {
               <BackHeader title='Select Category' {...this.props}
                 backAction={() => this.setModalVisible(!this.state.modalVisible)} />
             </View>
-            <CategorySpinner selectedValue={this.state.selectedCategory}
+            <CategoryChooser selectedValue={this.state.selectedCategory}
               onValueChange={(itemValue) => this.setState({ selectedCategory: itemValue })}
               items={this.generateCategoryArray()} />
           </View>
