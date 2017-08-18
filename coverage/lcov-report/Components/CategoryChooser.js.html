@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Sagas/index.js</title>
+    <title>Code coverage report for Components/CategoryChooser.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">Sagas</a> index.js
+      <a href="../index.html">All files</a> / <a href="index.html">Components</a> CategoryChooser.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>6/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>6/7</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -78,29 +78,15 @@
 33
 34
 35
-36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,43 +99,54 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { takeLatest } from 'redux-saga/effects'
-import API from '../Services/Api'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react'
+import { List, ListItem } from 'react-native-elements'
+import styles from './Styles/CategoryChooserStyle'
 &nbsp;
-/* ------------- Types ------------- */
-import { LoginTypes } from '../Redux/LoginRedux'
-import { RegistrationTypes } from '../Redux/RegistrationRedux'
-import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
-import { ProductTypes } from '../Redux/ProductRedux'
-import { UserTypes } from '../Redux/UserRedux'
+export default class CategoryChooser extends Component {
+  generateItems (items) {
+    const { selectedValue, onValueChange } = this.props
+    return items.map(function (item) {
+      return (
+        &lt;ListItem
+          hideChevron={selectedValue !== item.name}
+          key={item.id}
+          title={item.name}
+          onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >onValueChange(item.name)}</span>
+          rightIcon={{name: 'check-circle', color: 'green'}}
+        /&gt;
+        // &lt;Picker.Item label={item.name} value={item.name} key={item.id} /&gt;
+      )
+    })
+  }
+  render () {
+    const { items } = this.props
+    return (
+      &lt;List&gt;
+        { this.generateItems(items) }
+      &lt;/List&gt;
+    )
+  }
+}
 &nbsp;
-/* ------------- Sagas ------------- */
-import { login, socialLogin } from './LoginSagas'
-import { registration } from './RegistrationSagas'
-import { forgotPassword } from './ForgotPasswordSagas'
-import { getProducts } from './ProductSagas'
-import { getUserProfile, updateUserProfile } from './UserSagas'
-&nbsp;
-/* ------------- API ------------- */
-&nbsp;
-// The API we use is only used from Sagas, so we create it here and pass along
-// to the sagas which need it.
-const api = API.create()
-&nbsp;
-/* ------------- Connect Types To Sagas ------------- */
-&nbsp;
-export default function * <span class="fstat-no" title="function not covered" >root </span>() {
-<span class="cstat-no" title="statement not covered" >  yield [</span>
-    takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
-    takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
-    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
-    takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api),
-    takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api),
-    takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api)
-  ]
+CategoryChooser.propTypes = {
+  selectedValue: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  onValueChange: PropTypes.func.isRequired
 }
 &nbsp;</pre></td></tr>
 </table></pre>

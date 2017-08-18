@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Redux/ForgotPasswordRedux.js</title>
+    <title>Code coverage report for Components/Row.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">Redux</a> ForgotPasswordRedux.js
+      <a href="../index.html">All files</a> / <a href="index.html">Components</a> Row.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.33% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/12</span>
+        <span class='fraction'>8/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">45.45% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.33% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/12</span>
+        <span class='fraction'>8/9</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -91,45 +91,43 @@
 46
 47
 48
-49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+49
+50
+51
+52
+53
+54
+55
+56
+57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,54 +137,80 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-console */
+import PropTypes from 'prop-types'
+import React from 'react'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 &nbsp;
-/* ------------- Types and Action Creators ------------- */
+const Row = props =&gt; {
+  console.warn(
+    'Warning: Row has been deprecated and will be removed in a future version of React Native Elements'
+  )
 &nbsp;
-const { Types, Creators } = createActions({
-  forgotPasswordRequest: ['email'],
-  forgotPasswordSuccess: ['error', 'message'],
-  forgotPasswordFailure: ['error', 'message']
-})
+  const { containerStyle, size, onPress, activeOpacity } = props
 &nbsp;
-export const ForgotPasswordTypes = Types
-export default Creators
+  const styles = StyleSheet.create({
+    container: {
+      flex: size || containerStyle &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >containerStyle.height </span>? <span class="branch-0 cbranch-no" title="branch not covered" >0 </span>: 1,
+      flexDirection: 'row'
+    }
+  })
 &nbsp;
-/* ------------- Initial State ------------- */
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (onPress) {
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;TouchableOpacity
+        style={[styles.container, containerStyle &amp;&amp; containerStyle]}
+        activeOpacity={activeOpacity}
+        onPress={onPress}
+      &gt;
+        &lt;View {...props}&gt;
+          {props.children}
+        &lt;/View&gt;
+      &lt;/TouchableOpacity&gt;
+    )
+  }
 &nbsp;
-export const INITIAL_STATE = Immutable({
-  email: null,
-  processing: false,
-  error: false,
-  message: null
-})
-&nbsp;
-/* ------------- Reducers ------------- */
-&nbsp;
-// request the data from an api
-export const request = <span class="fstat-no" title="function not covered" >(s</span>tate, { email }) =&gt;
-<span class="cstat-no" title="statement not covered" >  state.merge({ processing: true, email })</span>
-&nbsp;
-// successful api lookup
-export const success = <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-  const { error, message } = <span class="cstat-no" title="statement not covered" >action</span>
-<span class="cstat-no" title="statement not covered" >  return state.merge({ processing: false, error, message })</span>
+  return (
+    &lt;View
+      style={[styles.container, containerStyle &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >containerStyle]</span>}
+      {...props}
+    &gt;
+      {props.children}
+    &lt;/View&gt;
+  )
 }
 &nbsp;
-// Something went wrong somewhere.
-export const failure = <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-  const { error, message } = <span class="cstat-no" title="statement not covered" >action</span>
-<span class="cstat-no" title="statement not covered" >  state.merge({ processing: false, error, message })</span>
+Row.propTypes = {
+  size: PropTypes.number,
+  containerStyle: PropTypes.any,
+  onPress: PropTypes.func,
+  activeOpacity: PropTypes.number,
+  children: PropTypes.any
 }
 &nbsp;
-/* ------------- Hookup Reducers To Types ------------- */
+Row.defaultProps = {
+  activeOpacity: 1
+}
 &nbsp;
-export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FORGOT_PASSWORD_REQUEST]: request,
-  [Types.FORGOT_PASSWORD_SUCCESS]: success,
-  [Types.FORGOT_PASSWORD_FAILURE]: failure
-})
+export default Row
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

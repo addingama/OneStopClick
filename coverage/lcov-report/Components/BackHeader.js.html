@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Containers/Bases/AccountDrawerBase.js</title>
+    <title>Code coverage report for Components/BackHeader.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">Containers/Bases</a> AccountDrawerBase.js
+      <a href="../index.html">All files</a> / <a href="index.html">Components</a> BackHeader.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>3/4</span>
       </div>
     </div>
   </div>
@@ -63,12 +63,24 @@
 18
 19
 20
-21</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+21
+22
+23
+24
+25
+26</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -77,32 +89,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react'
+import { Header, Icon } from 'react-native-elements'
+import styles from './Styles/DrawerHeaderStyle'
 &nbsp;
-class AccountDrawerBase extends Component {
-  static getNavigationOptions () {
-    return {
-      drawerIcon: <span class="fstat-no" title="function not covered" >({</span> tintColor }) =&gt; {
-<span class="cstat-no" title="statement not covered" >        return (</span>
-          &lt;MaterialIcons
-            name='account-circle'
-            size={24}
-            style={{ color: tintColor }}
-          /&gt;
-        )
-      }
-    }
+export default class BackHeader extends Component {
+  render () {
+    const { title, navigation, backAction } = this.props
+    return (
+      &lt;Header
+        backgroundColor='#2F1F37'
+        leftComponent={&lt;Icon
+          name='ios-arrow-back'
+          type='ionicon'
+          color='white'
+          onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >backAction === null ? navigation.goBack() : backAction()}</span> /&gt;}
+        centerComponent={{ text: title, style: styles.titleStyle }}
+      /&gt;
+    )
   }
 }
 &nbsp;
-export default AccountDrawerBase
+BackHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  navigation: PropTypes.object.isRequired
+}
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
@@ -112,7 +127,7 @@ export default AccountDrawerBase
   generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 18 2017 09:51:22 GMT+0700 (WIB)
 </div>
 </div>
-<script src="../../prettify.js"></script>
+<script src="../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -120,6 +135,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../../sorter.js"></script>
+<script src="../sorter.js"></script>
 </body>
 </html>

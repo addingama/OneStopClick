@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/20</span>
+        <span class='fraction'>10/16</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">71.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/18</span>
+        <span class='fraction'>10/14</span>
       </div>
     </div>
   </div>
@@ -105,25 +105,12 @@
 60
 61
 62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+63</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,13 +148,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -178,8 +158,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,11 +174,9 @@ import Immutable from 'seamless-immutable'
 &nbsp;
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
-  loginSuccess: ['access_token', 'refresh_token'],
+  loginSuccess: ['accessToken', 'refreshToken'],
   loginFailure: ['error', 'message'],
   socialLoginRequest: ['name', 'email', 'password'],
-  socialLoginSuccess: ['access_token', 'refresh_token'],
-  socialLoginFailure: ['error', 'message'],
   logout: null
 })
 &nbsp;
@@ -213,8 +189,8 @@ export const INITIAL_STATE = Immutable({
   username: null,
   name: null,
   password: null,
-  access_token: null,
-  refresh_token: null,
+  accessToken: null,
+  refreshToken: null,
   error: false,
   message: null,
   loggingIn: false
@@ -230,23 +206,16 @@ export const socialRequest = <span class="fstat-no" title="function not covered"
 <span class="cstat-no" title="statement not covered" >  state.merge({ loggingIn: true, name, email, password })</span>
 &nbsp;
 // successful api lookup
-export const success = <span class="fstat-no" title="function not covered" >(s</span>tate, { access_token, refresh_token }) =&gt; {
-<span class="cstat-no" title="statement not covered" >  return state.merge({ loggingIn: false, error: false, message: null, access_token, refresh_token })</span>
-}
-&nbsp;
-export const socialSuccess = <span class="fstat-no" title="function not covered" >(s</span>tate, { access_token, refresh_token }) =&gt; {
-<span class="cstat-no" title="statement not covered" >  return state.merge({ loggingIn: false, error: false, message: null, access_token, refresh_token })</span>
+export const success = <span class="fstat-no" title="function not covered" >(s</span>tate, { accessToken, refreshToken }) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return state.merge({ loggingIn: false, error: false, message: null, accessToken, refreshToken })</span>
 }
 &nbsp;
 // Something went wrong somewhere.
 export const failure = <span class="fstat-no" title="function not covered" >(s</span>tate, { message }) =&gt;
-<span class="cstat-no" title="statement not covered" >  state.merge({ loggingIn: false, error: true, message, access_token: null, refresh_token: null })</span>
-&nbsp;
-export const SocialFailure = <span class="fstat-no" title="function not covered" >(s</span>tate, { message }) =&gt;
-<span class="cstat-no" title="statement not covered" >  state.merge({ loggingIn: false, error: true, message, access_token: null, refresh_token: null })</span>
+<span class="cstat-no" title="statement not covered" >  state.merge({ loggingIn: false, error: true, message, accessToken: null, refreshToken: null })</span>
 &nbsp;
 // logout
-export const logout = <span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >INITIAL_STATE</span>
+export const logout = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >INITIAL_STATE</span>
 &nbsp;
 /* ------------- Hookup Reducers To Types ------------- */
 &nbsp;
@@ -255,20 +224,18 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
   [Types.SOCIAL_LOGIN_REQUEST]: socialRequest,
-  [Types.SOCIAL_LOGIN_SUCCESS]: socialSuccess,
-  [Types.SOCIAL_LOGIN_FAILURE]: SocialFailure,
   [Types.LOGOUT]: logout
 })
 &nbsp;
 // Is the current user logged in?
-export const isLoggedIn = <span class="fstat-no" title="function not covered" >(l</span>oginState) =&gt; <span class="cstat-no" title="statement not covered" >loginState.access_token !== null</span>
+export const isLoggedIn = <span class="fstat-no" title="function not covered" >(l</span>oginState) =&gt; <span class="cstat-no" title="statement not covered" >loginState.accessToken !== null</span>
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 11 2017 08:32:09 GMT+0700 (WIB)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 18 2017 09:51:22 GMT+0700 (WIB)
 </div>
 </div>
 <script src="../prettify.js"></script>

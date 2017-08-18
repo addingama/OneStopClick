@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Sagas/index.js</title>
+    <title>Code coverage report for Components/Col.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">Sagas</a> index.js
+      <a href="../index.html">All files</a> / <a href="index.html">Components</a> Col.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">87.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>7/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">45.45% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">87.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>7/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -79,15 +79,39 @@
 34
 35
 36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,7 +129,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,44 +142,63 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { takeLatest } from 'redux-saga/effects'
-import API from '../Services/Api'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-console */
+import PropTypes from 'prop-types'
+import React from 'react'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 &nbsp;
-/* ------------- Types ------------- */
-import { LoginTypes } from '../Redux/LoginRedux'
-import { RegistrationTypes } from '../Redux/RegistrationRedux'
-import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
-import { ProductTypes } from '../Redux/ProductRedux'
-import { UserTypes } from '../Redux/UserRedux'
+const Col = props =&gt; {
+  const { containerStyle, size, onPress, activeOpacity } = props
 &nbsp;
-/* ------------- Sagas ------------- */
-import { login, socialLogin } from './LoginSagas'
-import { registration } from './RegistrationSagas'
-import { forgotPassword } from './ForgotPasswordSagas'
-import { getProducts } from './ProductSagas'
-import { getUserProfile, updateUserProfile } from './UserSagas'
+  const styles = StyleSheet.create({
+    container: {
+      flex: size || containerStyle &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >containerStyle.width </span>? <span class="branch-0 cbranch-no" title="branch not covered" >0 </span>: 1,
+      flexDirection: 'column'
+    }
+  })
 &nbsp;
-/* ------------- API ------------- */
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (onPress) {
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;TouchableOpacity
+        style={[styles.container, containerStyle &amp;&amp; containerStyle]}
+        activeOpacity={activeOpacity}
+        onPress={onPress}
+      &gt;
+        &lt;View {...props}&gt;
+          {props.children}
+        &lt;/View&gt;
+      &lt;/TouchableOpacity&gt;
+    )
+  }
 &nbsp;
-// The API we use is only used from Sagas, so we create it here and pass along
-// to the sagas which need it.
-const api = API.create()
-&nbsp;
-/* ------------- Connect Types To Sagas ------------- */
-&nbsp;
-export default function * <span class="fstat-no" title="function not covered" >root </span>() {
-<span class="cstat-no" title="statement not covered" >  yield [</span>
-    takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, api),
-    takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
-    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
-    takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api),
-    takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api),
-    takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api)
-  ]
+  return (
+    &lt;View
+      style={[styles.container, containerStyle &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >containerStyle]</span>}
+      {...props}
+    &gt;
+      {props.children}
+    &lt;/View&gt;
+  )
 }
+&nbsp;
+Col.propTypes = {
+  size: PropTypes.number,
+  containerStyle: PropTypes.any,
+  onPress: PropTypes.func,
+  activeOpacity: PropTypes.number,
+  children: PropTypes.any
+}
+&nbsp;
+Col.defaultProps = {
+  activeOpacity: 1
+}
+&nbsp;
+export default Col
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

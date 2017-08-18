@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Redux/ForgotPasswordRedux.js</title>
+    <title>Code coverage report for Redux/UserRedux.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">Redux</a> ForgotPasswordRedux.js
+      <a href="../index.html">All files</a> / <a href="index.html">Redux</a> UserRedux.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.33% </span>
+        <span class="strong">61.11% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/12</span>
+        <span class='fraction'>11/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>0/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.33% </span>
+        <span class="strong">64.71% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/12</span>
+        <span class='fraction'>11/17</span>
       </div>
     </div>
   </div>
@@ -91,7 +91,32 @@
 46
 47
 48
-49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -102,12 +127,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,18 +157,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,47 +195,72 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 &nbsp;
 const { Types, Creators } = createActions({
-  forgotPasswordRequest: ['email'],
-  forgotPasswordSuccess: ['error', 'message'],
-  forgotPasswordFailure: ['error', 'message']
+  userProfileRequest: ['accessToken'],
+  userProfileSuccess: ['user'],
+  userProfileFailure: null,
+  userProfileUpdateRequest: ['accessToken', 'name', 'email', 'oldPassword', 'newPassword'],
+  userProfileUpdateSuccess: ['user'],
+  userProfileUpdateFailure: null,
+  userReset: null
 })
 &nbsp;
-export const ForgotPasswordTypes = Types
+export const UserTypes = Types
 export default Creators
 &nbsp;
 /* ------------- Initial State ------------- */
 &nbsp;
 export const INITIAL_STATE = Immutable({
-  email: null,
-  processing: false,
+  user: null,
+  accessToken: null,
+  fetching: false,
   error: false,
-  message: null
+  message: null,
+  name: null,
+  email: null,
+  oldPassword: null,
+  newPassword: null
 })
 &nbsp;
 /* ------------- Reducers ------------- */
 &nbsp;
 // request the data from an api
-export const request = <span class="fstat-no" title="function not covered" >(s</span>tate, { email }) =&gt;
-<span class="cstat-no" title="statement not covered" >  state.merge({ processing: true, email })</span>
+export const profileRequest = <span class="fstat-no" title="function not covered" >(s</span>tate, { accessToken }) =&gt;
+<span class="cstat-no" title="statement not covered" >  state.merge({ fetching: true, accessToken, user: null })</span>
 &nbsp;
 // successful api lookup
-export const success = <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-  const { error, message } = <span class="cstat-no" title="statement not covered" >action</span>
-<span class="cstat-no" title="statement not covered" >  return state.merge({ processing: false, error, message })</span>
+export const profileSuccess = <span class="fstat-no" title="function not covered" >(s</span>tate, { user }) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return state.merge({ fetching: false, error: false, user })</span>
 }
 &nbsp;
 // Something went wrong somewhere.
-export const failure = <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-  const { error, message } = <span class="cstat-no" title="statement not covered" >action</span>
-<span class="cstat-no" title="statement not covered" >  state.merge({ processing: false, error, message })</span>
+export const profileFailure = <span class="fstat-no" title="function not covered" >st</span>ate =&gt;
+<span class="cstat-no" title="statement not covered" >  state.merge({ fetching: false, error: true, user: null })</span>
+&nbsp;
+// request the data from an api
+export const profileUpdateRequest = <span class="fstat-no" title="function not covered" >(s</span>tate, { accessToken, name, email, oldPassword, newPassword }) =&gt;
+<span class="cstat-no" title="statement not covered" >  state.merge({ fetching: true, name, email, oldPassword, newPassword, accessToken })</span>
+&nbsp;
+// successful api lookup
+export const profileUpdateSuccess = <span class="fstat-no" title="function not covered" >(s</span>tate, { user }) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return state.merge({ fetching: false, error: false, user })</span>
 }
+&nbsp;
+// Something went wrong somewhere.
+export const profileUpdateFailure = <span class="fstat-no" title="function not covered" >(s</span>tate, {error, message}) =&gt;
+<span class="cstat-no" title="statement not covered" >  state.merge({ fetching: false, error, message })</span>
+&nbsp;
+export const reset = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >INITIAL_STATE</span>
 &nbsp;
 /* ------------- Hookup Reducers To Types ------------- */
 &nbsp;
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FORGOT_PASSWORD_REQUEST]: request,
-  [Types.FORGOT_PASSWORD_SUCCESS]: success,
-  [Types.FORGOT_PASSWORD_FAILURE]: failure
+  [Types.USER_PROFILE_REQUEST]: profileRequest,
+  [Types.USER_PROFILE_SUCCESS]: profileSuccess,
+  [Types.USER_PROFILE_FAILURE]: profileFailure,
+  [Types.USER_PROFILE_UPDATE_REQUEST]: profileUpdateRequest,
+  [Types.USER_PROFILE_UPDATE_SUCCESS]: profileUpdateSuccess,
+  [Types.USER_PROFILE_UPDATE_FAILURE]: profileUpdateFailure,
+  [Types.USER_RESET]: reset
 })
 &nbsp;</pre></td></tr>
 </table></pre>

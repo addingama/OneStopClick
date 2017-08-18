@@ -1,123 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1502415129207" clover="3.2.0">
-  <project timestamp="1502415129208" name="All files">
-    <metrics statements="313" coveredstatements="91" conditionals="103" coveredconditionals="8" methods="105" coveredmethods="16" elements="521" coveredelements="115" complexity="0" loc="313" ncloc="313" packages="12" files="38" classes="38">
+<coverage generated="1503024682385" clover="3.2.0">
+  <project timestamp="1503024682386" name="All files">
+    <metrics statements="414" coveredstatements="126" conditionals="169" coveredconditionals="20" methods="135" coveredmethods="16" elements="718" coveredelements="162" complexity="0" loc="414" ncloc="414" packages="13" files="47" classes="47">
       <package name="Components">
-        <metrics statements="17" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="5"/>
-        <file name="DrawerHeader.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Components/DrawerHeader.js">
+        <metrics statements="68" coveredstatements="44" conditionals="36" coveredconditionals="13" methods="26" coveredmethods="13"/>
+        <file name="BackHeader.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/BackHeader.js">
+          <metrics statements="4" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="22" count="1" type="stmt"/>
+        </file>
+        <file name="CategoryChooser.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/CategoryChooser.js">
+          <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+        </file>
+        <file name="Col.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Col.js">
+          <metrics statements="8" coveredstatements="7" conditionals="11" coveredconditionals="5" methods="1" coveredmethods="1"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+        </file>
+        <file name="DrawerHeader.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/DrawerHeader.js">
           <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
           <line num="8" count="0" type="stmt"/>
-          <line num="12" count="4" type="stmt"/>
-          <line num="13" count="4" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
           <line num="23" count="2" type="stmt"/>
         </file>
-        <file name="FormGenerator.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Components/FormGenerator.js">
-          <metrics statements="11" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="3"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="14" count="2" type="stmt"/>
-          <line num="15" count="2" type="stmt"/>
+        <file name="FormGenerator.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/FormGenerator.js">
+          <metrics statements="23" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="3"/>
+          <line num="7" count="5" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
           <line num="16" count="2" type="stmt"/>
           <line num="17" count="2" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
           <line num="29" count="0" type="stmt"/>
-          <line num="39" count="4" type="stmt"/>
-          <line num="49" count="5" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="51" count="2" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="78" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="80" count="0" type="stmt"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
         </file>
-        <file name="ProgressIndicator.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Components/ProgressIndicator.js">
+        <file name="Grid.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Grid.js">
+          <metrics statements="11" coveredstatements="8" conditionals="12" coveredconditionals="3" methods="3" coveredmethods="2"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="18" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="43" count="1" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+        </file>
+        <file name="ProgressIndicator.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/ProgressIndicator.js">
           <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="21" count="3" type="stmt"/>
           <line num="22" count="3" type="stmt"/>
         </file>
+        <file name="Row.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Row.js">
+          <metrics statements="9" coveredstatements="8" conditionals="11" coveredconditionals="5" methods="1" coveredmethods="1"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="44" count="2" type="stmt"/>
+          <line num="52" count="2" type="stmt"/>
+        </file>
       </package>
       <package name="Components.Styles">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="DrawerHeaderStyle.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Components/Styles/DrawerHeaderStyle.js">
+        <file name="CategoryChooserStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Styles/CategoryChooserStyle.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
-        <file name="ProgressIndicatorStyle.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Components/Styles/ProgressIndicatorStyle.js">
+        <file name="DrawerHeaderStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Styles/DrawerHeaderStyle.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="FormGeneratorStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Styles/FormGeneratorStyle.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="ProgressIndicatorStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Components/Styles/ProgressIndicatorStyle.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
       </package>
       <package name="Config">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="DebugConfig.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Config/DebugConfig.js">
+        <file name="DebugConfig.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Config/DebugConfig.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
-        <file name="ReduxPersist.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Config/ReduxPersist.js">
+        <file name="ReduxPersist.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Config/ReduxPersist.js">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="5" count="1" type="stmt"/>
         </file>
       </package>
       <package name="Containers">
-        <metrics statements="83" coveredstatements="13" conditionals="18" coveredconditionals="1" methods="40" coveredmethods="6"/>
-        <file name="AccountScreen.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Containers/AccountScreen.js">
-          <metrics statements="17" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="6"/>
-          <line num="24" count="3" type="stmt"/>
-          <line num="25" count="3" type="cond" truecount="1" falsecount="1"/>
-          <line num="26" count="3" type="stmt"/>
+        <metrics statements="90" coveredstatements="7" conditionals="28" coveredconditionals="0" methods="44" coveredmethods="1"/>
+        <file name="AccountScreen.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Containers/AccountScreen.js">
+          <metrics statements="26" coveredstatements="3" conditionals="12" coveredconditionals="0" methods="15" coveredmethods="1"/>
+          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="33" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
           <line num="38" count="0" type="stmt"/>
-          <line num="45" count="3" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="59" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="69" count="3" type="stmt"/>
-          <line num="78" count="0" type="stmt"/>
-          <line num="90" count="1" type="stmt"/>
-          <line num="91" count="3" type="stmt"/>
-          <line num="95" count="1" type="stmt"/>
-          <line num="96" count="3" type="stmt"/>
+          <line num="40" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="84" count="0" type="stmt"/>
+          <line num="85" count="0" type="stmt"/>
+          <line num="89" count="0" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="103" count="0" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
+          <line num="121" count="1" type="stmt"/>
+          <line num="122" count="3" type="stmt"/>
+          <line num="131" count="1" type="stmt"/>
+          <line num="132" count="0" type="stmt"/>
+          <line num="133" count="0" type="stmt"/>
+          <line num="134" count="0" type="stmt"/>
+          <line num="135" count="0" type="stmt"/>
         </file>
-        <file name="LoginScreen.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Containers/LoginScreen.js">
-          <metrics statements="66" coveredstatements="4" conditionals="16" coveredconditionals="0" methods="29" coveredmethods="0"/>
-          <line num="22" count="1" type="stmt"/>
-          <line num="28" count="1" type="stmt"/>
+        <file name="LoginScreen.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Containers/LoginScreen.js">
+          <metrics statements="64" coveredstatements="4" conditionals="16" coveredconditionals="0" methods="29" coveredmethods="0"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
           <line num="45" count="0" type="stmt"/>
           <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
           <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
           <line num="53" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
           <line num="60" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="63" count="0" type="stmt"/>
           <line num="66" count="0" type="stmt"/>
-          <line num="67" count="0" type="stmt"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="70" count="0" type="stmt"/>
-          <line num="73" count="0" type="stmt"/>
-          <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="78" count="0" type="stmt"/>
+          <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="78" count="0" type="cond" truecount="0" falsecount="4"/>
           <line num="79" count="0" type="stmt"/>
           <line num="84" count="0" type="stmt"/>
-          <line num="85" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="86" count="0" type="stmt"/>
-          <line num="91" count="0" type="stmt"/>
-          <line num="97" count="0" type="stmt"/>
-          <line num="101" count="0" type="stmt"/>
-          <line num="105" count="0" type="stmt"/>
-          <line num="109" count="0" type="stmt"/>
-          <line num="110" count="0" type="stmt"/>
-          <line num="119" count="0" type="stmt"/>
-          <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="126" count="0" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="94" count="0" type="stmt"/>
+          <line num="108" count="0" type="stmt"/>
+          <line num="112" count="0" type="stmt"/>
+          <line num="121" count="0" type="stmt"/>
+          <line num="126" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="127" count="0" type="stmt"/>
-          <line num="129" count="0" type="stmt"/>
+          <line num="128" count="0" type="stmt"/>
           <line num="130" count="0" type="stmt"/>
-          <line num="135" count="0" type="stmt"/>
-          <line num="137" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="139" count="0" type="stmt"/>
-          <line num="143" count="0" type="stmt"/>
-          <line num="149" count="0" type="stmt"/>
-          <line num="155" count="0" type="stmt"/>
+          <line num="131" count="0" type="stmt"/>
+          <line num="136" count="0" type="stmt"/>
+          <line num="138" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="140" count="0" type="stmt"/>
+          <line num="144" count="0" type="stmt"/>
+          <line num="150" count="0" type="stmt"/>
+          <line num="156" count="0" type="stmt"/>
           <line num="162" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="163" count="0" type="stmt"/>
           <line num="164" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -144,7 +223,7 @@
       </package>
       <package name="Containers.Bases">
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <file name="AccountDrawerBase.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Containers/Bases/AccountDrawerBase.js">
+        <file name="AccountDrawerBase.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Containers/Bases/AccountDrawerBase.js">
           <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
           <line num="6" count="2" type="stmt"/>
           <line num="8" count="0" type="stmt"/>
@@ -152,16 +231,16 @@
       </package>
       <package name="Containers.Styles">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="AccountScreenStyle.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Containers/Styles/AccountScreenStyle.js">
+        <file name="AccountScreenStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Containers/Styles/AccountScreenStyle.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
-        <file name="LoginScreenStyle.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Containers/Styles/LoginScreenStyle.js">
+        <file name="LoginScreenStyle.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Containers/Styles/LoginScreenStyle.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
       </package>
       <package name="Lib">
         <metrics statements="34" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <file name="validator.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Lib/validator.js">
+        <file name="validator.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Lib/validator.js">
           <metrics statements="34" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="5" coveredmethods="0"/>
           <line num="4" count="0" type="stmt"/>
           <line num="5" count="0" type="stmt"/>
@@ -201,14 +280,14 @@
       </package>
       <package name="Models">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="LoginModel.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Models/LoginModel.js">
+        <file name="LoginModel.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Models/LoginModel.js">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
         </file>
       </package>
       <package name="Redux">
-        <metrics statements="87" coveredstatements="37" conditionals="18" coveredconditionals="0" methods="23" coveredmethods="0"/>
-        <file name="CreateStore.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/CreateStore.js">
+        <metrics statements="99" coveredstatements="46" conditionals="18" coveredconditionals="0" methods="28" coveredmethods="0"/>
+        <file name="CreateStore.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/CreateStore.js">
           <metrics statements="15" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="13" count="0" type="stmt"/>
           <line num="14" count="0" type="stmt"/>
@@ -226,7 +305,7 @@
           <line num="46" count="0" type="stmt"/>
           <line num="48" count="0" type="stmt"/>
         </file>
-        <file name="ForgotPasswordRedux.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/ForgotPasswordRedux.js">
+        <file name="ForgotPasswordRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/ForgotPasswordRedux.js">
           <metrics statements="12" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
           <line num="6" count="1" type="stmt"/>
           <line num="12" count="1" type="stmt"/>
@@ -241,28 +320,24 @@
           <line num="39" count="0" type="stmt"/>
           <line num="44" count="1" type="stmt"/>
         </file>
-        <file name="LoginRedux.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/LoginRedux.js">
-          <metrics statements="18" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <file name="LoginRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/LoginRedux.js">
+          <metrics statements="14" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
           <line num="6" count="1" type="stmt"/>
-          <line num="16" count="1" type="stmt"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="35" count="1" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="38" count="1" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="42" count="1" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="46" count="1" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="51" count="1" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="54" count="1" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="58" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
           <line num="62" count="1" type="stmt"/>
-          <line num="73" count="1" type="stmt"/>
         </file>
-        <file name="ProductRedux.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/ProductRedux.js">
+        <file name="ProductRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/ProductRedux.js">
           <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
           <line num="6" count="1" type="stmt"/>
           <line num="12" count="1" type="stmt"/>
@@ -275,7 +350,7 @@
           <line num="37" count="0" type="stmt"/>
           <line num="41" count="1" type="stmt"/>
         </file>
-        <file name="RegistrationRedux.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/RegistrationRedux.js">
+        <file name="RegistrationRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/RegistrationRedux.js">
           <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
           <line num="6" count="1" type="stmt"/>
           <line num="12" count="1" type="stmt"/>
@@ -288,8 +363,8 @@
           <line num="41" count="0" type="stmt"/>
           <line num="45" count="1" type="stmt"/>
         </file>
-        <file name="ScreenTrackingMiddleware.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/ScreenTrackingMiddleware.js">
-          <metrics statements="18" coveredstatements="2" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <file name="ScreenTrackingMiddleware.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/ScreenTrackingMiddleware.js">
+          <metrics statements="17" coveredstatements="2" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
           <line num="4" count="1" type="stmt"/>
           <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="6" count="0" type="stmt"/>
@@ -305,24 +380,43 @@
           <line num="26" count="0" type="stmt"/>
           <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
           <line num="32" count="0" type="stmt"/>
           <line num="35" count="0" type="stmt"/>
         </file>
-        <file name="StartupRedux.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/StartupRedux.js">
+        <file name="StartupRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/StartupRedux.js">
           <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="5" count="1" type="stmt"/>
           <line num="9" count="1" type="stmt"/>
         </file>
-        <file name="index.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Redux/index.js">
+        <file name="UserRedux.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/UserRedux.js">
+          <metrics statements="17" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Redux/index.js">
           <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="7" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
         </file>
       </package>
       <package name="Sagas">
-        <metrics statements="45" coveredstatements="1" conditionals="30" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <file name="ForgotPasswordSagas.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Sagas/ForgotPasswordSagas.js">
+        <metrics statements="72" coveredstatements="1" conditionals="50" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <file name="ForgotPasswordSagas.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/ForgotPasswordSagas.js">
           <metrics statements="10" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="18" count="0" type="stmt"/>
           <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -335,26 +429,37 @@
           <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="30" count="0" type="stmt"/>
         </file>
-        <file name="LoginSagas.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Sagas/LoginSagas.js">
-          <metrics statements="16" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="8" count="0" type="stmt"/>
+        <file name="LoginSagas.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/LoginSagas.js">
+          <metrics statements="17" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
           <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="12" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+        </file>
+        <file name="ProductSagas.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/ProductSagas.js">
+          <metrics statements="7" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
           <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="11" count="0" type="cond" truecount="0" falsecount="4"/>
           <line num="12" count="0" type="stmt"/>
           <line num="13" count="0" type="stmt"/>
           <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="26" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
         </file>
-        <file name="RegistrationSagas.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Sagas/RegistrationSagas.js">
+        <file name="RegistrationSagas.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/RegistrationSagas.js">
           <metrics statements="9" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="7" count="0" type="stmt"/>
           <line num="8" count="0" type="stmt"/>
@@ -366,27 +471,46 @@
           <line num="17" count="0" type="stmt"/>
           <line num="18" count="0" type="stmt"/>
         </file>
-        <file name="index.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Sagas/index.js">
+        <file name="UserSagas.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/UserSagas.js">
+          <metrics statements="27" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="33" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="57" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Sagas/index.js">
           <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="22" count="1" type="stmt"/>
           <line num="27" count="0" type="stmt"/>
         </file>
-        <file name="productSagas.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Sagas/productSagas.js">
-          <metrics statements="8" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="12" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-        </file>
       </package>
       <package name="Services">
-        <metrics statements="35" coveredstatements="18" conditionals="9" coveredconditionals="4" methods="19" coveredmethods="4"/>
-        <file name="Api.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Services/Api.js">
-          <metrics statements="10" coveredstatements="9" conditionals="5" coveredconditionals="4" methods="6" coveredmethods="1"/>
+        <metrics statements="37" coveredstatements="17" conditionals="9" coveredconditionals="4" methods="21" coveredmethods="1"/>
+        <file name="Api.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Services/Api.js">
+          <metrics statements="12" coveredstatements="11" conditionals="5" coveredconditionals="4" methods="8" coveredmethods="1"/>
           <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
           <line num="12" count="1" type="stmt"/>
           <line num="26" count="1" type="cond" truecount="3" falsecount="1"/>
@@ -394,14 +518,13 @@
           <line num="44" count="1" type="stmt"/>
           <line num="48" count="1" type="stmt"/>
           <line num="52" count="1" type="stmt"/>
-          <line num="56" count="1" type="stmt"/>
-          <line num="58" count="1" type="stmt"/>
-          <line num="71" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="83" count="1" type="stmt"/>
         </file>
-        <file name="FixtureApi.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Services/FixtureApi.js">
-          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        </file>
-        <file name="ImmutablePersistenceTransform.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Services/ImmutablePersistenceTransform.js">
+        <file name="ImmutablePersistenceTransform.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Services/ImmutablePersistenceTransform.js">
           <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
           <line num="5" count="1" type="stmt"/>
           <line num="8" count="1" type="stmt"/>
@@ -410,7 +533,7 @@
           <line num="20" count="0" type="stmt"/>
           <line num="24" count="0" type="stmt"/>
         </file>
-        <file name="RehydrationServices.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Services/RehydrationServices.js">
+        <file name="RehydrationServices.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Services/RehydrationServices.js">
           <metrics statements="13" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
           <line num="7" count="1" type="stmt"/>
           <line num="8" count="0" type="stmt"/>
@@ -426,43 +549,51 @@
           <line num="33" count="0" type="stmt"/>
           <line num="34" count="0" type="stmt"/>
         </file>
-        <file name="StorageService.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Services/StorageService.js">
-          <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="3"/>
+        <file name="StorageService.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Services/StorageService.js">
+          <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
           <line num="3" count="1" type="stmt"/>
           <line num="8" count="0" type="stmt"/>
           <line num="13" count="0" type="stmt"/>
-          <line num="18" count="3" type="stmt"/>
-          <line num="22" count="3" type="stmt"/>
-          <line num="23" count="3" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
         </file>
       </package>
       <package name="Themes">
         <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="3" methods="0" coveredmethods="0"/>
-        <file name="ApplicationStyles.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/ApplicationStyles.js">
+        <file name="ApplicationStyles.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/ApplicationStyles.js">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="8" count="2" type="stmt"/>
+          <line num="8" count="6" type="stmt"/>
         </file>
-        <file name="Colors.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/Colors.js">
+        <file name="Colors.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/Colors.js">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="2" type="stmt"/>
+          <line num="1" count="6" type="stmt"/>
         </file>
-        <file name="Fonts.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/Fonts.js">
+        <file name="Fonts.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/Fonts.js">
           <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="2" type="stmt"/>
-          <line num="7" count="2" type="stmt"/>
-          <line num="21" count="2" type="stmt"/>
+          <line num="1" count="6" type="stmt"/>
+          <line num="7" count="6" type="stmt"/>
+          <line num="21" count="6" type="stmt"/>
         </file>
-        <file name="Images.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/Images.js">
+        <file name="Images.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/Images.js">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="2" count="2" type="stmt"/>
+          <line num="2" count="6" type="stmt"/>
         </file>
-        <file name="Metrics.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/Metrics.js">
+        <file name="Metrics.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/Metrics.js">
           <metrics statements="2" coveredstatements="2" conditionals="6" coveredconditionals="3" methods="0" coveredmethods="0"/>
-          <line num="3" count="2" type="stmt"/>
-          <line num="6" count="2" type="stmt"/>
+          <line num="3" count="6" type="stmt"/>
+          <line num="6" count="6" type="stmt"/>
         </file>
-        <file name="index.js" path="/Users/mtmac21/Documents/irna/cdc/Scrum/OneStopClick/App/Themes/index.js">
+        <file name="index.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Themes/index.js">
           <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="Transforms">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="ConvertUserProfile.js" path="/Users/mitrais/Documents/Addin/CDC/osc_team/App/Transforms/ConvertUserProfile.js">
+          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
         </file>
       </package>
     </metrics>

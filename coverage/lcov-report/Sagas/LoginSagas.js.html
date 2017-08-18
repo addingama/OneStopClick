@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
     </div>
   </div>
@@ -77,23 +77,12 @@
 32
 33
 34
-35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,6 +94,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -114,6 +120,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Alert } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
+import UserActions from '../Redux/UserRedux'
 import StorageService from '../Services/StorageService'
 &nbsp;
 export function * <span class="fstat-no" title="function not covered" >login </span>(api, {username, password}) {
@@ -128,6 +135,7 @@ export function * <span class="fstat-no" title="function not covered" >login </s
   } else {
 <span class="cstat-no" title="statement not covered" >    StorageService.saveSession(access_token, refresh_token)</span>
 <span class="cstat-no" title="statement not covered" >    yield put(LoginActions.loginSuccess(access_token, refresh_token))</span>
+<span class="cstat-no" title="statement not covered" >    yield put(UserActions.userProfileRequest(access_token))</span>
   }
 }
 &nbsp;
@@ -138,11 +146,12 @@ export function * <span class="fstat-no" title="function not covered" >socialLog
 <span class="cstat-no" title="statement not covered" >  if (response.status !== 200) {</span>
 <span class="cstat-no" title="statement not covered" >    if (message !== '' || message != null) {</span>
 <span class="cstat-no" title="statement not covered" >      Alert.alert('Error', message)</span>
-<span class="cstat-no" title="statement not covered" >      yield put(LoginActions.socialLoginFailure(true, message))</span>
+<span class="cstat-no" title="statement not covered" >      yield put(LoginActions.loginFailure(true, message))</span>
     }
   } else {
-<span class="cstat-no" title="statement not covered" >    StorageService.saveSession(access_token, refresh_token)</span>
-<span class="cstat-no" title="statement not covered" >    yield put(LoginActions.socialLoginSuccess(access_token, refresh_token))</span>
+    // StorageService.saveSession(access_token, refresh_token)
+<span class="cstat-no" title="statement not covered" >    yield put(LoginActions.loginSuccess(access_token, refresh_token))</span>
+<span class="cstat-no" title="statement not covered" >    yield put(UserActions.userProfileRequest(access_token))</span>
   }
 }
 &nbsp;</pre></td></tr>
@@ -151,7 +160,7 @@ export function * <span class="fstat-no" title="function not covered" >socialLog
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 11 2017 08:32:09 GMT+0700 (WIB)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 18 2017 09:51:22 GMT+0700 (WIB)
 </div>
 </div>
 <script src="../prettify.js"></script>
