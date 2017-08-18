@@ -3,10 +3,6 @@ import { Header, Icon } from 'react-native-elements'
 import styles from './Styles/DrawerHeaderStyle'
 
 export default class BackHeader extends Component {
-  openMenu () {
-    this.props.navigation.navigate('DrawerOpen')
-  }
-
   render () {
     const { title, navigation, backAction } = this.props
     return (
