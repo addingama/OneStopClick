@@ -91,21 +91,21 @@ class LoginScreen extends AccountDrawerBase {
   }
 
   goToHomeScreen () {
-    const resetAction = NavigationActions.navigate({
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'AccountScreen',
+          params: {}
+        })
+      ]
+    })
+    const goHome = NavigationActions.navigate({
       routeName: 'Home',
       params: {}
     })
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   stateName: 'PrimaryNav',
-    //   actions: [
-    //     NavigationActions.navigate({
-    //       routeName: 'Home',
-    //       params: {}
-    //     })
-    //   ]
-    // })
     this.props.navigation.dispatch(resetAction)
+    this.props.navigation.dispatch(goHome)
   }
 
   goToForgotPasswordScreen () {
