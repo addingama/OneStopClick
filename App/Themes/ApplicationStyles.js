@@ -78,7 +78,10 @@ const ApplicationStyles = {
       fontWeight: 'bold'
     },
     hasNavbar: {
-      marginBottom: Metrics.navBarHeight + 20
+      marginBottom: Metrics.navBarHeight
+    },
+    defaultMarginTop: {
+      marginTop: Metrics.doubleBaseMargin
     },
     cardContent: {
       width: (Metrics.screenWidth / 2) - 25,

@@ -5,7 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
-  loginSuccess: ['access_token', 'refresh_token'],
+  loginSuccess: ['accessToken', 'refreshToken'],
   loginFailure: ['error', 'message'],
   socialLoginRequest: ['name', 'email', 'password'],
   logout: null
@@ -20,8 +20,8 @@ export const INITIAL_STATE = Immutable({
   username: null,
   name: null,
   password: null,
-  access_token: null,
-  refresh_token: null,
+  accessToken: null,
+  refreshToken: null,
   error: false,
   message: null,
   loggingIn: false
@@ -37,16 +37,16 @@ export const socialRequest = (state, { name, email, password }) =>
   state.merge({ loggingIn: true, name, email, password })
 
 // successful api lookup
-export const success = (state, { access_token, refresh_token }) => {
-  return state.merge({ loggingIn: false, error: false, message: null, access_token, refresh_token })
+export const success = (state, { accessToken, refreshToken }) => {
+  return state.merge({ loggingIn: false, error: false, message: null, accessToken, refreshToken })
 }
 
 // Something went wrong somewhere.
 export const failure = (state, { message }) =>
-  state.merge({ loggingIn: false, error: true, message, access_token: null, refresh_token: null })
+  state.merge({ loggingIn: false, error: true, message, accessToken: null, refreshToken: null })
 
 // logout
-export const logout = (state) => INITIAL_STATE
+export const logout = () => INITIAL_STATE
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -59,4 +59,4 @@ export const reducer = createReducer(INITIAL_STATE, {
 })
 
 // Is the current user logged in?
-export const isLoggedIn = (loginState) => loginState.access_token !== null
+export const isLoggedIn = (loginState) => loginState.accessToken !== null

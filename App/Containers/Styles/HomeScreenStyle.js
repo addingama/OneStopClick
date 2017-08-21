@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
+import { ApplicationStyles, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -33,7 +33,12 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: '#2F1F37',
     borderRadius: 3,
-    marginBottom: 10,
-    paddingBottom: 20
+    marginBottom: 10
+  },
+  categorySpinner: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: Metrics.baseMargin
   }
 })

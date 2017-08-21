@@ -89,7 +89,7 @@ class RegistrationScreen extends AccountDrawerBase {
 
   render () {
     const { password, email, name, password_confirmation } = this.state.fields
-    const { registering, error } = this.props
+    const { registering } = this.props
 
     return (
       <View style={{flex: 1}}>
@@ -154,7 +154,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptRegister: (name, email, password, password_confirmation) => dispatch(RegistrationActions.registrationRequest(name, email, password, password_confirmation))
+    attemptRegister: (name, email, password, passwordConfirmation) => dispatch(RegistrationActions.registrationRequest(name, email, password, passwordConfirmation))
   }
 }
 

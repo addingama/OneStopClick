@@ -9,7 +9,8 @@ export default () => {
     login: require('./LoginRedux').reducer,
     registration: require('./RegistrationRedux').reducer,
     forgotPassword: require('./ForgotPasswordRedux').reducer,
-    product: require('./ProductRedux').reducer
+    product: require('./ProductRedux').reducer,
+    user: require('./UserRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)
