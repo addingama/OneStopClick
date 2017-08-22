@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation'
 import EditProfileScreen from '../Containers/EditProfileScreen'
 import AccountScreen from '../Containers/AccountScreen'
@@ -22,6 +24,22 @@ const AccountStack = StackNavigator({
   }
 })
 
+const ParentDrawerLabel = ({ label }) => (
+  <View style={styles.parentViewDrawerLabel}>
+    <View>
+      <Text style={styles.parentDrawerLabel}>{label}</Text>
+    </View>
+  </View>
+);
+
+const ChildDrawerLabel = ({ label }) => (
+  <View style={styles.viewDrawerLabel}>
+    <View style={{ flex: 1, marginLeft: 20 }}>
+      <Text style={styles.childDrawerLabel}>{label}</Text>
+    </View>
+  </View>
+);
+
 const PrimaryNav = DrawerNavigator(
   {
     Home: {
@@ -29,14 +47,84 @@ const PrimaryNav = DrawerNavigator(
     },
     Account: {
       screen: AccountStack
-    }
+    }, 
+    Categories: { 
+      screen: HomeScreen,
+      path:"category:/all",
+      navigationOptions: ({navigation}) => ( {
+        // override homescreen navigationOptions
+        drawerIcon: ({ tintColor }) => {
+        },
+        drawerLabel: (
+          <ParentDrawerLabel
+            label="Categories"
+          />
+        )
+      }),
+    },
+    Movies: { 
+      screen: HomeScreen,
+      path:"category:movies",
+      navigationOptions: {
+        // override homescreen navigationOptions
+         title:'Movies',
+         drawerIcon: ({ tintColor }) => {
+         },
+         drawerLabel: (
+          <ChildDrawerLabel
+            label="Movies"
+          />
+        )
+      }
+    },
+    Applications: { 
+      screen: HomeScreen,
+      path:"category:applications",
+      navigationOptions: {
+        // override homescreen navigationOptions
+         drawerIcon: ({ tintColor }) => {
+         },
+         drawerLabel: (
+          <ChildDrawerLabel
+            label="Applications"
+          />
+        )
+      }
+    },
+    Books: {
+      screen: HomeScreen,
+      path:"category:/books",
+      navigationOptions: {
+        // override homescreen navigationOptions
+         drawerIcon: ({ tintColor }) => {
+         },
+         drawerLabel: (
+            <ChildDrawerLabel
+              label="Books"
+            />
+        )
+      }
+    },
+    Music: {
+      screen: HomeScreen,
+      path:"category:/music",
+      navigationOptions: {
+        // override homescreen navigationOptions
+         drawerIcon: ({ tintColor }) => {
+         },
+         drawerLabel: (
+            <ChildDrawerLabel
+              label="Music"
+            />
+        )
+      }
+    },
   },
   {
     stateName: 'PrimaryNav',
     initialRouteName: 'Home',
     drawerPosition: 'left'
   }
-
 )
 
 export default PrimaryNav
