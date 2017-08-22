@@ -3,9 +3,11 @@ import { ApplicationStyles, Colors, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  container: {
-    flex: 1,
-    marginTop: Metrics.navBarHeight,
-    backgroundColor: Colors.background
-  }
+  carouselBackground: {
+    backgroundColor: Colors.charcoal
+  },
+  bulletStyle: {
+    backgroundColor: 'red'
+  },
+  bulletsContainerStyle: { backgroundColor: Colors.backdrop, borderRadius: Metrics.containerRadius }
 })

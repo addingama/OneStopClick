@@ -1,32 +1,44 @@
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { Text, Rating, Button, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
-import {cloneDeep} from 'lodash'
 import I18n from 'react-native-i18n'
-import ImageSlider from 'react-native-image-slider-agb'
 import BackHeader from '../Components/BackHeader'
 import { currency } from '../Lib/numberFormatter.js'
+import Carousel from 'react-native-looped-carousel'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
 
 class ProductDetailScreen extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+  constructor (props) {
+    super(props)
+    const { width } = Dimensions.get('window')
+    this.state = {
+      size: { width, height: 250 }
+    }
+  }
+
+  _onLayoutDidChange = (e) => {
+    const layout = e.nativeEvent.layout
+    this.setState({ size: { width: layout.width, height: 250 } })
+  }
 
   generateImageSlider (product) {
     var images = []
     if (product.images.length === 0) {
-      images.push('http://ccwc.org/wp-content/themes/ccwc-theme/images/no-image-available.png')
+      images.push({ id: 0, image_url: 'http://onestopclick.tk/storage/default.png' })
     } else {
-      product.images.forEach(function (item) {
-        images.push(item.image_url)
-      }, this)
+      images = product.images
     }
     return images
+  }
+
+  renderProductImage (image) {
+    const { size } = this.state
+    return (
+      <Image source={{ uri: image.image_url }} key={image.id} resizeMode='contain' style={[styles.carouselBackground, size]} />
+    )
   }
 
   countRating (product) {
@@ -50,8 +62,15 @@ class ProductDetailScreen extends Component {
           <BackHeader title={I18n.t('productDetail')} {...this.props} />
         </View>
         <ScrollView style={{ backgroundColor: 'white' }}>
-          <View>
-            <ImageSlider images={this.generateImageSlider(product)} height={200} />
+          <View style={{ flex: 1 }} onLayout={this._onLayoutDidChange}>
+            <Carousel
+              bullets
+              bulletStyle={styles.bulletStyle}
+              bulletsContainerStyle={styles.bulletsContainerStyle}
+              style={this.state.size}>
+              { this.generateImageSlider(product).map(this.renderProductImage.bind(this))}
+
+            </Carousel>
             <View style={{padding: 5}}>
               <Text numberOfLines={2}
                 ellipsizeMode={'tail'}
@@ -77,7 +96,7 @@ class ProductDetailScreen extends Component {
                 icon={{ name: 'shopping-cart' }}
                 backgroundColor='green'
                 fontFamily='Lato'
-                style={{ margin:0, padding: 0 }}
+                style={{ margin: 0, padding: 0 }}
                 onPress={() => alert('add to cart')}
                 title={I18n.t('addToCart')} />
             </View>
