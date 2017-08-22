@@ -50,9 +50,11 @@
    "fetching": "Fetching",
    "searchHere": "Search Here",
    "buyNow": "BUY NOW",
+   "addToCart": "Add to cart",
    "profile": "Profile",
    "updateProfile": "Update Profile",
    "oldPassword": "Old Password",
    "newPassword": "New Password",
-   "saving": "Saving. Please wait..."
+   "saving": "Saving. Please wait...",
+   "productDetail": "Product Detail"
 }

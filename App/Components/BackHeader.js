@@ -4,8 +4,7 @@ import styles from './Styles/DrawerHeaderStyle'
 
 export default class BackHeader extends Component {
   render () {
-    const { title, navigation, backAction } = this.props
-    console.tron.log(this.props)
+    const { title, navigation, backAction, rightComponent } = this.props
     return (
       <Header
         backgroundColor='#2F1F37'
@@ -15,6 +14,7 @@ export default class BackHeader extends Component {
           color='white'
           onPress={() => (typeof backAction === 'undefined' || backAction === null) ? navigation.goBack() : backAction()} />}
         centerComponent={{ text: title, style: styles.titleStyle }}
+        rightComponent={rightComponent}
       />
     )
   }
