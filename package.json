@@ -22,6 +22,7 @@
     "git-hook": "npm test -s"
   },
   "dependencies": {
+    "ImageViewer": "^1.5.7",
     "apisauce": "^0.14.0",
     "buffer": "^5.0.7",
     "format-json": "^1.0.3",
@@ -42,6 +43,7 @@
     "react-native-google-signin": "^0.10.0",
     "react-native-hideable-view": "^1.0.3",
     "react-native-i18n": "1.0.0",
+    "react-native-image-pan-zoom": "^2.0.6",
     "react-native-looped-carousel": "^0.1.7",
     "react-native-uuid": "^1.4.9",
     "react-native-vector-icons": "4.1.1",

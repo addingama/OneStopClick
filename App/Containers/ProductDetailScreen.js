@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Dimensions, Image } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
 import { Text, Rating, Button, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import BackHeader from '../Components/BackHeader'
 import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
+import ImageViewer from 'ImageViewer'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
 
+const defaultImage = 'http://onestopclick.tk/storage/default.png'
 class ProductDetailScreen extends Component {
   constructor (props) {
     super(props)
     const { width } = Dimensions.get('window')
     this.state = {
-      size: { width, height: 250 }
+      size: { width, height: 250 },
+      showViewer: false,
+      viewerIndex: 0
     }
   }
 
@@ -27,18 +31,46 @@ class ProductDetailScreen extends Component {
   generateImageSlider (product) {
     var images = []
     if (product.images.length === 0) {
-      images.push({ id: 0, image_url: 'http://onestopclick.tk/storage/default.png' })
+      images.push({ id: 0, image_url: defaultImage })
     } else {
       images = product.images
     }
     return images
   }
 
-  renderProductImage (image) {
+  generateImageArray (product) {
+    var images = []
+    if (product.images.length === 0) {
+      images.push(defaultImage)
+    } else {
+      product.images.forEach(function (item) {
+        images.push(item.image_url)
+      }, this)
+    }
+    return images
+  }
+
+  renderProductImage (image, index) {
     const { size } = this.state
     return (
-      <Image source={{ uri: image.image_url }} key={image.id} resizeMode='contain' style={[styles.carouselBackground, size]} />
+      <TouchableWithoutFeedback key={image.id} onPress={() => this.openImageViewer(index)}>
+        <Image source={{ uri: image.image_url }} resizeMode='contain' style={[styles.carouselBackground, size]} />
+      </TouchableWithoutFeedback>
     )
+  }
+
+  openImageViewer (index) {
+    this.setState({
+      showViewer: true,
+      viewerIndex: index
+    })
+  }
+
+  closeViewer () {
+    this.setState({
+      showViewer: false,
+      viewerIndex: 0
+    })
   }
 
   countRating (product) {
@@ -64,7 +96,7 @@ class ProductDetailScreen extends Component {
         <ScrollView style={{ backgroundColor: 'white' }}>
           <View style={{ flex: 1 }} onLayout={this._onLayoutDidChange}>
             <Carousel
-              bullets
+              bullets={product.images.length > 1}
               bulletStyle={styles.bulletStyle}
               bulletsContainerStyle={styles.bulletsContainerStyle}
               style={this.state.size}>
@@ -102,6 +134,10 @@ class ProductDetailScreen extends Component {
             </View>
           </View>
         </ScrollView>
+        <ImageViewer shown={this.state.showViewer}
+          imageUrls={this.generateImageArray(product)}
+          onClose={this.closeViewer.bind(this)}
+          index={this.state.viewerIndex} />
       </View>
     )
   }
