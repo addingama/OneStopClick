@@ -32,6 +32,14 @@ class HomeScreen extends HomeDrawerBase {
     this.props.getProducts()
   }
 
+  componentWillUpdate(){
+        // set here to avoid update state transition issue in rendering
+        var categoryName = this.props.navigation.state.routeName == 'Home' ? 'All Categories' : this.props.navigation.state.routeName
+        if (categoryName !== 'All Categories') {
+          this.handleSelectedCategoryChange(categoryName)
+        }
+  }
+
   handleSearch (text) {
     this.setState({searchText: text})
     this.filterProduct(text, this.state.selectedCategory)
@@ -40,22 +48,42 @@ class HomeScreen extends HomeDrawerBase {
   generateListProducts (categoriesData) {
     var categoriesLabel = []
     var categories = categoriesData
-
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
-        categoriesLabel.push(
-          <Category
-            key={i}
-            category={categories[i]}
-          />
-        )
-        categoriesLabel.push(
-          <Products
-            key={uuid.v1()}
-            data={categories[i].products}
-            onBuyPress={(item) => alert('Will redirect to detail')}
-          />
-        )
+        // handles filter, user routeName instead of selectedCategory
+        var routeName = this.props.navigation.state.routeName
+        
+        if (routeName !== 'Home') {
+            if (routeName == categories[i].name) {
+              categoriesLabel.push(
+                <Category
+                  key={i}
+                  category={categories[i]}
+                />
+              )
+              categoriesLabel.push(
+                <Products
+                  key={uuid.v1()}
+                  data={categories[i].products}
+                  onBuyPress={(item) => alert('Will redirect to detail')}
+                />
+              )
+            }
+        } else {
+          categoriesLabel.push(
+            <Category
+              key={i}
+              category={categories[i]}
+            />
+          )
+          categoriesLabel.push(
+            <Products
+              key={uuid.v1()}
+              data={categories[i].products}
+              onBuyPress={(item) => alert('Will redirect to detail')}
+            />
+          )
+        }
       }
     }
     return (categoriesLabel)
@@ -117,9 +145,34 @@ class HomeScreen extends HomeDrawerBase {
     return categories
   }
 
+  handleSelectedCategoryChange(newCategory) {
+    // avoid multiple stack issue by checking existing state value 
+    if (this.state.selectedCategory !== newCategory) {
+      this.setState({
+        selectedCategory: newCategory
+      });
+    }
+  }
+
   render () {
     const { fetching, products } = this.props
     const { searchText, listProducts, selectedCategory } = this.state
+
+    // set dynamic selected dropdown, use routeName to determine visibility of dropdown
+    let catDropdown = null;
+    if (this.props.navigation.state.routeName == 'Home') {
+        
+      // category dropdown
+      catDropdown =   
+          <TouchableHighlight onPress={() => {
+                this.setModalVisible(true)
+          }}>
+              <View style={styles.categorySpinner}>
+                    <Text>{selectedCategory}</Text>
+                    <Icon name='keyboard-arrow-down' />
+                  </View>
+                </TouchableHighlight>;
+    }
 
     return (
       <View>
@@ -131,14 +184,7 @@ class HomeScreen extends HomeDrawerBase {
             <View style={styles.formContainer}>
               <View style={[styles.contentContainer]}>
                 <Text style={[styles.titleLabel]}>{I18n.t('search')}</Text>
-                <TouchableHighlight onPress={() => {
-                  this.setModalVisible(true)
-                }}>
-                  <View style={styles.categorySpinner}>
-                    <Text>{selectedCategory}</Text>
-                    <Icon name='keyboard-arrow-down' />
-                  </View>
-                </TouchableHighlight>
+                {catDropdown}
                 <SearchBar
                   lightTheme
                   onChangeText={(text) => this.handleSearch(text)}
@@ -161,7 +207,7 @@ class HomeScreen extends HomeDrawerBase {
                 backAction={() => this.setModalVisible(!this.state.modalVisible)} />
             </View>
             <CategoryChooser selectedValue={this.state.selectedCategory}
-              onValueChange={(itemValue) => this.setState({ selectedCategory: itemValue })}
+              onValueChange={(itemValue) => this.handleSelectedCategoryChange(itemValue)}
               items={this.generateCategoryArray()} />
           </View>
         </Modal>

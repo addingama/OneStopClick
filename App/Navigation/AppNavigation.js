@@ -50,7 +50,6 @@ const PrimaryNav = DrawerNavigator(
     }, 
     Categories: { 
       screen: HomeScreen,
-      path:"category:/all",
       navigationOptions: ({navigation}) => ( {
         // override homescreen navigationOptions
         drawerIcon: ({ tintColor }) => {
@@ -64,10 +63,8 @@ const PrimaryNav = DrawerNavigator(
     },
     Movies: { 
       screen: HomeScreen,
-      path:"category:movies",
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         // override homescreen navigationOptions
-         title:'Movies',
          drawerIcon: ({ tintColor }) => {
          },
          drawerLabel: (
@@ -75,12 +72,11 @@ const PrimaryNav = DrawerNavigator(
             label="Movies"
           />
         )
-      }
+      })
     },
     Applications: { 
       screen: HomeScreen,
-      path:"category:applications",
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         // override homescreen navigationOptions
          drawerIcon: ({ tintColor }) => {
          },
@@ -89,12 +85,11 @@ const PrimaryNav = DrawerNavigator(
             label="Applications"
           />
         )
-      }
+      })
     },
     Books: {
       screen: HomeScreen,
-      path:"category:/books",
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         // override homescreen navigationOptions
          drawerIcon: ({ tintColor }) => {
          },
@@ -103,21 +98,20 @@ const PrimaryNav = DrawerNavigator(
               label="Books"
             />
         )
-      }
+      })
     },
-    Music: {
+    Musics: {
       screen: HomeScreen,
-      path:"category:/music",
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         // override homescreen navigationOptions
          drawerIcon: ({ tintColor }) => {
          },
          drawerLabel: (
             <ChildDrawerLabel
-              label="Music"
+              label="Musics"
             />
         )
-      }
+      })
     },
   },
   {
