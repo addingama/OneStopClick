@@ -99,6 +99,10 @@ const ApplicationStyles = {
       backgroundColor: '#2F1F37',
       color: 'white',
       padding: 5
+    },
+    dividerMargin: {
+      marginTop: Metrics.baseMargin,
+      marginBottom: Metrics.baseMargin
     }
   },
   darkLabelContainer: {

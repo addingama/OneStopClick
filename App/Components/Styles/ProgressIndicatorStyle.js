@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    backgroundColor: Colors.backdrop,
     padding: Metrics.baseMargin,
     borderRadius: Metrics.containerRadius,
     position: 'absolute',

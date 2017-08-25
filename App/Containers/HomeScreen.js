@@ -53,12 +53,17 @@ class HomeScreen extends HomeDrawerBase {
           <Products
             key={uuid.v1()}
             data={categories[i].products}
-            onBuyPress={(item) => alert('Will redirect to detail')}
+            onBuyPress={() => alert('add to cart')}
+            onProductClick={(item) => this.openProductDetail(item)}
           />
         )
       }
     }
     return (categoriesLabel)
+  }
+
+  openProductDetail (product) {
+    this.props.navigation.navigate('ProductDetailScreen', { product: product })
   }
 
   filterProduct (searchText, categoryName) {

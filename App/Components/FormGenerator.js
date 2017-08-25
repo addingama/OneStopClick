@@ -84,7 +84,7 @@ export class Products extends Component {
       key={uuid.v1()}
       numColumns='2'
       renderItem={({ item }) =>
-        <TouchableHighlight onPress={() => alert('will redirect to detail')}>
+        <TouchableOpacity onPress={() => this.props.onProductClick(item)}>
           <View>
             <Card
               style={styles.cardContent}
@@ -111,7 +111,7 @@ export class Products extends Component {
                 title={I18n.t('buyNow')} />
             </Card>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       }
     />)
   }
