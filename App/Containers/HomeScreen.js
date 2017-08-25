@@ -11,6 +11,7 @@ import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 import CategoryChooser from '../Components/CategoryChooser'
 import BackHeader from '../Components/BackHeader'
+import CartButton from '../Components/CartButton'
 import { cloneDeep } from 'lodash'
 var uuid = require('react-native-uuid')
 
@@ -129,7 +130,7 @@ class HomeScreen extends HomeDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} {...this.props} />
+          <DrawerHeader title={I18n.t('home')} rightComponent={<CartButton />} {...this.props} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
