@@ -72,7 +72,7 @@ export class Category extends Component {
 
 export class Products extends Component {
   render () {
-    const { data } = this.props
+    const { data, cartItems } = this.props
     var products = Object.assign([], data)
     for (let j = 0; j < products.length; j++) {
       var product = Object.assign({}, products[j])
@@ -107,7 +107,7 @@ export class Products extends Component {
                 backgroundColor='green'
                 fontFamily='Lato'
                 style={{ margin: 0, padding: 0 }}
-                onPress={() => this.props.onBuyPress(item)}
+                onPress={() => { this.props.onBuyPress(item) }}
                 title={I18n.t('buyNow')} />
             </Card>
           </View>

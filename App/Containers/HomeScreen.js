@@ -5,6 +5,7 @@ import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import I18n from 'react-native-i18n'
 import ProductActions from '../Redux/ProductRedux'
+import CartActions from '../Redux/CartRedux'
 import { SearchBar, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
@@ -52,9 +53,10 @@ class HomeScreen extends HomeDrawerBase {
         )
         categoriesLabel.push(
           <Products
+            cartItems={this.props.cart.items}
             key={uuid.v1()}
             data={categories[i].products}
-            onBuyPress={() => alert('add to cart')}
+            onBuyPress={(items) => this.props.addToCart(items)}
             onProductClick={(item) => this.openProductDetail(item)}
           />
         )
@@ -124,13 +126,13 @@ class HomeScreen extends HomeDrawerBase {
   }
 
   render () {
-    const { fetching, products } = this.props
+    const { fetching, products, cart } = this.props
     const { searchText, listProducts, selectedCategory } = this.state
 
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} rightComponent={<CartButton />} {...this.props} />
+          <DrawerHeader title={I18n.t('home')} rightComponent={<CartButton itemCount={cart.items.length} />} {...this.props} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
@@ -181,13 +183,15 @@ const mapStateToProps = (state) => {
     fetching: state.product.fetching,
     error: state.product.error,
     message: state.product.message,
-    products: state.product.products
+    products: state.product.products,
+    cart: state.cart
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProducts: () => dispatch(ProductActions.getProductsRequest())
+    getProducts: () => dispatch(ProductActions.getProductsRequest()),
+    addToCart: (items) => dispatch(CartActions.addItem(items))
   }
 }
 
