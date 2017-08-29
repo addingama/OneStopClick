@@ -1,4 +1,5 @@
 import { DrawerNavigator, StackNavigator } from 'react-navigation'
+import ProductDetailScreen from '../Containers/ProductDetailScreen'
 import EditProfileScreen from '../Containers/EditProfileScreen'
 import AccountScreen from '../Containers/AccountScreen'
 import ForgotPasswordScreen from '../Containers/ForgotPasswordScreen'
@@ -22,10 +23,22 @@ const AccountStack = StackNavigator({
   }
 })
 
+const ProductStack = StackNavigator({
+  Home: { screen: HomeScreen },
+  ProductDetailScreen: { screen: ProductDetailScreen }
+}, {
+  stateName: 'ProductStack',
+  headerMode: 'none',
+  initialRouteName: 'Home',
+  navigationOptions: {
+    headerStyle: styles.header
+  }
+})
+
 const PrimaryNav = DrawerNavigator(
   {
     Home: {
-      screen: HomeScreen
+      screen: ProductStack
     },
     Account: {
       screen: AccountStack
