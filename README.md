@@ -31,8 +31,10 @@
 2. Run Build for either OS
   * for iOS
     * run `react-native run-ios`
-  * for Android
-    * Run Genymotion
+  * for Android (assumed that you already setup android environment)
+    * Create AVD using android studio
+    * Update script named `android:emulator` in `package.json` and replace `@Nexus_5X_API_23` with your AVD name, to check available emulator, run `$ANDROID_HOME/tools/emulator -list-avds`
+    * Run android emulator using `npm run-script android:emulator`
     * run `react-native run-android`
 
 ## :no_entry_sign: Standard Compliant
