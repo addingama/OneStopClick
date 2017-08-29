@@ -141,3 +141,11 @@ The structures separate into two main groups named `App` and `Tests`. All test f
 ## Troubleshooting
 
 List all possible issue and how to solve it when initiating this app
+
+
+
+
+## Release The Application
+
+- [Android](documentations/release_android.md)
+- [iOS](documentations/release_ios.md)
