@@ -174,7 +174,7 @@ class LoginScreen extends AccountDrawerBase {
   doGoogleLogin () {
     GoogleSignin.configure({
       iosClientId: '959083237888-4ttpibeopc7366kpqs37cpi7k1dg9a60.apps.googleusercontent.com',
-      scopes: ['openid', 'email', 'profile'],
+      scopes: ['profile'],
       shouldFetchBasicProfile: true
     })
     .then(() => {

@@ -91,7 +91,11 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.3"
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 
     defaultConfig {
         applicationId "com.onestopclick"
@@ -102,6 +106,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        multiDexEnabled true //important
     }
     splits {
         abi {
@@ -111,12 +116,26 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+
+    signingConfigs {
+        release {
+            if (project.hasProperty('OSC_RELEASE_STORE_FILE')) {
+                storeFile file(OSC_RELEASE_STORE_FILE)
+                storePassword OSC_RELEASE_STORE_PASSWORD
+                keyAlias OSC_RELEASE_KEY_ALIAS
+                keyPassword OSC_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+    
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -133,6 +152,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-google-signin')
     compile project(':react-native-i18n')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
