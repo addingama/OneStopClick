@@ -23,7 +23,8 @@ const colors = {
   banner: '#5F3E63',
   text: '#E0D7E5',
   google: '#db3236',
-  green: '#86b200'
+  green: '#86b200',
+  backdrop: 'rgba(52, 52, 52, 0.8)'
 }
 
 export default colors
