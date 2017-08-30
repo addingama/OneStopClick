@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressIndicator component does not render if show is false 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "rgba(52, 52, 52, 0.8)",
+      "borderRadius": 10,
+      "flex": 1,
+      "justifyContent": "center",
+      "marginLeft": 20,
+      "marginRight": 20,
+      "opacity": 0,
+      "padding": 10,
+      "position": "absolute",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#ffffff"
+    hidesWhenStopped={true}
+    size="large"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 12,
+        "paddingTop": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Please wait...
+  </Text>
+</View>
+`;
+
+exports[`ProgressIndicator component renders correctly if show is true 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "rgba(52, 52, 52, 0.8)",
+      "borderRadius": 10,
+      "flex": 1,
+      "justifyContent": "center",
+      "marginLeft": 20,
+      "marginRight": 20,
+      "opacity": 1,
+      "padding": 10,
+      "position": "absolute",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#ffffff"
+    hidesWhenStopped={true}
+    size="large"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 12,
+        "paddingTop": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    howdy
+  </Text>
+</View>
+`;
+
+exports[`ProgressIndicator component renders correctly if title prop is set 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "rgba(52, 52, 52, 0.8)",
+      "borderRadius": 10,
+      "flex": 1,
+      "justifyContent": "center",
+      "marginLeft": 20,
+      "marginRight": 20,
+      "opacity": 1,
+      "padding": 10,
+      "position": "absolute",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#ffffff"
+    hidesWhenStopped={true}
+    size="large"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 12,
+        "paddingTop": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Please wait...
+  </Text>
+</View>
+`;

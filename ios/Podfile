@@ -6,6 +6,10 @@ target 'OneStopClick' do
   # use_frameworks!
 
   # Pods for OneStopClick
+  pod 'MobileCenter/Push', '~> 0.11.2'
+  pod 'MobileCenter/Crashes', '~> 0.11.2'
+  pod 'MobileCenter/Analytics', '~> 0.11.2'
+  pod 'RNMobileCenterShared', '~> 0.8.1'
   pod 'Google/SignIn'
 
   target 'OneStopClick-tvOSTests' do

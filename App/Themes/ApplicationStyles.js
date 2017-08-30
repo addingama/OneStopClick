@@ -13,8 +13,8 @@ const ApplicationStyles = {
     },
     fragmentContainer: {
       flex: 1,
-      marginTop: Metrics.doubleBaseMargin,
-      marginBottom: Metrics.doubleBaseMargin,
+      marginTop: Metrics.baseMargin,
+      marginBottom: Metrics.baseMargin,
       backgroundColor: Colors.transparent
     },
     backgroundImage: {
@@ -78,10 +78,10 @@ const ApplicationStyles = {
       fontWeight: 'bold'
     },
     hasNavbar: {
-      marginBottom: Metrics.navBarHeight
+      marginBottom: Metrics.navBarHeight + 15
     },
     defaultMarginTop: {
-      marginTop: Metrics.doubleBaseMargin
+      marginTop: Metrics.baseMargin
     },
     cardContent: {
       width: (Metrics.screenWidth / 2) - 25,

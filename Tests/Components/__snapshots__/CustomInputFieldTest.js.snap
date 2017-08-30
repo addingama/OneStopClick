@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomInputField component renders correctly if field props set for unsecure text 1`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {},
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#86939e",
+              "fontSize": 15,
+              "fontWeight": "bold",
+              "marginBottom": 1,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 15,
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    >
+      Email
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#bdc6cf",
+          "borderBottomWidth": 1,
+          "marginLeft": 20,
+          "marginRight": 20,
+        },
+        undefined,
+      ]
+    }
+  >
+    <TextInput
+      autoCapitalize="none"
+      autoCorrect={false}
+      field={
+        Object {
+          "edited": false,
+          "keyboardType": "email-address",
+          "name": "email",
+          "returnKeyType": "next",
+          "secureText": false,
+          "valid": true,
+          "validation": Array [
+            "required",
+            "email",
+          ],
+          "value": "",
+        }
+      }
+      keyboardType="email-address"
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      returnKeyType="next"
+      secureTextEntry={false}
+      style={
+        Array [
+          Object {
+            "color": "#86939e",
+            "fontSize": 17.5,
+            "minHeight": 36,
+            "width": 750,
+          },
+          undefined,
+        ]
+      }
+      value=""
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {},
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#ff190c",
+              "fontSize": 15,
+              "marginBottom": 1,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 5,
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`CustomInputField component renders correctly if field props set for unsecure text 2`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {},
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#86939e",
+              "fontSize": 15,
+              "fontWeight": "bold",
+              "marginBottom": 1,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 15,
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    >
+      Password
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#bdc6cf",
+          "borderBottomWidth": 1,
+          "marginLeft": 20,
+          "marginRight": 20,
+        },
+        undefined,
+      ]
+    }
+  >
+    <TextInput
+      autoCapitalize="none"
+      autoCorrect={false}
+      field={
+        Object {
+          "edited": false,
+          "keyboardType": "default",
+          "name": "password",
+          "returnKeyType": "done",
+          "secureText": true,
+          "valid": true,
+          "validation": Array [
+            "required",
+          ],
+          "value": "",
+        }
+      }
+      keyboardType="default"
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      returnKeyType="done"
+      secureTextEntry={true}
+      style={
+        Array [
+          Object {
+            "color": "#86939e",
+            "fontSize": 17.5,
+            "minHeight": 36,
+            "width": 750,
+          },
+          undefined,
+        ]
+      }
+      value=""
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {},
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#ff190c",
+              "fontSize": 15,
+              "marginBottom": 1,
+              "marginLeft": 20,
+              "marginRight": 20,
+              "marginTop": 5,
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    />
+  </View>
+</View>
+`;

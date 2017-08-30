@@ -50,7 +50,6 @@ export class HamburgerMenu extends React.Component {
   render () {
     return (
       <TouchableOpacity
-        style={{ marginTop: 7, marginLeft: 9 }}
         {...this.props}
         underlayColor='transparent'>
         <Icon
