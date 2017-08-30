@@ -117,17 +117,19 @@ android {
         }
     }
 
-    signingConfigs {
-        release {
-            if (project.hasProperty('OSC_RELEASE_STORE_FILE')) {
-                storeFile file(OSC_RELEASE_STORE_FILE)
-                storePassword OSC_RELEASE_STORE_PASSWORD
-                keyAlias OSC_RELEASE_KEY_ALIAS
-                keyPassword OSC_RELEASE_KEY_PASSWORD
-            }
-        }
-    }
+    // Uncomment this code to generate apk from android studio
+    // signingConfigs {
+    //     release {
+    //         if (project.hasProperty('OSC_RELEASE_STORE_FILE')) {
+    //             storeFile file(OSC_RELEASE_STORE_FILE)
+    //             storePassword OSC_RELEASE_STORE_PASSWORD
+    //             keyAlias OSC_RELEASE_KEY_ALIAS
+    //             keyPassword OSC_RELEASE_KEY_PASSWORD
+    //         }
+    //     }
+    // }
     
+
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
