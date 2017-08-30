@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, View, Modal, TouchableHighlight } from 'react-native'
+import { ScrollView, Text, View, Modal, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
@@ -136,14 +136,14 @@ class HomeScreen extends HomeDrawerBase {
             <View style={styles.formContainer}>
               <View style={[styles.contentContainer]}>
                 <Text style={[styles.titleLabel]}>{I18n.t('search')}</Text>
-                <TouchableHighlight onPress={() => {
+                <TouchableOpacity onPress={() => {
                   this.setModalVisible(true)
                 }}>
                   <View style={styles.categorySpinner}>
                     <Text>{selectedCategory}</Text>
                     <Icon name='keyboard-arrow-down' />
                   </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 <SearchBar
                   lightTheme
                   onChangeText={(text) => this.handleSearch(text)}
@@ -159,7 +159,7 @@ class HomeScreen extends HomeDrawerBase {
           </View>
         </ScrollView>
 
-        <Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible} >
+        <Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible} onRequestClose={() => {}} >
           <View>
             <View style={styles.hasNavbar}>
               <BackHeader title='Select Category' {...this.props}
