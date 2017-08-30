@@ -7,6 +7,7 @@ import BackHeader from '../Components/BackHeader'
 import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
+import PayPal from 'react-native-paypal-wrapper'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
@@ -86,6 +87,18 @@ class ProductDetailScreen extends Component {
     return rating
   }
 
+  payNow () {
+    // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
+    PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+    console.tron.log(PayPal)
+    PayPal.pay({
+      price: '1.0',
+      currency: 'USD',
+      description: 'Your description goes here'
+    }).then(confirm => console.tron.log(confirm))
+      .catch(error => console.tron.log(error))
+  }
+
   render () {
     const { product } = this.props.navigation.state.params
     return (
@@ -131,6 +144,7 @@ class ProductDetailScreen extends Component {
                 style={{ margin: 0, padding: 0 }}
                 onPress={() => alert('add to cart')}
                 title={I18n.t('addToCart')} />
+              <Button title='Pay Now' onPress={() => this.payNow()} />
             </View>
           </View>
         </ScrollView>

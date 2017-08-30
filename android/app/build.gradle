@@ -154,6 +154,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-paypal-wrapper')
     compile project(':mobile-center-push')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')

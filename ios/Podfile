@@ -11,6 +11,7 @@ target 'OneStopClick' do
   pod 'MobileCenter/Analytics', '~> 0.11.2'
   pod 'RNMobileCenterShared', '~> 0.8.1'
   pod 'Google/SignIn'
+  pod 'PayPal-iOS-SDK'
 
   target 'OneStopClick-tvOSTests' do
     inherit! :search_paths
