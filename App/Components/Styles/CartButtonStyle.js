@@ -7,7 +7,9 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: 'red',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    paddingLeft: 2,
+    paddingRight: 2
   },
   badgeCount: {
     color: '#FFFFFF',

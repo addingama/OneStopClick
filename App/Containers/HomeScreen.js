@@ -5,11 +5,13 @@ import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import I18n from 'react-native-i18n'
 import ProductActions from '../Redux/ProductRedux'
+import CartActions from '../Redux/CartRedux'
 import { SearchBar, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 import CategoryChooser from '../Components/CategoryChooser'
+import CartButton from '../Components/CartButton'
 import BackHeader from '../Components/BackHeader'
 import { cloneDeep } from 'lodash'
 var uuid = require('react-native-uuid')
@@ -40,6 +42,7 @@ class HomeScreen extends HomeDrawerBase {
   generateListProducts (categoriesData) {
     var categoriesLabel = []
     var categories = categoriesData
+    var { cartItems } = this.props
 
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
@@ -51,9 +54,10 @@ class HomeScreen extends HomeDrawerBase {
         )
         categoriesLabel.push(
           <Products
+            cartItems={cartItems}
             key={uuid.v1()}
             data={categories[i].products}
-            onBuyPress={() => alert('add to cart')}
+            onBuyPress={(items) => this.props.addToCart(items)}
             onProductClick={(item) => this.openProductDetail(item)}
           />
         )
@@ -123,13 +127,13 @@ class HomeScreen extends HomeDrawerBase {
   }
 
   render () {
-    const { fetching, products } = this.props
+    const { fetching, products, cartItems } = this.props
     const { searchText, listProducts, selectedCategory } = this.state
 
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} {...this.props} />
+          <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} />} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
@@ -180,13 +184,18 @@ const mapStateToProps = (state) => {
     fetching: state.product.fetching,
     error: state.product.error,
     message: state.product.message,
-    products: state.product.products
+    products: state.product.products,
+    addingToCart: state.cart.adding,
+    cartError: state.cart.error,
+    cartMessage: state.cart.message,
+    cartItems: state.cart.items
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProducts: () => dispatch(ProductActions.getProductsRequest())
+    getProducts: () => dispatch(ProductActions.getProductsRequest()),
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
   }
 }
 
