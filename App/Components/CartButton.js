@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, TouchableWithoutFeedback } from 'react-native'
 import { Icon } from 'react-native-elements'
-import { HideableView } from 'react-native-hideable-view'
-import IconBadge from 'react-native-icon-badge'
 import styles from './Styles/CartButtonStyle'
 
 export default class CartButton extends Component {

@@ -7,7 +7,6 @@ import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ForgotPasswordTypes } from '../Redux/ForgotPasswordRedux'
 import { ProductTypes } from '../Redux/ProductRedux'
 import { UserTypes } from '../Redux/UserRedux'
-import { CartTypes } from '../Redux/CartRedux'
 
 /* ------------- Sagas ------------- */
 import { login, socialLogin } from './LoginSagas'
@@ -15,7 +14,6 @@ import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
 import { getProducts } from './ProductSagas'
 import { getUserProfile, updateUserProfile } from './UserSagas'
-import { addToCart } from './CartSagas'
 
 /* ------------- API ------------- */
 
@@ -33,7 +31,6 @@ export default function * root () {
     takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin, api),
     takeLatest(ProductTypes.GET_PRODUCTS_REQUEST, getProducts, api),
     takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api),
-    takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api),
-    takeLatest(CartTypes.CART_ADD_ITEM, addToCart)
+    takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api)
   ]
 }
