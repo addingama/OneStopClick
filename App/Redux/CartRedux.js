@@ -1,10 +1,12 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
-
+import Reactotron from 'reactotron-react-native'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  addItem: ['product']
+  cartAddItem: ['product'],
+  cartItemAdded: ['items'],
+  cartAddItemFailure: ['error', 'message']
 })
 
 export const CartTypes = Types
@@ -13,16 +15,30 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  items: []
+  product: null,
+  items: [],
+  adding: false,
+  error: false,
+  message: ''
 })
 
 /* ------------- Reducers ------------- */
 
-// add item to cart
-export const addItem = (state, { items }) => state.merge({items})
+export const addItem = (state, { product }) =>
+  state.merge({ adding: true, product: product })
+
+export const itemAdded = (state, { items }) => {
+  Reactotron.log("itemadded")
+  return state.merge({ adding: false, error: false, message: '', productId: null, items: items })
+}
+
+export const addItemFailure = (state, { message }) =>
+   state.merge({ adding: false, error: true, message: message, productId: null })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.CART_ADD_ITEM]: addItem
+  [Types.CART_ADD_ITEM]: addItem,
+  [Types.CART_ITEM_ADDED]: itemAdded,
+  [Types.CART_ADD_ITEM_FAILURE]: itemAdded
 })

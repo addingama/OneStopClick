@@ -42,7 +42,8 @@ class HomeScreen extends HomeDrawerBase {
   generateListProducts (categoriesData) {
     var categoriesLabel = []
     var categories = categoriesData
-
+    var { cartItems } = this.props
+    
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
         categoriesLabel.push(
@@ -53,7 +54,7 @@ class HomeScreen extends HomeDrawerBase {
         )
         categoriesLabel.push(
           <Products
-            cartItems={this.props.cart.items}
+            cartItems={cartItems}
             key={uuid.v1()}
             data={categories[i].products}
             onBuyPress={(items) => this.props.addToCart(items)}
@@ -126,13 +127,13 @@ class HomeScreen extends HomeDrawerBase {
   }
 
   render () {
-    const { fetching, products, cart } = this.props
+    const { fetching, products, cartItems } = this.props    
     const { searchText, listProducts, selectedCategory } = this.state
 
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} rightComponent={<CartButton itemCount={cart.items.length} />} {...this.props} />
+        <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} />} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
@@ -184,14 +185,18 @@ const mapStateToProps = (state) => {
     error: state.product.error,
     message: state.product.message,
     products: state.product.products,
-    cart: state.cart
+    products: state.product.products,
+    addingToCart: state.cart.adding,
+    cartError: state.cart.error,
+    cartMessage: state.cart.message,
+    cartItems: state.cart.items
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(ProductActions.getProductsRequest()),
-    addToCart: (items) => dispatch(CartActions.addItem(items))
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))    
   }
 }
 

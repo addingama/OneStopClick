@@ -1,10 +1,18 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 7,
-    marginLeft: 9
+  badgeContainer: {
+    backgroundColor: 'red',
+    marginTop: 0,
+    marginBottom: 7,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: 'red',
+    overflow: 'hidden'
+  },
+  badgeCount: {
+    color: '#FFFFFF',
+    fontSize: 11
   }
+
 })
