@@ -3,6 +3,10 @@ package com.onestopclick;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.facebook.react.ReactNativeHost;
@@ -30,6 +34,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
+            new RNGoogleSigninPackage(),
+            new RNDeviceInfo(),
+            new ReactNativeConfigPackage(),
             new ReactNativeI18n(),
             new FBSDKPackage(mCallbackManager),
             new RNGoogleSigninPackage()
