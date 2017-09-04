@@ -71,11 +71,25 @@ export class Category extends Component {
 }
 
 export class Products extends Component {
+  
   addCartItem (product) {
     const { cartItems } = this.props
-    var newCartItems = Object.assign([], cartItems)
-    newCartItems.push(product)
-    this.props.onBuyPress(newCartItems)
+
+    // checking duplication
+    var found = false;
+    for(var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].id == product.id) {
+            found = true;
+            break;
+        }
+    }
+    if(!found) {
+      var newCartItems = Object.assign([], cartItems)
+      newCartItems.push(product)
+      this.props.onBuyPress(newCartItems)
+    } else {
+      alert("You have already bought " + product.product_name + ".")
+    }
   }
 
   render () {

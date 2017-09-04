@@ -1,6 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
-import Reactotron from 'reactotron-react-native'
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -28,7 +28,6 @@ export const addItem = (state, { product }) =>
   state.merge({ adding: true, product: product })
 
 export const itemAdded = (state, { items }) => {
-  Reactotron.log("itemadded")
   return state.merge({ adding: false, error: false, message: '', productId: null, items: items })
 }
 
