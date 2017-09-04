@@ -1,25 +1,39 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-
+import { Text, View, FlatList, StyleSheet } from 'react-native'
+import { Card, Button, Icon } from 'react-native-elements'
 import Reactotron from 'reactotron-react-native'
-
+var uuid = require('react-native-uuid')
 class List extends Component {
 
    render() {
-    const { items } = this.props.cart
-    Reactotron.log("cart items count " + items.lenght)
-      return (
-         <View>
-            {
-              items.map((item, index) => (
-                 
-                  <Text style={styles.text}>
-                  {item.name}
-                  </Text>
-
-               ))
-            }
-         </View>
+    const { cartItems } = this.props
+    Reactotron.log("cart items count " + cartItems.lenght)
+      return (<FlatList
+        data={cartItems}
+        key={uuid.v1()}
+        numColumns='1'
+        renderItem={({ item }) =>
+        <View>
+          <Card
+            style={styles.cardContent}
+            key={item.id}
+            title={item.product_name}
+            image={{ uri: item.images[0].image_url }}
+          >
+            <Text
+              numberOfLines={2}
+              ellipsizeMode={'tail'}
+              style={{ marginBottom: 10 }}>
+              {item.description}
+            </Text>
+            <Text
+              style={{ marginBottom: 10, color: 'green', textAlign: 'right' }}>
+              {item.price}
+            </Text>
+          </Card>
+      </View>
+        }
+      />
       )
    }
 }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { connect } from 'react-redux'
 import List from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
@@ -15,21 +15,23 @@ class CartDetailScreen extends Component {
     }
     render () {
        Reactotron.log("Cart Detail Screen " + this.props.navigation.state.routeName)
-       Reactotron.log("Cart Detail Screen " + this.props.cart.items.lenght)
-       const { cart } = this.props
+       Reactotron.log("Cart Detail Screen " + this.props.cartItems.length)
+       const { cartItems } = this.props
         return (
-            <View>
+            <View >
                 <View style={styles.hasNavbar}>
                     <BackHeader title="Cart" {...this.props} />
                 </View>
-                <List {...this.props}/>      
+                <ScrollView>
+                    <List {...this.props}/> 
+                </ScrollView>  
             </View>  
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-        cart: state.cart
+        cartItems: state.cart.items
     }
   }
   
