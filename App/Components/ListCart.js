@@ -5,9 +5,6 @@ import styles from './Styles/ListCartStyle'
 var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
-  deleteItem () {
-
-  }
   render () {
     const { cartItems } = this.props
     return (
@@ -48,7 +45,7 @@ class ListCart extends Component {
               </View>
               <View style={styles.deleteContainer}>
                 <TouchableHighlight onPress={() => {
-                  this.deleteItem()
+                  this.props.deleteCartItem(item)
                 }}>
                   <Text style={styles.delete}>X</Text>
                 </TouchableHighlight>
