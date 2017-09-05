@@ -43,7 +43,7 @@ class HomeScreen extends HomeDrawerBase {
     var categoriesLabel = []
     var categories = categoriesData
     var { cartItems } = this.props
-    
+
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
         categoriesLabel.push(
@@ -127,13 +127,13 @@ class HomeScreen extends HomeDrawerBase {
   }
 
   render () {
-    const { fetching, products, cartItems } = this.props    
+    const { fetching, products, cartItems } = this.props
     const { searchText, listProducts, selectedCategory } = this.state
 
     return (
       <View>
         <View style={styles.hasNavbar}>
-        <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} {...this.props}  />} />
+          <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} {...this.props} />} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
@@ -196,7 +196,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(ProductActions.getProductsRequest()),
-    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))    
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
   }
 }
 

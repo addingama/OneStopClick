@@ -1,43 +1,48 @@
-import React, { Component, PropTypes } from 'react'
-import { ScrollView, View } from 'react-native'
+import React, { Component } from 'react'
+import { View, TouchableHighlight, Text } from 'react-native'
 import { connect } from 'react-redux'
-import List from '../Components/ListCart.js'
+import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
 
-import Reactotron from 'reactotron-react-native'
-
 class CartDetailScreen extends Component {
-    constructor (props) {
-        super(props)
-        
+  processPayment () {
+
+  }
+
+  totalCount () {
+    const { cartItems } = this.props
+    var totalPayment = 0
+    for (var i = 0; i < cartItems; i++) {
+      totalPayment = totalPayment + cartItems[i].price
     }
-    render () {
-       Reactotron.log("Cart Detail Screen " + this.props.navigation.state.routeName)
-       Reactotron.log("Cart Detail Screen " + this.props.cartItems.length)
-       const { cartItems } = this.props
-        return (
-            <View >
-                <View style={styles.hasNavbar}>
-                    <BackHeader title="Cart" {...this.props} />
-                </View>
-                <ScrollView>
-                    <List {...this.props}/> 
-                </ScrollView>  
-            </View>  
-        )
-    }
+    return totalPayment
+  }
+  render () {
+    return (
+      <View style={styles.mainviewStyle}>
+        <View style={styles.hasNavbar}>
+          <BackHeader title='Cart' {...this.props} />
+        </View>
+        <ListCart {...this.props} />
+        <View style={styles.footer}>
+          <Text style={styles.totalText}>Total</Text>
+          <Text style={styles.totalNumber}>{this.totalCount()}</Text>
+          <TouchableHighlight onPress={() => {
+            this.processPayment()
+          }}>
+            <Text style={styles.checkout}>Checkout</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    )
+  }
 }
 const mapStateToProps = (state) => {
-    return {
-        cartItems: state.cart.items
-    }
+  return {
+    cartItems: state.cart.items
   }
-  
-const mapDispatchToProps = (dispatch) => {
-    return {    
-    }
 }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)
+
+export default connect(mapStateToProps)(CartDetailScreen)
