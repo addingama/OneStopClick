@@ -10,7 +10,6 @@ class ListCart extends Component {
   }
   render () {
     const { cartItems } = this.props
-    Reactotron.log('cart items count ' + cartItems.lenght)
     return (
       <FlatList style={styles.container}
         data={cartItems}

@@ -3,6 +3,7 @@ import { View, TouchableHighlight, Text } from 'react-native'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
+import Reactotron from 'reactotron-react-native'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
 
@@ -14,8 +15,9 @@ class CartDetailScreen extends Component {
   totalCount () {
     const { cartItems } = this.props
     var totalPayment = 0
-    for (var i = 0; i < cartItems; i++) {
-      totalPayment = totalPayment + cartItems[i].price
+    for (var i = 0; i < cartItems.length; i++) {
+      var price = parseFloat(cartItems[i].price)
+      totalPayment = totalPayment + price
     }
     return totalPayment
   }
