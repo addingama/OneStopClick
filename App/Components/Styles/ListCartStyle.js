@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   container: {
@@ -21,7 +22,7 @@ export default StyleSheet.create({
   productPrice: {
     paddingTop: 5,
     fontSize: 12,
-    color: '#d98434',
+    color: Colors.greenleaf,
     textAlign: 'right'
   },
   image: {

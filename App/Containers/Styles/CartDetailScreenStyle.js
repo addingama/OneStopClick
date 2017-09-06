@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
+import { ApplicationStyles, Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -8,9 +8,9 @@ export default StyleSheet.create({
     flexDirection: 'column'
   },
   cartContainer: {
-    backgroundColor: 'red',
     marginTop: 0,
-    overflow: 'hidden'
+    overflow: 'scroll',
+    flex: 1
   },
   footer: {
     position: 'absolute',
@@ -34,15 +34,15 @@ export default StyleSheet.create({
     flex: 0.3,
     textAlign: 'center',
     fontSize: 12,
-    color: '#d98434',
+    color: Colors.greenleaf,
     fontWeight: 'bold'
   },
   checkout: {
     flex: 0.2,
     height: 20,
     borderWidth: 2,
-    borderColor: '#d98434',
-    color: '#d98434',
+    borderColor: Colors.greenleaf,
+    color: Colors.greenleaf,
     borderRadius: 10,
     fontSize: 10,
     textAlign: 'center',
