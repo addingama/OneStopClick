@@ -1,10 +1,29 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableHighlight, FlatList, ScrollView } from 'react-native'
-import Reactotron from 'reactotron-react-native'
+import { Text, View, Image, TouchableHighlight, FlatList } from 'react-native'
 import styles from './Styles/ListCartStyle'
 var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
+  deleteCartItem (product) {
+    const { cartItems } = this.props
+
+    // checking
+    var found = false
+    var index = 0
+    for (var i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === product.id) {
+        found = true
+        index = i
+        break
+      }
+    }
+    if (found) {
+      var newCartItems = Object.assign([], cartItems)
+      newCartItems.splice(index, 1)
+      this.props.removeCartItem(newCartItems)
+    }
+  }
+
   render () {
     const { cartItems } = this.props
     return (
@@ -45,7 +64,7 @@ class ListCart extends Component {
               </View>
               <View style={styles.deleteContainer}>
                 <TouchableHighlight onPress={() => {
-                  this.props.deleteCartItem(item)
+                  this.deleteCartItem(item)
                 }}>
                   <Text style={styles.delete}>X</Text>
                 </TouchableHighlight>

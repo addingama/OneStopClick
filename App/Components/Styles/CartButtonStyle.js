@@ -5,7 +5,6 @@ export default StyleSheet.create({
     backgroundColor: 'red',
     marginTop: 0,
     marginBottom: 7,
-    borderWidth: 1,
     borderRadius: 10,
     borderColor: 'red',
     overflow: 'hidden'
