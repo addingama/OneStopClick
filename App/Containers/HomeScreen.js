@@ -133,7 +133,7 @@ class HomeScreen extends HomeDrawerBase {
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} />} />
+          <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} {...this.props} />} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>

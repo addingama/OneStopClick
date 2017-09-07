@@ -24,6 +24,7 @@ const colors = {
   text: '#E0D7E5',
   google: '#db3236',
   green: '#86b200',
+  greenleaf: '#4caf50',
   backdrop: 'rgba(52, 52, 52, 0.8)'
 }
 

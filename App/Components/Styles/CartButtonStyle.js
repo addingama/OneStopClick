@@ -3,13 +3,11 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   badgeContainer: {
     backgroundColor: 'red',
-    marginTop: 15,
-    borderWidth: 1,
+    marginTop: 0,
+    marginBottom: 7,
     borderRadius: 10,
     borderColor: 'red',
-    overflow: 'hidden',
-    paddingLeft: 2,
-    paddingRight: 2
+    overflow: 'hidden'
   },
   badgeCount: {
     color: '#FFFFFF',

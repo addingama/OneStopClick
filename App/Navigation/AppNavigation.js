@@ -6,6 +6,7 @@ import ForgotPasswordScreen from '../Containers/ForgotPasswordScreen'
 import HomeScreen from '../Containers/HomeScreen'
 import RegistrationScreen from '../Containers/RegistrationScreen'
 import LoginScreen from '../Containers/LoginScreen'
+import CartDetailScreen from '../Containers/CartDetailScreen'
 import styles from './Styles/NavigationStyles'
 
 const AccountStack = StackNavigator({
@@ -25,7 +26,9 @@ const AccountStack = StackNavigator({
 
 const ProductStack = StackNavigator({
   Home: { screen: HomeScreen },
-  ProductDetailScreen: { screen: ProductDetailScreen }
+  ProductDetailScreen: { screen: ProductDetailScreen },
+  CartDetailScreen: { screen: CartDetailScreen }
+  
 }, {
   stateName: 'ProductStack',
   headerMode: 'none',

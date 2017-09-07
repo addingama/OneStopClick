@@ -31,11 +31,15 @@ export default class CartButton extends Component {
   }
 
   render () {
+    const { navigation } = this.props
+
     return (
       <View>
         <TouchableWithoutFeedback>
           <View style={{ flexDirection: 'row' }}>
-            <Icon name='shopping-cart' color='white' />
+            <Icon name='shopping-cart' color='white'
+              onPress={(cart) => navigation.navigate('CartDetailScreen')}
+            />
             { this.renderBadge(this.state.BadgeCount !== 0)}
           </View>
         </TouchableWithoutFeedback>

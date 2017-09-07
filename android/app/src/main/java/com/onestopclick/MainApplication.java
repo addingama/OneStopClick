@@ -14,6 +14,12 @@ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.microsoft.azure.mobile.react.crashes.RNCrashesPackage;
 import com.microsoft.azure.mobile.react.analytics.RNAnalyticsPackage;
 import com.microsoft.azure.mobile.react.mobilecenter.RNMobileCenterPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -46,6 +52,9 @@ public class MainApplication extends Application implements ReactApplication {
             new RNAnalyticsPackage(MainApplication.this, getResources().getString(R.string.mobileCenterAnalytics_whenToEnableAnalytics)),
             new RNMobileCenterPackage(MainApplication.this),
             new RNGoogleSigninPackage(),
+            new VectorIconsPackage(),
+            new RNDeviceInfo(),
+            new ReactNativeConfigPackage(),
             new ReactNativeI18n(),
             new FBSDKPackage(mCallbackManager)
       );
