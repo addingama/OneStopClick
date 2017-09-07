@@ -10,15 +10,18 @@ import styles from './Styles/CartDetailScreenStyle'
 
 class CartDetailScreen extends Component {
   payNow () {
-    // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-    PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
-    console.tron.log(PayPal)
-    PayPal.pay({
-      price: this.totalCount().toString(),
-      currency: 'IDR',
-      description: 'One Stop Click Payment'
-    }).then(confirm => console.tron.log(confirm))
+    if (this.totalCount() > 0) {
+      // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
+      PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+      PayPal.pay({
+        price: this.totalCount().toString(),
+        currency: 'IDR',
+        description: 'One Stop Click Payment'
+      }).then(confirm => console.tron.log(confirm))
       .catch(error => console.tron.log(error))
+    } else {
+      alert('Your cart has 0 item')
+    }
   }
 
   totalCount () {
@@ -30,6 +33,7 @@ class CartDetailScreen extends Component {
     }
     return totalPayment
   }
+
   render () {
     return (
       <View style={styles.mainviewStyle}>
