@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback, Alert } from 'react-native'
 import { Text, Rating, Button, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -8,6 +8,7 @@ import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
 import PayPal from 'react-native-paypal-wrapper'
+import CartActions from '../Redux/CartRedux'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
@@ -99,6 +100,28 @@ class ProductDetailScreen extends Component {
       .catch(error => console.tron.log(error))
   }
 
+  addCartItem (product) {
+    const { cartItems } = this.props
+
+    // checking duplication
+    var found = false
+    for (var i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === product.id) {
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      var newCartItems = Object.assign([], cartItems)
+      newCartItems.push(product)
+      this.props.addToCart(newCartItems)
+
+      Alert.alert('Success', product.product_name + ' has been added to cart.')
+    } else {
+      Alert.alert('Alert', 'You have already bought ' + product.product_name + '.')
+    }
+  }
+
   render () {
     const { product } = this.props.navigation.state.params
     return (
@@ -142,7 +165,7 @@ class ProductDetailScreen extends Component {
                 backgroundColor='green'
                 fontFamily='Lato'
                 style={{ margin: 0, padding: 0 }}
-                onPress={() => alert('add to cart')}
+                onPress={() => this.addCartItem(product)}
                 title={I18n.t('addToCart')} />
               <Button title='Pay Now' onPress={() => this.payNow()} />
             </View>
@@ -159,11 +182,13 @@ class ProductDetailScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    cartItems: state.cart.items
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
   }
 }
 
