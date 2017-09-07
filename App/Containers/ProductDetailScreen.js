@@ -87,17 +87,11 @@ class ProductDetailScreen extends Component {
 
     return rating
   }
-
-  payNow () {
-    // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-    PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
-    console.tron.log(PayPal)
-    PayPal.pay({
-      price: '1.0',
-      currency: 'USD',
-      description: 'Your description goes here'
-    }).then(confirm => console.tron.log(confirm))
-      .catch(error => console.tron.log(error))
+  openCart (product) {
+    const { navigation } = this.props
+    if (this.addCartItem(product)) {
+      navigation.navigate('CartDetailScreen')
+    }
   }
 
   addCartItem (product) {
@@ -117,8 +111,10 @@ class ProductDetailScreen extends Component {
       this.props.addToCart(newCartItems)
 
       Alert.alert('Success', product.product_name + ' has been added to cart.')
+      return true
     } else {
       Alert.alert('Alert', 'You have already bought ' + product.product_name + '.')
+      return false
     }
   }
 
@@ -167,7 +163,7 @@ class ProductDetailScreen extends Component {
                 style={{ margin: 0, padding: 0 }}
                 onPress={() => this.addCartItem(product)}
                 title={I18n.t('addToCart')} />
-              <Button title='Pay Now' onPress={() => this.payNow()} />
+              <Button title='Buy Now' onPress={() => this.openCart(product)} />
             </View>
           </View>
         </ScrollView>

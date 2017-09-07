@@ -4,12 +4,21 @@ import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
 import CartActions from '../Redux/CartRedux'
+import PayPal from 'react-native-paypal-wrapper'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
 
 class CartDetailScreen extends Component {
-  processPayment () {
-
+  payNow () {
+    // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
+    PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+    console.tron.log(PayPal)
+    PayPal.pay({
+      price: this.totalCount().toString(),
+      currency: 'IDR',
+      description: 'One Stop Click Payment'
+    }).then(confirm => console.tron.log(confirm))
+      .catch(error => console.tron.log(error))
   }
 
   totalCount () {
@@ -32,7 +41,7 @@ class CartDetailScreen extends Component {
           <Text style={styles.totalText}>Total</Text>
           <Text style={styles.totalNumber}>{this.totalCount()}</Text>
           <TouchableHighlight onPress={() => {
-            this.processPayment()
+            this.payNow()
           }}>
             <Text style={styles.checkout}>Checkout</Text>
           </TouchableHighlight>
