@@ -15,7 +15,8 @@ class CartDetailScreen extends Component {
   payNow () {
     if (this.totalCount() > 0) {
       // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-      PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+      this.props.getRate()
+      /* PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
       PayPal.pay({
         price: this.totalCount().toString(),
         currency: 'USD',
@@ -24,9 +25,19 @@ class CartDetailScreen extends Component {
       .catch(error => console.tron.log(error))
     } else {
       alert('Your cart has 0 item')
+    } */
     }
   }
 
+  componentWillreceiveProps () {
+    console.tron.log('component will receive props')
+    if (this.props.error) {
+        // error from retrieving currency
+    } else {
+      const { rates } = this.props
+      console.tron.log('Detail screen update - rates ' + rates[0].key)
+    }
+  }
   totalCount () {
     const { cartItems } = this.props
     var totalPayment = 0
@@ -75,13 +86,16 @@ class CartDetailScreen extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cart.items
+    cartItems: state.cart.items,
+    rates: state.cart.rates,
+    error: state.cart.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
-    resetCart: (items) => dispatch(CartActions.cartReset(items))
+    resetCart: (items) => dispatch(CartActions.cartReset(items)),
+    getRate: () => dispatch(CartActions.cartGetCurrency())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)

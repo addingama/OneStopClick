@@ -8,7 +8,10 @@ const { Types, Creators } = createActions({
   cartItemAdded: ['items'],
   cartItemRemoved: ['items'],
   cartAddItemFailure: ['error', 'message'],
-  cartReset: ['items']
+  cartReset: ['items'],
+  cartGetCurrency: [],
+  cartGetCurrencySuccess: ['rates'],
+  cartGetCurrencyFailure: ['error', 'message']
 })
 
 export const CartTypes = Types
@@ -21,7 +24,8 @@ export const INITIAL_STATE = Immutable({
   items: [],
   adding: false,
   error: false,
-  message: ''
+  message: '',
+  rates: []
 })
 
 /* ------------- Reducers ------------- */
@@ -43,12 +47,21 @@ export const itemRemoved = (state, { items }) => {
 export const reset = (state, { items }) => {
   return state.merge({ items: items })
 }
+
+export const getCurrencyFailure = (state, { message }) =>
+state.merge({ error: true, message: message })
+
+export const getCurrencySuccess = (state, { rates }) => {
+  return state.merge({ rates: rates })
+}
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_ADD_ITEM]: addItem,
   [Types.CART_ITEM_ADDED]: itemAdded,
-  [Types.CART_ADD_ITEM_FAILURE]: itemAdded,
+  [Types.CART_ADD_ITEM_FAILURE]: addItemFailure,
   [Types.CART_ITEM_REMOVED]: itemRemoved,
-  [Types.CART_RESET]: reset
+  [Types.CART_RESET]: reset,
+  [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess
 })
