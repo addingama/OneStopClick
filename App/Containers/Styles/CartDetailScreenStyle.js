@@ -18,7 +18,7 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     padding: 10,
-    backgroundColor: '#ccc',
+    backgroundColor: Colors.navbar,
     height: 50,
     alignItems: 'center',
     flex: 1,
@@ -28,13 +28,14 @@ export default StyleSheet.create({
   totalText: {
     fontWeight: 'bold',
     paddingLeft: 20,
-    flex: 0.5
+    flex: 0.5,
+    color: 'white'
   },
   totalNumber: {
     flex: 0.3,
     textAlign: 'center',
     fontSize: 12,
-    color: Colors.greenleaf,
+    color: 'white',
     fontWeight: 'bold'
   },
   checkout: {

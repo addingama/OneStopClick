@@ -25,7 +25,8 @@ const colors = {
   google: '#db3236',
   green: '#86b200',
   greenleaf: '#4caf50',
-  backdrop: 'rgba(52, 52, 52, 0.8)'
+  backdrop: 'rgba(52, 52, 52, 0.8)',
+  navbar: '#2F1F37'
 }
 
 export default colors

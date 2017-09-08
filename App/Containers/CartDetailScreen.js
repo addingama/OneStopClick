@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { View, TouchableHighlight, Text } from 'react-native'
+import { View, Text } from 'react-native'
+import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
 import CartActions from '../Redux/CartRedux'
 import PayPal from 'react-native-paypal-wrapper'
+import I18n from 'react-native-i18n'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
 
@@ -15,9 +17,9 @@ class CartDetailScreen extends Component {
       PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
       PayPal.pay({
         price: this.totalCount().toString(),
-        currency: 'IDR',
+        currency: 'USD',
         description: 'One Stop Click Payment'
-      }).then(confirm => console.tron.log(confirm))
+      }).then(confirm => this.transactionHistory(confirm))
       .catch(error => console.tron.log(error))
     } else {
       alert('Your cart has 0 item')
@@ -34,6 +36,20 @@ class CartDetailScreen extends Component {
     return totalPayment
   }
 
+  transactionHistory (confirm) {
+    console.tron.log(confirm)
+    console.tron.log('success')
+
+    // clear cart
+    this.resetCart()
+
+    // go to transaction history
+  }
+
+  resetCart () {
+    var items = []
+    this.props.resetCart(items)
+  }
   render () {
     return (
       <View style={styles.mainviewStyle}>
@@ -43,12 +59,14 @@ class CartDetailScreen extends Component {
         <ListCart {...this.props} />
         <View style={styles.footer}>
           <Text style={styles.totalText}>Total</Text>
-          <Text style={styles.totalNumber}>{this.totalCount()}</Text>
-          <TouchableHighlight onPress={() => {
-            this.payNow()
-          }}>
-            <Text style={styles.checkout}>Checkout</Text>
-          </TouchableHighlight>
+          <Text style={styles.totalNumber}>${this.totalCount()}</Text>
+          <Button
+            icon={{ name: 'shopping-cart' }}
+            fontFamily='Verdana'
+            backgroundColor='#2F1F37'
+            style={{ width: 100, height: 50 }}
+            onPress={() => this.payNow()}
+            title={I18n.t('checkout')} />
         </View>
       </View>
     )
@@ -61,7 +79,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item))
+    removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
+    resetCart: (items) => dispatch(CartActions.cartReset(items))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)

@@ -56,5 +56,6 @@
    "oldPassword": "Old Password",
    "newPassword": "New Password",
    "saving": "Saving. Please wait...",
-   "productDetail": "Product Detail"
+   "productDetail": "Product Detail",
+   "checkout":"Checkout"
 }

@@ -7,7 +7,6 @@ import BackHeader from '../Components/BackHeader'
 import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
-import PayPal from 'react-native-paypal-wrapper'
 import CartActions from '../Redux/CartRedux'
 
 // Styles
@@ -142,7 +141,7 @@ class ProductDetailScreen extends Component {
               <Divider style={styles.dividerMargin} />
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
-                  <Text>Rp.{ currency(product.price) }</Text>
+                  <Text>${ currency(product.price) }</Text>
                 </View>
                 <TouchableOpacity onPress={() => alert('go to review page')}>
                   <View style={{ flex: 1, flexDirection: 'row' }}>
