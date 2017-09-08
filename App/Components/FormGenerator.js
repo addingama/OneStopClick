@@ -127,9 +127,9 @@ export class Products extends Component {
                 icon={{ name: 'shopping-cart' }}
                 backgroundColor='green'
                 fontFamily='Lato'
-                style={{ margin: 0, padding: 0 }}
+                style={{ width: 120, margin: 0, padding: 0 }}
                 onPress={() => this.addCartItem(item)}
-                title={I18n.t('buyNow')} />
+                title={I18n.t('addToCart')} />
             </Card>
           </View>
         </TouchableOpacity>
