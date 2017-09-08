@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableHighlight, FlatList } from 'react-native'
 import styles from './Styles/ListCartStyle'
+import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
@@ -58,7 +59,7 @@ class ListCart extends Component {
                 <View>
                   <Text
                     style={styles.productPrice}>
-                    {item.price}
+                    Rp. { currency(item.price) }
                   </Text>
                 </View>
               </View>

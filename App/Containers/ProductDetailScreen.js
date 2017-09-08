@@ -141,7 +141,7 @@ class ProductDetailScreen extends Component {
               <Divider style={styles.dividerMargin} />
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
-                  <Text>${ currency(product.price) }</Text>
+                  <Text>Rp. { currency(product.price) }</Text>
                 </View>
                 <TouchableOpacity onPress={() => alert('go to review page')}>
                   <View style={{ flex: 1, flexDirection: 'row' }}>

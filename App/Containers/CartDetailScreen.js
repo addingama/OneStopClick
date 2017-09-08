@@ -7,6 +7,7 @@ import BackHeader from '../Components/BackHeader'
 import CartActions from '../Redux/CartRedux'
 import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
+import { currency } from '../Lib/numberFormatter.js'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
 
@@ -59,7 +60,7 @@ class CartDetailScreen extends Component {
         <ListCart {...this.props} />
         <View style={styles.footer}>
           <Text style={styles.totalText}>Total</Text>
-          <Text style={styles.totalNumber}>${this.totalCount()}</Text>
+          <Text style={styles.totalNumber}>Rp. {currency(this.totalCount())}</Text>
           <Button
             icon={{ name: 'shopping-cart' }}
             fontFamily='Verdana'

@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, TouchableHighlight, FlatList } from 'react-native'
 import { validateField } from '../Lib/validator'
 import styles from './Styles/FormGeneratorStyle'
+import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
 
 export class CustomInputField extends Component {
@@ -72,7 +73,7 @@ export class Category extends Component {
 export class Products extends Component {
   addCartItem (product) {
     const { cartItems } = this.props
-    
+
     // checking duplication
     var found = false
     for (var i = 0; i < cartItems.length; i++) {
@@ -120,7 +121,7 @@ export class Products extends Component {
               </Text>
               <Text
                 style={{ marginBottom: 10, color: 'green' }}>
-                {item.price}
+                Rp. {currency(item.price)}
               </Text>
               <RneButton
                 icon={{ name: 'shopping-cart' }}
