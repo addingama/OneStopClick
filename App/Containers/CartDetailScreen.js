@@ -12,32 +12,42 @@ import { currency } from '../Lib/numberFormatter.js'
 import styles from './Styles/CartDetailScreenStyle'
 
 class CartDetailScreen extends Component {
+
+  componentWillMount () {
+    this.props.getRate()
+  }
+
   payNow () {
     if (this.totalCount() > 0) {
-      // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-      this.props.getRate()
-      /* PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
-      PayPal.pay({
-        price: this.totalCount().toString(),
-        currency: 'USD',
-        description: 'One Stop Click Payment'
-      }).then(confirm => this.transactionHistory(confirm))
-      .catch(error => console.tron.log(error))
+      var total = this.covertToUsd()
+      if (total === 0 ) {
+        alert('Failed to convert currency.')
+      } else {
+        // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
+        PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+        PayPal.pay({
+          price: total.toString(),
+          currency: 'USD',
+          description: 'One Stop Click Payment'
+        }).then(confirm => this.transactionHistory(confirm))
+        .catch(error => console.tron.log(error))
+      }
     } else {
       alert('Your cart has 0 item')
-    } */
+    } 
+  }
+
+  covertToUsd(){
+    const { rates } = this.props
+    if(rates.IDR === 0 || rates === null ){
+      return 0
+    } else {
+
+    var usdTotal = this.totalCount() / parseFloat(rates.IDR)
+    return usdTotal
     }
   }
 
-  componentWillreceiveProps () {
-    console.tron.log('component will receive props')
-    if (this.props.error) {
-        // error from retrieving currency
-    } else {
-      const { rates } = this.props
-      console.tron.log('Detail screen update - rates ' + rates[0].key)
-    }
-  }
   totalCount () {
     const { cartItems } = this.props
     var totalPayment = 0
