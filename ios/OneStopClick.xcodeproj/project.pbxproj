@@ -79,6 +79,7 @@
 		9C81D4B6C2C149729318EB3E /* libRNMobileCenter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAC754756874E7BBE05D9B1 /* libRNMobileCenter.a */; };
 		B98B8DDF942E4D71AC89CEDF /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2028B65B7BF0418FA7631426 /* libRNGoogleSignin.a */; };
 		CFB10133004B4D1E858D1ED9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E01206CA82C488DAD22AA21 /* libz.tbd */; };
+		CFEC330C1F663F6D009CE797 /* libRCTToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEC32F31F663F3E009CE797 /* libRCTToast.a */; };
 		D1A94C920B294E73A51A49C3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90311F71BAAC4B2FB3AFC225 /* MaterialCommunityIcons.ttf */; };
 		D8CDE1F0F1AB4F83A90009F2 /* libRNPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CDECE4F823419EBC6F6381 /* libRNPush.a */; };
 		E0437B2AD82749D7AC8C3678 /* MobileCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEA55F6B1B5548A89A4DD7B8 /* MobileCenter-Config.plist */; };
@@ -373,6 +374,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		CFEC32F21F663F3E009CE797 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFEC32DF1F663F3E009CE797 /* RCTToast.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 327633421BFAAD7E004DA88E;
+			remoteInfo = RCTToast;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -458,6 +466,7 @@
 		B78A25C2E2F84D369A061192 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		C33A259917444172978AA6E9 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C6F74A8B1BFCEC4A2F6C8C65 /* Pods-OneStopClick-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClick-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClick-tvOSTests/Pods-OneStopClick-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		CFEC32DF1F663F3E009CE797 /* RCTToast.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTToast.xcodeproj; path = "../node_modules/react-native-toast/ios/RCTToast.xcodeproj"; sourceTree = "<group>"; };
 		E0C053B582934A34A310A810 /* RNAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalytics.xcodeproj; path = "../node_modules/mobile-center-analytics/ios/RNAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		E28CCC14D488A2970AE0EAE6 /* libPods-OneStopClickTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneStopClickTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E405818525C541549DB511A5 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
@@ -493,6 +502,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				CFEC330C1F663F6D009CE797 /* libRCTToast.a in Frameworks */,
 				5DA4C7B91F305DE400FCC9EE /* FBSDKLoginKit.framework in Frameworks */,
 				001AB46FC31B4C848248437C /* libReact.a in Frameworks */,
 				72106D0A3E2944F195B9CBF8 /* libyoga.a in Frameworks */,
@@ -782,6 +792,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CFEC32DF1F663F3E009CE797 /* RCTToast.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -865,6 +876,14 @@
 				E9700F25C95C9746244F6B73 /* Pods-OneStopClickTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CFEC32E01F663F3E009CE797 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFEC32F31F663F3E009CE797 /* libRCTToast.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E933C5FB134B4B2B972FFC2F /* Frameworks */ = {
@@ -1055,6 +1074,10 @@
 				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
 					ProjectRef = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
+				},
+				{
+					ProductGroup = CFEC32E01F663F3E009CE797 /* Products */;
+					ProjectRef = CFEC32DF1F663F3E009CE797 /* RCTToast.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302E01ABCB9EE00DB3ED1 /* Products */;
@@ -1391,6 +1414,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CFEC32F31F663F3E009CE797 /* libRCTToast.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTToast.a;
+			remoteRef = CFEC32F21F663F3E009CE797 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1885,8 +1915,10 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
-					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
 					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React",
 				);
 				INFOPLIST_FILE = OneStopClick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1907,6 +1939,7 @@
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React $(SRCROOT)/../../../React";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1945,8 +1978,10 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
-					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
 					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React",
 				);
 				INFOPLIST_FILE = OneStopClick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1966,6 +2001,7 @@
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React $(SRCROOT)/../../../React";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2218,10 +2254,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 			};
 			name = Debug;
 		};
@@ -2253,9 +2291,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

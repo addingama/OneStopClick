@@ -25,7 +25,8 @@ export const INITIAL_STATE = Immutable({
   adding: false,
   error: false,
   message: '',
-  rates: []
+  rates: [],
+  history: []
 })
 
 /* ------------- Reducers ------------- */
@@ -45,7 +46,7 @@ export const itemRemoved = (state, { items }) => {
 }
 
 export const reset = (state, { items }) => {
-  return state.merge({ items: items })
+  return state.merge({ history: items, items: [] })
 }
 
 export const getCurrencyFailure = (state, { message }) =>

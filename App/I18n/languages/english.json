@@ -57,5 +57,7 @@
    "newPassword": "New Password",
    "saving": "Saving. Please wait...",
    "productDetail": "Product Detail",
-   "checkout":"Checkout"
+   "checkout":"Checkout",
+   "download": "Download",
+   "transactionHistory": "Transaction History"
 }

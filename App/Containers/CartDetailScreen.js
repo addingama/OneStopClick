@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Button } from 'react-native-elements'
+import { View, Text, TouchableWithoutFeedback } from 'react-native'
+import { Button, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
 import CartActions from '../Redux/CartRedux'
+import TransactionHistoryActions from '../Redux/TransactionHistoryRedux'
 import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
 import { currency } from '../Lib/numberFormatter.js'
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
+
+var Toast = require('react-native-toast')
 
 class CartDetailScreen extends Component {
   componentWillMount () {
@@ -57,24 +60,42 @@ class CartDetailScreen extends Component {
   }
 
   transactionHistory (confirm) {
-    console.tron.log(confirm)
-    console.tron.log('success')
+    // add current cart to transaction history
+    const { cartItems } = this.props
+    const { historyItems } = this.props
+    var newHistoryItems = Object.assign([], historyItems)
+    var copyCartItems = Object.assign([], cartItems)
+    for (let i = 0; i < copyCartItems.length; i++) {
+      newHistoryItems.push(copyCartItems[i])
+    }
+    // push to API here
 
+    Toast.showShortCenter.bind(null, 'Payment completed. Download link available in Transaction History.')
     // clear cart
-    this.resetCart()
-
-    // go to transaction history
+    //  this.resetCart()
   }
 
   resetCart () {
     var items = []
     this.props.resetCart(items)
   }
+
   render () {
+    const { navigation } = this.props
+    var historyIcon = <View>
+      <TouchableWithoutFeedback>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon name='list' color='white'
+            onPress={() => navigation.navigate('TransactionHistoryScreen')}
+         />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+
     return (
       <View style={styles.mainviewStyle}>
         <View style={styles.hasNavbar}>
-          <BackHeader title='Cart' {...this.props} />
+          <BackHeader title='Cart' rightComponent={historyIcon} {...this.props} />
         </View>
         <ListCart {...this.props} />
         <View style={styles.footer}>
@@ -84,7 +105,7 @@ class CartDetailScreen extends Component {
             icon={{ name: 'shopping-cart' }}
             fontFamily='Verdana'
             backgroundColor='#2F1F37'
-            style={{ width: 100, height: 50 }}
+            style={{ width: 110, height: 50 }}
             onPress={() => this.payNow()}
             title={I18n.t('checkout')} />
         </View>
@@ -96,14 +117,16 @@ const mapStateToProps = (state) => {
   return {
     cartItems: state.cart.items,
     rates: state.cart.rates,
-    error: state.cart.error
+    error: state.cart.error,
+    historyItems: state.transactionHistory
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
-    getRate: () => dispatch(CartActions.cartGetCurrency())
+    getRate: () => dispatch(CartActions.cartGetCurrency()),
+    addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)
