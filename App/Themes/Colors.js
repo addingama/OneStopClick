@@ -26,7 +26,9 @@ const colors = {
   green: '#86b200',
   greenleaf: '#4caf50',
   backdrop: 'rgba(52, 52, 52, 0.8)',
-  navbar: '#2F1F37'
+  navbar: '#2F1F37',
+  errorToast: "#e35d6a",
+  successToast:"#32cdce"
 }
 
 export default colors

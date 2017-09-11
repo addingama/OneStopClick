@@ -6,6 +6,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
+import com.toast.RCTToastPackage;
 import com.taessina.paypal.RNPaypalWrapperPackage;
 import com.microsoft.azure.mobile.react.push.RNPushPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -43,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTToastPackage(),
             new RNPaypalWrapperPackage(),
             new RNPushPackage(MainApplication.this),
             new VectorIconsPackage(),

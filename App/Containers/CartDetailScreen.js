@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, Platform } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
@@ -9,10 +9,11 @@ import TransactionHistoryActions from '../Redux/TransactionHistoryRedux'
 import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
 import { currency } from '../Lib/numberFormatter.js'
+import Toast from 'react-native-toast-native'
+
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
-
-var Toast = require('react-native-toast')
+import { Colors } from '../Themes/'
 
 class CartDetailScreen extends Component {
   componentWillMount () {
@@ -20,6 +21,18 @@ class CartDetailScreen extends Component {
   }
 
   payNow () {
+    const style={
+      backgroundColor: Colors.errorToast,
+      width: 300,
+      height: Platform.OS === ("ios") ? 50 : 100,
+      color: "#ffffff",
+      fontSize: 12,
+      lineHeight: 2,
+      lines: 4,
+      borderRadius: 15,
+      fontWeight: "bold",
+      yOffset: 40
+  }
     if (this.totalCount() > 0) {
       var total = this.covertToUsd()
       if (total === 0) {
@@ -35,7 +48,7 @@ class CartDetailScreen extends Component {
         .catch(error => console.tron.log(error))
       }
     } else {
-      alert('Your cart has 0 item')
+      Toast.show("Your cart has 0 items", Toast.SHORT, Toast.TOP, styles.style)
     }
   }
 
@@ -60,6 +73,18 @@ class CartDetailScreen extends Component {
   }
 
   transactionHistory (confirm) {
+    const style={
+      backgroundColor: Colors.successToast,
+      width: 300,
+      height: Platform.OS === ("ios") ? 50 : 100,
+      color: "#ffffff",
+      fontSize: 12,
+      lineHeight: 2,
+      lines: 4,
+      borderRadius: 15,
+      fontWeight: "bold",
+      yOffset: 40
+  }
     // add current cart to transaction history
     const { cartItems } = this.props
     const { historyItems } = this.props
@@ -70,9 +95,11 @@ class CartDetailScreen extends Component {
     }
     // push to API here
 
-    Toast.showShortCenter.bind(null, 'Payment completed. Download link available in Transaction History.')
     // clear cart
-    //  this.resetCart()
+    this.resetCart()
+
+    Toast.show("Payment completed. Download link available in Transaction History.", Toast.SHORT, Toast.TOP,style)
+   
   }
 
   resetCart () {
