@@ -21,18 +21,18 @@ class CartDetailScreen extends Component {
   }
 
   payNow () {
-    const style={
+    const style = {
       backgroundColor: Colors.errorToast,
       width: 300,
-      height: Platform.OS === ("ios") ? 50 : 100,
-      color: "#ffffff",
+      height: Platform.OS === ('ios') ? 50 : 100,
+      color: '#ffffff',
       fontSize: 12,
       lineHeight: 2,
       lines: 4,
       borderRadius: 15,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       yOffset: 40
-  }
+    }
     if (this.totalCount() > 0) {
       var total = this.covertToUsd()
       if (total === 0) {
@@ -48,7 +48,7 @@ class CartDetailScreen extends Component {
         .catch(error => console.tron.log(error))
       }
     } else {
-      Toast.show("Your cart has 0 items", Toast.SHORT, Toast.TOP, styles.style)
+      Toast.show('Your cart has 0 items', Toast.SHORT, Toast.TOP, style)
     }
   }
 
@@ -73,18 +73,18 @@ class CartDetailScreen extends Component {
   }
 
   transactionHistory (confirm) {
-    const style={
+    const style = {
       backgroundColor: Colors.successToast,
       width: 300,
-      height: Platform.OS === ("ios") ? 50 : 100,
-      color: "#ffffff",
+      height: Platform.OS === ('ios') ? 50 : 100,
+      color: '#ffffff',
       fontSize: 12,
       lineHeight: 2,
       lines: 4,
       borderRadius: 15,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       yOffset: 40
-  }
+    }
     // add current cart to transaction history
     const { cartItems } = this.props
     const { historyItems } = this.props
@@ -98,8 +98,7 @@ class CartDetailScreen extends Component {
     // clear cart
     this.resetCart()
 
-    Toast.show("Payment completed. Download link available in Transaction History.", Toast.SHORT, Toast.TOP,style)
-   
+    Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
   }
 
   resetCart () {
