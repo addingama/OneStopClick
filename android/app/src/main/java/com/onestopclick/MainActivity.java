@@ -2,6 +2,7 @@ package com.onestopclick;
 import android.content.Intent;
 import com.facebook.react.ReactActivity;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.toast.RCTToastPackage;
 
 public class MainActivity extends ReactActivity {
 

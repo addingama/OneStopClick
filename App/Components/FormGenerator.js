@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, TouchableHighlight, FlatList } from 'react-native'
 import { validateField } from '../Lib/validator'
 import styles from './Styles/FormGeneratorStyle'
+import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
 
 export class CustomInputField extends Component {
@@ -70,6 +71,26 @@ export class Category extends Component {
 }
 
 export class Products extends Component {
+  addCartItem (product) {
+    const { cartItems } = this.props
+
+    // checking duplication
+    var found = false
+    for (var i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === product.id) {
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      var newCartItems = Object.assign([], cartItems)
+      newCartItems.push(product)
+      this.props.onBuyPress(newCartItems)
+    } else {
+      alert('You have already bought ' + product.product_name + '.')
+    }
+  }
+
   render () {
     const { data } = this.props
     var products = Object.assign([], data)
@@ -78,6 +99,7 @@ export class Products extends Component {
       product.key = product.id
       products[j] = product
     }
+
     return (<FlatList
       data={products}
       key={uuid.v1()}
@@ -99,15 +121,15 @@ export class Products extends Component {
               </Text>
               <Text
                 style={{ marginBottom: 10, color: 'green' }}>
-                {item.price}
+                Rp. {currency(item.price)}
               </Text>
               <RneButton
                 icon={{ name: 'shopping-cart' }}
                 backgroundColor='green'
                 fontFamily='Lato'
-                style={{ margin: 0, padding: 0 }}
-                onPress={() => this.props.onBuyPress(item)}
-                title={I18n.t('buyNow')} />
+                style={{ width: 120, margin: 0, padding: 0 }}
+                onPress={() => this.addCartItem(item)}
+                title={I18n.t('addToCart')} />
             </Card>
           </View>
         </TouchableOpacity>

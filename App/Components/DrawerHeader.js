@@ -9,12 +9,13 @@ export default class DrawerHeader extends Component {
   }
 
   render () {
-    const { title } = this.props
+    const { title, rightComponent } = this.props
     return (
       <Header
         backgroundColor='#2F1F37'
         leftComponent={<HamburgerMenu onPress={this.openMenu.bind(this)} />}
         centerComponent={{ text: title, style: styles.titleStyle }}
+        rightComponent={rightComponent}
       />
     )
   }

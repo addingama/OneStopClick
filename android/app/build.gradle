@@ -116,18 +116,20 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
-
+    
     signingConfigs {
         release {
-            if (project.hasProperty('OSC_RELEASE_STORE_FILE')) {
-                storeFile file(OSC_RELEASE_STORE_FILE)
-                storePassword OSC_RELEASE_STORE_PASSWORD
-                keyAlias OSC_RELEASE_KEY_ALIAS
-                keyPassword OSC_RELEASE_KEY_PASSWORD
-            }
+            // Uncomment this code to generate apk from android studio
+            // if (project.hasProperty('OSC_RELEASE_STORE_FILE')) {
+            //     storeFile file(OSC_RELEASE_STORE_FILE)
+            //     storePassword OSC_RELEASE_STORE_PASSWORD
+            //     keyAlias OSC_RELEASE_KEY_ALIAS
+            //     keyPassword OSC_RELEASE_KEY_PASSWORD
+            // }
         }
     }
     
+
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
@@ -152,6 +154,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-toast-native')
+    compile project(':react-native-paypal-wrapper')
     compile project(':mobile-center-push')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')
@@ -160,6 +164,9 @@ dependencies {
     compile project(':mobile-center-analytics')
     compile project(':mobile-center')
     compile project(':react-native-google-signin')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-device-info')
+    compile project(':react-native-config')
     compile project(':react-native-i18n')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"

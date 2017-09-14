@@ -16,6 +16,7 @@
 		00E356F31AD99517003FC87E /* OneStopClickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* OneStopClickTests.m */; };
 		0129EEC60B504D80A34D067B /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB013E0E44234D73B312FD60 /* libjschelpers.a */; };
 		032D6CA0F4D04CB39E035764 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEDFEB65077E4AA18CC08B58 /* libRNVectorIcons.a */; };
+		09C71C851F66CA8E009EF8EF /* libRNToastNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C71C841F66CA72009EF8EF /* libRNToastNative.a */; };
 		0B95387128B640DE8A0DE848 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842AFA6AA48C47DAA7B4B883 /* MaterialIcons.ttf */; };
 		10C03F3E0A1346BFAEB4C8F8 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32E1A12ED38144AE8D565C87 /* Octicons.ttf */; };
 		123727D6D55F4065A753F4BD /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBC8F058D7C43B0869E9E7B /* SafariServices.framework */; };
@@ -45,6 +46,7 @@
 		2E36DE0507B641E6AB1AF2C9 /* libRNCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A0B6E96C364E989193F40E /* libRNCrashes.a */; };
 		34D02AAFD9214C5985B25F3C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BFB8EFE1F5F49CF8E660234 /* EvilIcons.ttf */; };
 		3C14A96BAFD44712BEF0B820 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E405818525C541549DB511A5 /* libReactNativeConfig.a */; };
+		41C4ED53C5B24C9B990A2271 /* libRNPaypalWrapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADDA61191BB45D7907BE6C3 /* libRNPaypalWrapper.a */; };
 		4373CD6EB0D741F9AB153C82 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7EEF391E974F27B8649F21 /* Ionicons.ttf */; };
 		5229F5573BEE4ABF9C3CCB9B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C33A259917444172978AA6E9 /* FontAwesome.ttf */; };
 		582A6D45D8A7D917BD9FA43E /* libPods-OneStopClickTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E28CCC14D488A2970AE0EAE6 /* libPods-OneStopClickTests.a */; };
@@ -76,6 +78,7 @@
 		9A06D4E7F0514A528A93AA01 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478A8C1C35B24E649308B02F /* Foundation.ttf */; };
 		9A28C7B50A756DC7D0B4F47B /* libPods-OneStopClick.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D1B710517769EE5C938F45 /* libPods-OneStopClick.a */; };
 		9C81D4B6C2C149729318EB3E /* libRNMobileCenter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAC754756874E7BBE05D9B1 /* libRNMobileCenter.a */; };
+		AC2E0B1CE6FB4ECA9FA55D34 /* libRNToastNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E86B14A799DF44978E7EF2E7 /* libRNToastNative.a */; };
 		B98B8DDF942E4D71AC89CEDF /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2028B65B7BF0418FA7631426 /* libRNGoogleSignin.a */; };
 		CFB10133004B4D1E858D1ED9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E01206CA82C488DAD22AA21 /* libz.tbd */; };
 		D1A94C920B294E73A51A49C3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90311F71BAAC4B2FB3AFC225 /* MaterialCommunityIcons.ttf */; };
@@ -126,6 +129,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = OneStopClick;
+		};
+		09C71C831F66CA72009EF8EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09C71C7F1F66CA72009EF8EF /* RNToastNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNToastNative;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -182,6 +192,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = CDD7BF831B2D5126006FDA75;
 			remoteInfo = RNI18nTests;
+		};
+		36FBE1721F56A368005F1A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4151767D9266424E9777E205 /* RNPush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BA189FAA1EEE74F100CAD13F;
+			remoteInfo = RNPush;
+		};
+		36FBE1781F56A368005F1A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7775344CF41E49478AC197B3 /* RNMobileCenter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C35AEC211EF91F9300931F0C;
+			remoteInfo = RNMobileCenter;
+		};
+		36FBE17D1F56A368005F1A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18E5C7ED97F2422186A6FA78 /* RNCrashes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5419C2701D824AA700DDF3A1;
+			remoteInfo = RNCrashes;
+		};
+		36FBE1821F56A368005F1A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7036CC6654654F2A96096AAF /* RNPaypalWrapper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNPaypalWrapper;
 		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -330,40 +368,26 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTLinking;
 		};
-		8082F8D91F68CFDF00ECEC01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E0C053B582934A34A310A810 /* RNAnalytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 548694001D8384E600E6685A;
-			remoteInfo = RNAnalytics;
-		};
-		8082F8E01F68CFDF00ECEC01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7775344CF41E49478AC197B3 /* RNMobileCenter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C35AEC211EF91F9300931F0C;
-			remoteInfo = RNMobileCenter;
-		};
-		8082F8E61F68CFDF00ECEC01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4151767D9266424E9777E205 /* RNPush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BA189FAA1EEE74F100CAD13F;
-			remoteInfo = RNPush;
-		};
-		8082F8EB1F68CFDF00ECEC01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18E5C7ED97F2422186A6FA78 /* RNCrashes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5419C2701D824AA700DDF3A1;
-			remoteInfo = RNCrashes;
-		};
 		832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
+		};
+		CF1D78E61F6A6B4C005C999D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0C053B582934A34A310A810 /* RNAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 548694001D8384E600E6685A;
+			remoteInfo = RNAnalytics;
+		};
+		CF1D78F21F6A6B4C005C999D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 254A443024A7461B9ABF6CD9 /* RNToastNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNToastNative;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -381,6 +405,7 @@
 		06CB3D0619314C10A720BECF /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		07681E84BCF2473EA5F1E388 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		07A9A38F702632124D747100 /* Pods-OneStopClick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClick.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClick/Pods-OneStopClick.debug.xcconfig"; sourceTree = "<group>"; };
+		09C71C7F1F66CA72009EF8EF /* RNToastNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNToastNative.xcodeproj; path = "../node_modules/react-native-toast-native/ios/RNToastNative.xcodeproj"; sourceTree = "<group>"; };
 		09D1B710517769EE5C938F45 /* libPods-OneStopClick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneStopClick.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		120909D992CD4AC2BFE1510B /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -400,12 +425,14 @@
 		1F0F8158D1E1BC0B4145198F /* Pods-OneStopClick-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClick-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClick-tvOS/Pods-OneStopClick-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		1F7EEF391E974F27B8649F21 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		2028B65B7BF0418FA7631426 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
+		254A443024A7461B9ABF6CD9 /* RNToastNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNToastNative.xcodeproj; path = "../node_modules/react-native-toast-native/ios/RNToastNative.xcodeproj"; sourceTree = "<group>"; };
 		267A4006F2854F8992E1023C /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		2D02E47B1E0B4A5D006451C7 /* OneStopClick-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OneStopClick-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* OneStopClick-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OneStopClick-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E01206CA82C488DAD22AA21 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		32E1A12ED38144AE8D565C87 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		39E30C57441644ECAD84BDA8 /* libcxxreact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libcxxreact.a; sourceTree = "<group>"; };
+		3ADDA61191BB45D7907BE6C3 /* libRNPaypalWrapper.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPaypalWrapper.a; sourceTree = "<group>"; };
 		3E21EC12EC504C9AACE643B2 /* libReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReact.a; sourceTree = "<group>"; };
 		3EB68E29127147768904BA9B /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4151767D9266424E9777E205 /* RNPush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPush.xcodeproj; path = "../node_modules/mobile-center-push/ios/RNPush.xcodeproj"; sourceTree = "<group>"; };
@@ -428,6 +455,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61A0B6E96C364E989193F40E /* libRNCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCrashes.a; sourceTree = "<group>"; };
 		6586BA99F16640188163994B /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
+		7036CC6654654F2A96096AAF /* RNPaypalWrapper.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPaypalWrapper.xcodeproj; path = "../node_modules/react-native-paypal-wrapper/ios/RNPaypalWrapper.xcodeproj"; sourceTree = "<group>"; };
 		73D06873966749679002663E /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		7775344CF41E49478AC197B3 /* RNMobileCenter.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMobileCenter.xcodeproj; path = "../node_modules/mobile-center/ios/RNMobileCenter.xcodeproj"; sourceTree = "<group>"; };
 		78B8B608FB563325472DE693 /* libPods-OneStopClick-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneStopClick-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +480,7 @@
 		E28CCC14D488A2970AE0EAE6 /* libPods-OneStopClickTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneStopClickTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E405818525C541549DB511A5 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		E6FBDF37589C40BDA57348FD /* Pods-OneStopClick-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClick-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClick-tvOS/Pods-OneStopClick-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		E86B14A799DF44978E7EF2E7 /* libRNToastNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNToastNative.a; sourceTree = "<group>"; };
 		E9700F25C95C9746244F6B73 /* Pods-OneStopClickTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneStopClickTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneStopClickTests/Pods-OneStopClickTests.release.xcconfig"; sourceTree = "<group>"; };
 		EEDFEB65077E4AA18CC08B58 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		FA831EC314264A8EB1BE4E13 /* libRNAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalytics.a; sourceTree = "<group>"; };
@@ -479,6 +508,7 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				09C71C851F66CA8E009EF8EF /* libRNToastNative.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
@@ -500,11 +530,13 @@
 				7AE9D8E4929F47E38032D3A6 /* SystemConfiguration.framework in Frameworks */,
 				61DF06BE52F34F8CBF2ECB54 /* AddressBook.framework in Frameworks */,
 				5D37A6491F31680800BB3B28 /* GoogleSignIn.framework in Frameworks */,
+				41C4ED53C5B24C9B990A2271 /* libRNPaypalWrapper.a in Frameworks */,
 				9A28C7B50A756DC7D0B4F47B /* libPods-OneStopClick.a in Frameworks */,
 				9C81D4B6C2C149729318EB3E /* libRNMobileCenter.a in Frameworks */,
 				EEEA78B047C34FB5B6495B99 /* libRNAnalytics.a in Frameworks */,
 				2E36DE0507B641E6AB1AF2C9 /* libRNCrashes.a in Frameworks */,
 				D8CDE1F0F1AB4F83A90009F2 /* libRNPush.a in Frameworks */,
+				AC2E0B1CE6FB4ECA9FA55D34 /* libRNToastNative.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +626,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		09C71C801F66CA72009EF8EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09C71C841F66CA72009EF8EF /* libRNToastNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +688,38 @@
 			children = (
 				361FF88D1F28688D00671298 /* libRNI18n.a */,
 				361FF88F1F28688D00671298 /* RNI18nTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36FBE14E1F56A368005F1A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36FBE1731F56A368005F1A08 /* libRNPush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36FBE1751F56A368005F1A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36FBE1791F56A368005F1A08 /* libRNMobileCenter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36FBE17A1F56A368005F1A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36FBE17E1F56A368005F1A08 /* libRNCrashes.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36FBE17F1F56A368005F1A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36FBE1831F56A368005F1A08 /* libRNPaypalWrapper.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -728,34 +800,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8082F8B71F68CFDF00ECEC01 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8082F8E11F68CFDF00ECEC01 /* libRNMobileCenter.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8082F8B91F68CFDF00ECEC01 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8082F8DA1F68CFDF00ECEC01 /* libRNAnalytics.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8082F8E31F68CFDF00ECEC01 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8082F8E71F68CFDF00ECEC01 /* libRNPush.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		8082F8E81F68CFDF00ECEC01 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8082F8EC1F68CFDF00ECEC01 /* libRNCrashes.a */,
+				CF1D78E71F6A6B4C005C999D /* libRNAnalytics.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -763,6 +811,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				09C71C7F1F66CA72009EF8EF /* RNToastNative.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -784,6 +833,8 @@
 				E0C053B582934A34A310A810 /* RNAnalytics.xcodeproj */,
 				18E5C7ED97F2422186A6FA78 /* RNCrashes.xcodeproj */,
 				4151767D9266424E9777E205 /* RNPush.xcodeproj */,
+				7036CC6654654F2A96096AAF /* RNPaypalWrapper.xcodeproj */,
+				254A443024A7461B9ABF6CD9 /* RNToastNative.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -845,6 +896,14 @@
 				E9700F25C95C9746244F6B73 /* Pods-OneStopClickTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF1D78C61F6A6B4C005C999D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D78F31F6A6B4C005C999D /* libRNToastNative.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E933C5FB134B4B2B972FFC2F /* Frameworks */ = {
@@ -970,7 +1029,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = T85MAX67XQ;
+						DevelopmentTeam = 62PYG5KRDL;
 						LastSwiftMigration = 830;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -1053,11 +1112,11 @@
 					ProjectRef = AC5D1B4FC4E445B7A4BEECB5 /* ReactNativeConfig.xcodeproj */;
 				},
 				{
-					ProductGroup = 8082F8B91F68CFDF00ECEC01 /* Products */;
+					ProductGroup = 8082F8E81F68CFDF00ECEC01 /* Products */;
 					ProjectRef = E0C053B582934A34A310A810 /* RNAnalytics.xcodeproj */;
 				},
 				{
-					ProductGroup = 8082F8E81F68CFDF00ECEC01 /* Products */;
+					ProductGroup = 36FBE17A1F56A368005F1A08 /* Products */;
 					ProjectRef = 18E5C7ED97F2422186A6FA78 /* RNCrashes.xcodeproj */;
 				},
 				{
@@ -1073,12 +1132,24 @@
 					ProjectRef = B78A25C2E2F84D369A061192 /* RNI18n.xcodeproj */;
 				},
 				{
-					ProductGroup = 8082F8B71F68CFDF00ECEC01 /* Products */;
+					ProductGroup = 36FBE1751F56A368005F1A08 /* Products */;
 					ProjectRef = 7775344CF41E49478AC197B3 /* RNMobileCenter.xcodeproj */;
 				},
 				{
-					ProductGroup = 8082F8E31F68CFDF00ECEC01 /* Products */;
+					ProductGroup = 36FBE17F1F56A368005F1A08 /* Products */;
+					ProjectRef = 7036CC6654654F2A96096AAF /* RNPaypalWrapper.xcodeproj */;
+				},
+				{
+					ProductGroup = 36FBE14E1F56A368005F1A08 /* Products */;
 					ProjectRef = 4151767D9266424E9777E205 /* RNPush.xcodeproj */;
+				},
+				{
+					ProductGroup = 09C71C801F66CA72009EF8EF /* Products */;
+					ProjectRef = 09C71C7F1F66CA72009EF8EF /* RNToastNative.xcodeproj */;
+				},
+				{
+					ProductGroup = CF1D78C61F6A6B4C005C999D /* Products */;
+					ProjectRef = 254A443024A7461B9ABF6CD9 /* RNToastNative.xcodeproj */;
 				},
 				{
 					ProductGroup = 5D245C001F2AD7B700EBACB0 /* Products */;
@@ -1131,6 +1202,13 @@
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		09C71C841F66CA72009EF8EF /* libRNToastNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNToastNative.a;
+			remoteRef = 09C71C831F66CA72009EF8EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1178,6 +1256,34 @@
 			fileType = wrapper.cfbundle;
 			path = RNI18nTests.xctest;
 			remoteRef = 361FF88E1F28688D00671298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		36FBE1731F56A368005F1A08 /* libRNPush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPush.a;
+			remoteRef = 36FBE1721F56A368005F1A08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		36FBE1791F56A368005F1A08 /* libRNMobileCenter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMobileCenter.a;
+			remoteRef = 36FBE1781F56A368005F1A08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		36FBE17E1F56A368005F1A08 /* libRNCrashes.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCrashes.a;
+			remoteRef = 36FBE17D1F56A368005F1A08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		36FBE1831F56A368005F1A08 /* libRNPaypalWrapper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPaypalWrapper.a;
+			remoteRef = 36FBE1821F56A368005F1A08 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
@@ -1327,39 +1433,25 @@
 			remoteRef = 78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8082F8DA1F68CFDF00ECEC01 /* libRNAnalytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNAnalytics.a;
-			remoteRef = 8082F8D91F68CFDF00ECEC01 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8082F8E11F68CFDF00ECEC01 /* libRNMobileCenter.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNMobileCenter.a;
-			remoteRef = 8082F8E01F68CFDF00ECEC01 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8082F8E71F68CFDF00ECEC01 /* libRNPush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNPush.a;
-			remoteRef = 8082F8E61F68CFDF00ECEC01 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8082F8EC1F68CFDF00ECEC01 /* libRNCrashes.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCrashes.a;
-			remoteRef = 8082F8EB1F68CFDF00ECEC01 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		832341B51AAA6A8300B99B32 /* libRCTText.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CF1D78E71F6A6B4C005C999D /* libRNAnalytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAnalytics.a;
+			remoteRef = CF1D78E61F6A6B4C005C999D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CF1D78F31F6A6B4C005C999D /* libRNToastNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNToastNative.a;
+			remoteRef = CF1D78F21F6A6B4C005C999D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1732,12 +1824,16 @@
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = OneStopClickTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1784,12 +1880,16 @@
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = OneStopClickTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1823,7 +1923,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = T85MAX67XQ;
+				DEVELOPMENT_TEAM = 62PYG5KRDL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -1850,24 +1950,32 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = OneStopClick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitrais.iOSNewsletter;
 				PRODUCT_NAME = OneStopClick;
 				SWIFT_OBJC_BRIDGING_HEADER = "OneStopClick-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React $(SRCROOT)/../../../React";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1879,7 +1987,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T85MAX67XQ;
+				DEVELOPMENT_TEAM = 62PYG5KRDL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -1906,23 +2014,31 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = OneStopClick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitrais.iOSNewsletter;
 				PRODUCT_NAME = OneStopClick;
 				SWIFT_OBJC_BRIDGING_HEADER = "OneStopClick-Bridging-Header.h";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React $(SRCROOT)/../../../React";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1954,11 +2070,15 @@
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = "OneStopClick-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2015,11 +2135,15 @@
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
 					"$(SRCROOT)/../node_modules/mobile-center-push/ios/RNPush",
+					"$(SRCROOT)/../node_modules/react-native-paypal-wrapper/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 				);
 				INFOPLIST_FILE = "OneStopClick-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2080,6 +2204,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.OneStopClick-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2111,6 +2237,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2169,10 +2297,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 			};
 			name = Debug;
 		};
@@ -2204,9 +2334,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

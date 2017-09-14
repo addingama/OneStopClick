@@ -5,11 +5,13 @@ import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
 import I18n from 'react-native-i18n'
 import ProductActions from '../Redux/ProductRedux'
+import CartActions from '../Redux/CartRedux'
 import { SearchBar, Icon } from 'react-native-elements'
 import styles from './Styles/HomeScreenStyle'
 import HomeDrawerBase from './Bases/HomeDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 import CategoryChooser from '../Components/CategoryChooser'
+import CartButton from '../Components/CartButton'
 import BackHeader from '../Components/BackHeader'
 import { cloneDeep } from 'lodash'
 var uuid = require('react-native-uuid')
@@ -32,12 +34,12 @@ class HomeScreen extends HomeDrawerBase {
     this.props.getProducts()
   }
 
-  componentWillUpdate(){
+  componentWillUpdate () {
         // set here to avoid update state transition issue in rendering
-        var categoryName = this.props.navigation.state.routeName == 'Home' ? 'All Categories' : this.props.navigation.state.routeName
-        if (categoryName !== 'All Categories') {
-          this.handleSelectedCategoryChange(categoryName)
-        }
+    var categoryName = this.props.navigation.state.routeName == 'Home' ? 'All Categories' : this.props.navigation.state.routeName
+    if (categoryName !== 'All Categories') {
+      this.handleSelectedCategoryChange(categoryName)
+    }
   }
 
   handleSearch (text) {
@@ -48,27 +50,28 @@ class HomeScreen extends HomeDrawerBase {
   generateListProducts (categoriesData) {
     var categoriesLabel = []
     var categories = categoriesData
+
+    var { cartItems } = this.props
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
         // handles filter, user routeName instead of selectedCategory
         var routeName = this.props.navigation.state.routeName
-        
-        if (routeName !== 'Home') {
-            if (routeName == categories[i].name) {
-              categoriesLabel.push(
-                <Category
-                  key={i}
-                  category={categories[i]}
+        if (routeName !== 'Home' && routeName === categories[i].name) {
+          categoriesLabel.push(
+            <Category
+              key={i}
+              category={categories[i]}
                 />
               )
-              categoriesLabel.push(
-                <Products
-                  key={uuid.v1()}
-                  data={categories[i].products}
-                  onBuyPress={(item) => alert('Will redirect to detail')}
+          categoriesLabel.push(
+            <Products
+              cartItems={cartItems}
+              key={uuid.v1()}
+              data={categories[i].products}
+              onBuyPress={(items) => this.props.addToCart(items)}
+              onProductClick={(item) => this.openProductDetail(item)}
                 />
               )
-            }
         } else {
           categoriesLabel.push(
             <Category
@@ -80,7 +83,8 @@ class HomeScreen extends HomeDrawerBase {
             <Products
               key={uuid.v1()}
               data={categories[i].products}
-              onBuyPress={(item) => alert('Will redirect to detail')}
+              onBuyPress={(items) => this.props.addToCart(items)}
+              onProductClick={(item) => this.openProductDetail(item)}
             />
           )
         }
@@ -149,39 +153,38 @@ class HomeScreen extends HomeDrawerBase {
     return categories
   }
 
-  handleSelectedCategoryChange(newCategory) {
-    // avoid multiple stack issue by checking existing state value 
+  handleSelectedCategoryChange (newCategory) {
+    // avoid multiple stack issue by checking existing state value
     if (this.state.selectedCategory !== newCategory) {
       this.setState({
         selectedCategory: newCategory
-      });
+      })
     }
   }
 
   render () {
-    const { fetching, products } = this.props
+    const { fetching, products, cartItems } = this.props
     const { searchText, listProducts, selectedCategory } = this.state
 
     // set dynamic selected dropdown, use routeName to determine visibility of dropdown
-    let catDropdown = null;
+    let catDropdown = null
     if (this.props.navigation.state.routeName == 'Home') {
-        
       // category dropdown
-      catDropdown =   
-          <TouchableHighlight onPress={() => {
-                this.setModalVisible(true)
-          }}>
-              <View style={styles.categorySpinner}>
-                    <Text>{selectedCategory}</Text>
-                    <Icon name='keyboard-arrow-down' />
-                  </View>
-                </TouchableHighlight>;
+      catDropdown =
+        <TouchableHighlight onPress={() => {
+          this.setModalVisible(true)
+        }}>
+          <View style={styles.categorySpinner}>
+            <Text>{selectedCategory}</Text>
+            <Icon name='keyboard-arrow-down' />
+          </View>
+        </TouchableHighlight>
     }
 
     return (
       <View>
         <View style={styles.hasNavbar}>
-          <DrawerHeader title={I18n.t('home')} {...this.props} />
+          <DrawerHeader title={I18n.t('home')} {...this.props} rightComponent={<CartButton BadgeCount={cartItems.length} {...this.props} />} />
         </View>
         <ScrollView contentContainerStyle={[styles.defaultMarginTop]}>
           <View style={styles.customContainer}>
@@ -225,13 +228,18 @@ const mapStateToProps = (state) => {
     fetching: state.product.fetching,
     error: state.product.error,
     message: state.product.message,
-    products: state.product.products
+    products: state.product.products,
+    addingToCart: state.cart.adding,
+    cartError: state.cart.error,
+    cartMessage: state.cart.message,
+    cartItems: state.cart.items
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProducts: () => dispatch(ProductActions.getProductsRequest())
+    getProducts: () => dispatch(ProductActions.getProductsRequest()),
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback, Alert } from 'react-native'
 import { Text, Rating, Button, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -7,6 +7,7 @@ import BackHeader from '../Components/BackHeader'
 import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
+import CartActions from '../Redux/CartRedux'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
@@ -85,6 +86,36 @@ class ProductDetailScreen extends Component {
 
     return rating
   }
+  openCart (product) {
+    const { navigation } = this.props
+    if (this.addCartItem(product)) {
+      navigation.navigate('CartDetailScreen')
+    }
+  }
+
+  addCartItem (product) {
+    const { cartItems } = this.props
+
+    // checking duplication
+    var found = false
+    for (var i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === product.id) {
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      var newCartItems = Object.assign([], cartItems)
+      newCartItems.push(product)
+      this.props.addToCart(newCartItems)
+
+      Alert.alert('Success', product.product_name + ' has been added to cart.')
+      return true
+    } else {
+      Alert.alert('Alert', 'You have already bought ' + product.product_name + '.')
+      return false
+    }
+  }
 
   render () {
     const { product } = this.props.navigation.state.params
@@ -110,7 +141,7 @@ class ProductDetailScreen extends Component {
               <Divider style={styles.dividerMargin} />
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
-                  <Text>Rp.{ currency(product.price) }</Text>
+                  <Text>Rp. { currency(product.price) }</Text>
                 </View>
                 <TouchableOpacity onPress={() => alert('go to review page')}>
                   <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -129,8 +160,9 @@ class ProductDetailScreen extends Component {
                 backgroundColor='green'
                 fontFamily='Lato'
                 style={{ margin: 0, padding: 0 }}
-                onPress={() => alert('add to cart')}
+                onPress={() => this.addCartItem(product)}
                 title={I18n.t('addToCart')} />
+              <Button title='Buy Now' onPress={() => this.openCart(product)} />
             </View>
           </View>
         </ScrollView>
@@ -145,11 +177,13 @@ class ProductDetailScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    cartItems: state.cart.items
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
   }
 }
 

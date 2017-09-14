@@ -54,5 +54,5 @@ fastlane/screenshots
 
 
 #Husky snapshot
-Tests/Components/__snapshots__/
+#Tests/Components/__snapshots__/ # this needed to make sure snapshot test running on CI
 
