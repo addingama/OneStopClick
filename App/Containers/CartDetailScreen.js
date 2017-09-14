@@ -119,11 +119,14 @@ class CartDetailScreen extends Component {
     </View>
 
     return (
+
       <View style={styles.mainviewStyle}>
         <View style={styles.hasNavbar}>
           <BackHeader title='Cart' rightComponent={historyIcon} {...this.props} />
         </View>
-        <ListCart {...this.props} />
+        <View style={styles.cartContainer}>
+          <ListCart {...this.props} />
+        </View>
         <View style={styles.footer}>
           <Text style={styles.totalText}>Total</Text>
           <Text style={styles.totalNumber}>Rp. {currency(this.totalCount())}</Text>
