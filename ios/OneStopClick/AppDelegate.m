@@ -24,6 +24,8 @@
 {
   NSURL *jsCodeLocation;
 
+  [RNCrashes register];  // Initialize Mobile Center crashes
+
   [RNPush register];  // Initialize Mobile Center push
 
   [RNCrashes registerWithCrashDelegate: [[RNCrashesDelegateAlwaysSend alloc] init]];  // Initialize Mobile Center crashes

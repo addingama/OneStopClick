@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Colors } from '../../Themes/'
 
 export default StyleSheet.create({
@@ -9,6 +9,7 @@ export default StyleSheet.create({
   },
   cartContainer: {
     marginTop: 0,
+    marginBottom: 50,
     overflow: 'scroll',
     flex: 1
   },

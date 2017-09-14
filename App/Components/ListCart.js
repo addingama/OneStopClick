@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableHighlight, FlatList } from 'react-native'
+import { Text, View, Image, TouchableHighlight, FlatList, TouchableWithoutFeedback } from 'react-native'
 import styles from './Styles/ListCartStyle'
 import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
@@ -33,46 +33,49 @@ class ListCart extends Component {
         key={uuid.v1()}
         numColumns='1'
         renderItem={({ item }) =>
-          <View>
-            <View style={styles.rowContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: item.images[0].image_url }}
+        /* Adding touch event to activated scrolling */
+          <TouchableWithoutFeedback>
+            <View>
+              <View style={styles.rowContainer}>
+                <Image
+                  style={styles.image}
+                  source={{ uri: item.images[0].image_url }}
             />
-              <View style={styles.textContainer}>
-                <View>
-                  <Text
-                    numberOfLines={2}
-                    ellipsizeMode={'tail'}
-                    style={styles.productTitle}>
-                    {item.product_name}
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    numberOfLines={2}
-                    ellipsizeMode={'tail'}
-                    style={styles.productDesc}>
-                    {item.description}
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    style={styles.productPrice}>
+                <View style={styles.textContainer}>
+                  <View>
+                    <Text
+                      numberOfLines={2}
+                      ellipsizeMode={'tail'}
+                      style={styles.productTitle}>
+                      {item.product_name}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      numberOfLines={2}
+                      ellipsizeMode={'tail'}
+                      style={styles.productDesc}>
+                      {item.description}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      style={styles.productPrice}>
                     Rp. { currency(item.price) }
-                  </Text>
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.deleteContainer}>
+                  <TouchableHighlight onPress={() => {
+                    this.deleteCartItem(item)
+                  }}>
+                    <Text style={styles.delete}>X</Text>
+                  </TouchableHighlight>
                 </View>
               </View>
-              <View style={styles.deleteContainer}>
-                <TouchableHighlight onPress={() => {
-                  this.deleteCartItem(item)
-                }}>
-                  <Text style={styles.delete}>X</Text>
-                </TouchableHighlight>
-              </View>
+              <View style={styles.separator} />
             </View>
-            <View style={styles.separator} />
-          </View>
+          </TouchableWithoutFeedback>
         }
       />
     )
