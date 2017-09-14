@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, View, Modal, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, View, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 import { Category, Products } from '../Components/FormGenerator'
 import ProgressIndicator from '../Components/ProgressIndicator'
@@ -153,11 +153,14 @@ class HomeScreen extends HomeDrawerBase {
                   onChangeText={(text) => this.handleSearch(text)}
                   placeholder={I18n.t('searchHere')} />
               </View>
-              <View style={[styles.contentContainer]}>
-                {
+              { /* Adding touch event to help flatlist scrolling  */}
+              <TouchableWithoutFeedback>
+                <View style={[styles.contentContainer]}>
+                  {
                   this.generateListProducts(searchText === '' ? products : listProducts)
                 }
-              </View>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
             <ProgressIndicator show={fetching} text={I18n.t('fetching')} />
           </View>
