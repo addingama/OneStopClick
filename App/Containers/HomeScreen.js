@@ -72,7 +72,7 @@ class HomeScreen extends HomeDrawerBase {
               onProductClick={(item) => this.openProductDetail(item)}
                 />
               )
-        } else {
+        } else if (routeName === 'Home') {
           categoriesLabel.push(
             <Category
               key={i}
@@ -81,6 +81,7 @@ class HomeScreen extends HomeDrawerBase {
           )
           categoriesLabel.push(
             <Products
+              cartItems={cartItems}
               key={uuid.v1()}
               data={categories[i].products}
               onBuyPress={(items) => this.props.addToCart(items)}
@@ -168,7 +169,7 @@ class HomeScreen extends HomeDrawerBase {
 
     // set dynamic selected dropdown, use routeName to determine visibility of dropdown
     let catDropdown = null
-    if (this.props.navigation.state.routeName == 'Home') {
+    if (this.props.navigation.state.routeName === 'Home') {
       // category dropdown
       catDropdown =
         <TouchableHighlight onPress={() => {
