@@ -33,22 +33,28 @@ class CartDetailScreen extends Component {
       fontWeight: 'bold',
       yOffset: 40
     }
-    if (this.totalCount() > 0) {
-      var total = this.covertToUsd()
-      if (total === 0) {
-        alert('Failed to convert currency.')
-      } else {
-        // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-        PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
-        PayPal.pay({
-          price: total.toString(),
-          currency: 'USD',
-          description: 'One Stop Click Payment'
-        }).then(confirm => this.transactionHistory(confirm))
-        .catch(error => console.tron.log(error))
-      }
+    // checking user login
+    const { user } = this.props
+    if (user === null) {
+      Toast.show('Please sign in before continue', Toast.SHORT, Toast.TOP, style)
     } else {
-      Toast.show('Your cart has 0 items', Toast.SHORT, Toast.TOP, style)
+      if (this.totalCount() > 0) {
+        var total = this.covertToUsd()
+        if (total === 0) {
+          alert('Failed to convert currency.')
+        } else {
+          // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
+          PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+          PayPal.pay({
+            price: total.toString(),
+            currency: 'USD',
+            description: 'One Stop Click Payment'
+          }).then(confirm => this.transactionHistory(confirm))
+          .catch(error => console.tron.log(error))
+        }
+      } else {
+        Toast.show('Your cart has 0 items', Toast.SHORT, Toast.TOP, style)
+      }
     }
   }
 
@@ -157,7 +163,8 @@ const mapStateToProps = (state) => {
     cartItems: state.cart.items,
     rates: state.cart.rates,
     error: state.cart.error,
-    historyItems: state.cart.histories
+    historyItems: state.cart.histories,
+    user: state.user.user
   }
 }
 const mapDispatchToProps = (dispatch) => {
