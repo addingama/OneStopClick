@@ -72,22 +72,39 @@ export class Category extends Component {
 
 export class Products extends Component {
   addCartItem (product) {
-    const { cartItems } = this.props
-
+    const { cartItems, historyItems } = this.props
     // checking duplication
-    var found = false
+    var hasAdded = false
+    var hasBought = false
+
+    // on cart
     for (var i = 0; i < cartItems.length; i++) {
       if (cartItems[i].id === product.id) {
-        found = true
+        hasAdded = true
         break
       }
     }
-    if (!found) {
+
+    // on history
+    for (var i = 0; i < historyItems.length; i++) {
+      if (historyItems[i].id === product.id) {
+        hasBought = true
+        break
+      }
+    }
+
+    if (!hasAdded && !hasBought) {
       var newCartItems = Object.assign([], cartItems)
       newCartItems.push(product)
       this.props.onBuyPress(newCartItems)
     } else {
-      alert('You have already bought ' + product.product_name + '.')
+      if (hasAdded) {
+        alert('You have already added ' + product.product_name + '.')
+      }
+
+      if (hasBought) {
+        alert('You have already bought ' + product.product_name + '. Please download from history transaction.')
+      }
     }
   }
 

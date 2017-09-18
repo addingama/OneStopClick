@@ -85,14 +85,7 @@ class CartDetailScreen extends Component {
       fontWeight: 'bold',
       yOffset: 40
     }
-    // add current cart to transaction history
-    const { cartItems } = this.props
-    const { historyItems } = this.props
-    var newHistoryItems = Object.assign([], historyItems)
-    var copyCartItems = Object.assign([], cartItems)
-    for (let i = 0; i < copyCartItems.length; i++) {
-      newHistoryItems.push(copyCartItems[i])
-    }
+
     // push to API here
 
     // clear cart
@@ -102,8 +95,16 @@ class CartDetailScreen extends Component {
   }
 
   resetCart () {
-    var items = []
-    this.props.resetCart(items)
+    // checking duplication
+    const { cartItems, historyItems } = this.props
+
+    var newHistoryItems = Object.assign([], historyItems)
+    var copyCartItems = Object.assign([], cartItems)
+    for (let i = 0; i < copyCartItems.length; i++) {
+      newHistoryItems.push(copyCartItems[i])
+    }
+
+    this.props.resetCart(newHistoryItems)
   }
 
   render () {
@@ -147,7 +148,7 @@ const mapStateToProps = (state) => {
     cartItems: state.cart.items,
     rates: state.cart.rates,
     error: state.cart.error,
-    historyItems: state.transactionHistory
+    historyItems: state.cart.histories
   }
 }
 const mapDispatchToProps = (dispatch) => {

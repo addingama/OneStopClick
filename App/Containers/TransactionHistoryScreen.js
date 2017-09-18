@@ -9,14 +9,15 @@ var uuid = require('react-native-uuid')
 
 class TransactionHistoryScreen extends Component {
   render () {
-    const { cartItems } = this.props
+    const { historyItems } = this.props
+
     return (
       <View style={styles.mainviewStyle}>
         <View style={styles.hasNavbar}>
           <BackHeader title='Transaction History' {...this.props} />
         </View>
         <FlatList style={styles.container}
-          data={cartItems}
+          data={historyItems}
           key={uuid.v1()}
           numColumns='1'
           renderItem={
@@ -64,7 +65,7 @@ class TransactionHistoryScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cart.items,
-    historyItems: state.transactionHistory
+    historyItems: state.cart.histories
   }
 }
 

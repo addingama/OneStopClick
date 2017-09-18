@@ -70,6 +70,7 @@ class HomeScreen extends HomeDrawerBase {
               data={categories[i].products}
               onBuyPress={(items) => this.props.addToCart(items)}
               onProductClick={(item) => this.openProductDetail(item)}
+              {...this.props}
                 />
               )
         } else if (routeName === 'Home') {
@@ -86,6 +87,7 @@ class HomeScreen extends HomeDrawerBase {
               data={categories[i].products}
               onBuyPress={(items) => this.props.addToCart(items)}
               onProductClick={(item) => this.openProductDetail(item)}
+              {...this.props}
             />
           )
         }
@@ -236,7 +238,8 @@ const mapStateToProps = (state) => {
     addingToCart: state.cart.adding,
     cartError: state.cart.error,
     cartMessage: state.cart.message,
-    cartItems: state.cart.items
+    cartItems: state.cart.items,
+    historyItems: state.cart.histories
   }
 }
 

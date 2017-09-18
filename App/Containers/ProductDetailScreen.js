@@ -94,17 +94,26 @@ class ProductDetailScreen extends Component {
   }
 
   addCartItem (product) {
-    const { cartItems } = this.props
+    const { cartItems, historyItems } = this.props
 
     // checking duplication
-    var found = false
+    var hasAdded = false
+    var hasBought = false
     for (var i = 0; i < cartItems.length; i++) {
       if (cartItems[i].id === product.id) {
-        found = true
+        hasAdded = true
         break
       }
     }
-    if (!found) {
+
+    for (var j = 0; j < historyItems.length; j++) {
+      if (historyItems[j].id === product.id) {
+        hasBought = true
+        break
+      }
+    }
+
+    if (!hasAdded) {
       var newCartItems = Object.assign([], cartItems)
       newCartItems.push(product)
       this.props.addToCart(newCartItems)
@@ -112,7 +121,13 @@ class ProductDetailScreen extends Component {
       Alert.alert('Success', product.product_name + ' has been added to cart.')
       return true
     } else {
-      Alert.alert('Alert', 'You have already bought ' + product.product_name + '.')
+      if (hasAdded) {
+        Alert.alert('Alert', 'You have already added ' + product.product_name + '.')
+      }
+
+      if (hasBought) {
+        Alert.alert('Alert', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
+      }
       return false
     }
   }
@@ -177,7 +192,8 @@ class ProductDetailScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cart.items
+    cartItems: state.cart.items,
+    historyItems: state.cart.histories
   }
 }
 
