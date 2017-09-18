@@ -1,7 +1,7 @@
 import { FormLabel, FormInput, FormValidationMessage, Card, Button, Icon, Button as RneButton } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, TouchableHighlight, FlatList } from 'react-native'
+import { View, TouchableOpacity, Text, Alert, FlatList } from 'react-native'
 import { validateField } from '../Lib/validator'
 import styles from './Styles/FormGeneratorStyle'
 import { currency } from '../Lib/numberFormatter.js'
@@ -97,13 +97,15 @@ export class Products extends Component {
       var newCartItems = Object.assign([], cartItems)
       newCartItems.push(product)
       this.props.onBuyPress(newCartItems)
+
+      Alert.alert('Success', product.product_name + ' has been added to cart.')
     } else {
       if (hasAdded) {
-        alert('You have already added ' + product.product_name + '.')
+        Alert.alert('Warning', 'You have already added ' + product.product_name + '.')
       }
 
       if (hasBought) {
-        alert('You have already bought ' + product.product_name + '. Please download from history transaction.')
+        Alert.alert('Warning','You have already bought ' + product.product_name + '. Please download from history transaction.')
       }
     }
   }
