@@ -101,7 +101,16 @@ class CartDetailScreen extends Component {
     var newHistoryItems = Object.assign([], historyItems)
     var copyCartItems = Object.assign([], cartItems)
     for (let i = 0; i < copyCartItems.length; i++) {
-      newHistoryItems.push(copyCartItems[i])
+      var isDuplicate = false
+      for (let j = 0; j < historyItems.length; j++) {
+        if (historyItems[j].id === copyCartItems[i].id) {
+          isDuplicate = true
+          break
+        }
+      }
+      if (!isDuplicate) {
+        newHistoryItems.push(copyCartItems[i])
+      }
     }
 
     this.props.resetCart(newHistoryItems)
