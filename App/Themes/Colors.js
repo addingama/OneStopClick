@@ -23,12 +23,12 @@ const colors = {
   banner: '#5F3E63',
   text: '#E0D7E5',
   google: '#db3236',
-  green: '#86b200',
+  green: '#21ae1c',
   greenleaf: '#4caf50',
   backdrop: 'rgba(52, 52, 52, 0.8)',
   navbar: '#2F1F37',
-  errorToast: "#e35d6a",
-  successToast:"#32cdce"
+  errorToast: '#e35d6a',
+  successToast: '#32cdce'
 }
 
 export default colors

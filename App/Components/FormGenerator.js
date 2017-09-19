@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Alert, FlatList } from 'react-native'
 import { validateField } from '../Lib/validator'
 import styles from './Styles/FormGeneratorStyle'
+import { Colors } from '../Themes/'
 import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
 
@@ -105,7 +106,7 @@ export class Products extends Component {
       }
 
       if (hasBought) {
-        Alert.alert('Warning','You have already bought ' + product.product_name + '. Please download from history transaction.')
+        Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
       }
     }
   }
@@ -129,24 +130,30 @@ export class Products extends Component {
             <Card
               style={styles.cardContent}
               key={item.id}
-              title={item.product_name}
               image={{ uri: item.images[0].image_url }}
             >
               <Text
                 numberOfLines={2}
                 ellipsizeMode={'tail'}
-                style={{ marginBottom: 10 }}>
+                style={{ marginBottom: 10, fontWeight: 'bold', textAlign: 'center', fontSize: 12, height: 30 }}>
+                {item.product_name}
+              </Text>
+              <Text
+                numberOfLines={2}
+                ellipsizeMode={'tail'}
+                style={{ marginBottom: 10, fontSize: 10, height: 25 }}>
                 {item.description}
               </Text>
               <Text
-                style={{ marginBottom: 10, color: 'green' }}>
+                style={{ color: Colors.green, textAlign: 'right', fontSize: 11, marginBottom: 10 }}>
                 Rp. {currency(item.price)}
               </Text>
               <RneButton
                 icon={{ name: 'shopping-cart' }}
-                backgroundColor='green'
+                backgroundColor={Colors.green}
                 fontFamily='Lato'
-                style={{ width: 120, margin: 0, padding: 0 }}
+                fontSize={13}
+                buttonStyle={{ marginLeft: 0, marginRight: 0 }}
                 onPress={() => this.addCartItem(item)}
                 title={I18n.t('addToCart')} />
             </Card>
