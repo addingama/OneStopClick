@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { List, ListItem } from 'react-native-elements'
-import styles from './Styles/CategoryChooserStyle'
 
 export default class CategoryChooser extends Component {
   generateItems (items) {

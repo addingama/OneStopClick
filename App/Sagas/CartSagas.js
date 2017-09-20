@@ -14,7 +14,24 @@ export function * getCurrency (exapi) {
       yield put(CartActions.cartGetCurrencyFailure(true, message))
     }
   } else {
-    console.tron.log('CartSagas - success')
     yield put(CartActions.cartGetCurrencySuccess(rates))
+  }
+}
+
+export function * request (api, {accessToken}) {
+  // make the call to the api
+  console.tron.log('Cart Sagas ' + accessToken)
+  const response = yield call(api.getCart, accessToken)
+
+  const { message } = response.data
+
+  if (response.status !== 200) {
+    if (message !== '' || message != null) {
+      Alert.alert('Error', message)
+
+      yield put(CartActions.cartRequestFailure(true, message))
+    }
+  } else {
+    yield put(CartActions.cartRequestSuccess(response.data))
   }
 }

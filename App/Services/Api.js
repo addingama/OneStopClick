@@ -68,6 +68,9 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     old_password: oldPassword,
     new_password: newPassword
   }, {headers: {'Authorization': 'Bearer ' + accessToken}})
+
+  const getCart = (accessToken) => api.get('api/chart/get', {}, {headers: {'Authorization': 'Bearer ' + accessToken}})
+
   // ------
   // STEP 3
   // ------
@@ -88,7 +91,8 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
     socialLogin,
     getProducts,
     getUserProfile,
-    updateUserProfile
+    updateUserProfile,
+    getCart
   }
 }
 

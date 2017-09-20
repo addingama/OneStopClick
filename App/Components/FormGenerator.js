@@ -105,7 +105,7 @@ export class Products extends Component {
       }
 
       if (hasBought) {
-        Alert.alert('Warning','You have already bought ' + product.product_name + '. Please download from history transaction.')
+        Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
       }
     }
   }

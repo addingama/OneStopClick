@@ -15,7 +15,10 @@ class StorageService {
   }
 
   static getAccessToken () {
-    return AsyncStorage.getItem(ACCESS_TOKEN)
+    AsyncStorage.getItem(ACCESS_TOKEN, (err, result) => {
+      return result
+    })
+    return ''
   }
 
   static isLoggedIn () {

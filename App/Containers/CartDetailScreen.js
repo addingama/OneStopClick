@@ -17,7 +17,9 @@ import { Colors } from '../Themes/'
 
 class CartDetailScreen extends Component {
   componentWillMount () {
-    this.props.getRate()
+    // this.props.getRate()
+
+    this.props.getCart(this.props.accessToken)
   }
 
   payNow () {
@@ -164,7 +166,8 @@ const mapStateToProps = (state) => {
     rates: state.cart.rates,
     error: state.cart.error,
     historyItems: state.cart.histories,
-    user: state.user.user
+    user: state.user.user,
+    accessToken: state.user.accessToken
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -172,7 +175,8 @@ const mapDispatchToProps = (dispatch) => {
     removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
     getRate: () => dispatch(CartActions.cartGetCurrency()),
-    addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items))
+    addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
+    getCart: (accessToken) => dispatch(CartActions.cartRequest(accessToken))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)
