@@ -15,7 +15,7 @@ import { registration } from './RegistrationSagas'
 import { forgotPassword } from './ForgotPasswordSagas'
 import { getProducts } from './ProductSagas'
 import { getUserProfile, updateUserProfile } from './UserSagas'
-import { getCurrency, getCartItems } from './CartSagas'
+import { getCurrency, getItems, addItem } from './CartSagas'
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -35,6 +35,7 @@ export default function * root () {
     takeLatest(UserTypes.USER_PROFILE_REQUEST, getUserProfile, api),
     takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api),
     takeLatest(CartTypes.CART_GET_CURRENCY, getCurrency, exapi),
-    takeLatest(CartTypes.CART_GET_CART_ITEMS, getCartItems, api)
+    takeLatest(CartTypes.CART_ADD_ITEM, addItem, api),
+    takeLatest(CartTypes.CART_GET_ITEMS, getItems, api)
   ]
 }

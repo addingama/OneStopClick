@@ -51,7 +51,8 @@ class HomeScreen extends HomeDrawerBase {
     var categoriesLabel = []
     var categories = categoriesData
 
-    var { cartItems } = this.props
+    var { cartItems, accessToken } = this.props
+
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
         // handles filter, user routeName instead of selectedCategory
@@ -68,7 +69,7 @@ class HomeScreen extends HomeDrawerBase {
               cartItems={cartItems}
               key={uuid.v1()}
               data={categories[i].products}
-              onBuyPress={(items) => this.props.addToCart(items)}
+              onBuyPress={(item) => this.props.addToCart(item, accessToken)}
               onProductClick={(item) => this.openProductDetail(item)}
               {...this.props}
                 />
@@ -85,7 +86,7 @@ class HomeScreen extends HomeDrawerBase {
               cartItems={cartItems}
               key={uuid.v1()}
               data={categories[i].products}
-              onBuyPress={(items) => this.props.addToCart(items)}
+              onBuyPress={(item) => this.props.addToCart(item, accessToken)}
               onProductClick={(item) => this.openProductDetail(item)}
               {...this.props}
             />
@@ -239,14 +240,15 @@ const mapStateToProps = (state) => {
     cartError: state.cart.error,
     cartMessage: state.cart.message,
     cartItems: state.cart.items,
-    historyItems: state.cart.histories
+    historyItems: state.cart.histories,
+    accessToken: state.user.accessToken
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(ProductActions.getProductsRequest()),
-    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
+    addToCart: (item, accessToken) => dispatch(CartActions.cartAddItem(item, accessToken))
   }
 }
 

@@ -18,7 +18,7 @@ export function * getCurrency (exapi) {
   }
 }
 
-export function * getCartItems (api, {accessToken}) {
+export function * getItems (api, {accessToken}) {
   // make the call to the api
   const response = yield call(api.getCart, accessToken)
 
@@ -34,6 +34,66 @@ export function * getCartItems (api, {accessToken}) {
     if (response.data !== null) {
       console.tron.log('not null response')
       yield put(CartActions.cartGetCartItemsSuccess(response.data))
+    }
+  }
+}
+
+export function * addItem (api, {product, accessToken}) {
+  // make the call to the api
+
+  const response = yield call(api.addToCart, accessToken, product[0].id, 1)
+  const { message } = response.data
+
+  if (response.status !== 200) {
+    if (message !== '' || message != null) {
+      Alert.alert('Error', message)
+
+      // yield put(CartActions.cartAddItemSuccess(true, message))
+    }
+  } else {
+    if (response.data !== null) {
+      console.tron.log('call cartAddItemSuccess')
+      yield put(CartActions.cartAddItemSuccess(response.details))
+    }
+  }
+}
+
+export function * removeCartItems (api, {accessToken, productId}) {
+  // make the call to the api
+  const response = yield call(api.removeCartItems, accessToken, productId)
+
+  const { message } = response.data
+
+  if (response.status !== 200) {
+    if (message !== '' || message != null) {
+      Alert.alert('Error', message)
+
+      // yield put(CartActions.cartGetCartItemsFailure(true, message))
+    }
+  } else {
+    if (response.data !== null) {
+      console.tron.log('not null response')
+      // yield put(CartActions.cartGetCartItemsSuccess(response.data))
+    }
+  }
+}
+
+export function * sendPaymentId (api, {accessToken, paymentId}) {
+  // make the call to the api
+  const response = yield call(api.paymentId, accessToken, paymentId)
+
+  const { message } = response.data
+
+  if (response.status !== 200) {
+    if (message !== '' || message != null) {
+      Alert.alert('Error', message)
+
+      // yield put(CartActions.cartGetCartItemsFailure(true, message))
+    }
+  } else {
+    if (response.data !== null) {
+      console.tron.log('payment')
+      // yield put(CartActions.cartGetCartItemsSuccess(response.data))
     }
   }
 }

@@ -19,7 +19,7 @@ class CartDetailScreen extends Component {
   componentWillMount () {
     // this.props.getRate()
 
-    this.props.getCart(this.props.accessToken)
+    // this.props.getCart(this.props.accessToken)
   }
 
   payNow () {
@@ -177,7 +177,8 @@ const mapDispatchToProps = (dispatch) => {
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
     getRate: () => dispatch(CartActions.cartGetCurrency()),
     addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
-    getCart: (accessToken) => dispatch(CartActions.cartGetCartItems(accessToken))
+    getCart: (accessToken) => dispatch(CartActions.cartGetCartItems(accessToken)),
+    sendPaymentId: (paymentId) => dispatch(CartActions.cartSendPaymentId(paymentId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)
