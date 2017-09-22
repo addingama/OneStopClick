@@ -46,7 +46,7 @@ class CartDetailScreen extends Component {
           alert('Failed to convert currency.')
         } else {
           // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-          PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+          PayPal.initialize(PayPal.SANDBOX, 'AWP4eLNwBrtKnPUCXFKYYoJITd57H-bE4j7DpdxMkPCWX46-t4goWpN1EE7bFtDGG4BrfWuaafGwL4ti')
           PayPal.pay({
             price: total.toString(),
             currency: 'USD',
@@ -95,6 +95,7 @@ class CartDetailScreen extends Component {
     }
 
     // push to API here
+    console.tron.log('console ' + confirm)
 
     // clear cart
     this.resetCart()
