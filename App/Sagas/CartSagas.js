@@ -18,9 +18,8 @@ export function * getCurrency (exapi) {
   }
 }
 
-export function * request (api, {accessToken}) {
+export function * getCartItems (api, {accessToken}) {
   // make the call to the api
-  console.tron.log('Cart Sagas ' + accessToken)
   const response = yield call(api.getCart, accessToken)
 
   const { message } = response.data
@@ -29,9 +28,12 @@ export function * request (api, {accessToken}) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
 
-      yield put(CartActions.cartRequestFailure(true, message))
+      yield put(CartActions.cartGetCartItemsFailure(true, message))
     }
   } else {
-    yield put(CartActions.cartRequestSuccess(response.data))
+    if (response.data !== null) {
+      console.tron.log('not null response')
+      yield put(CartActions.cartGetCartItemsSuccess(response.data))
+    }
   }
 }

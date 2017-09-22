@@ -176,7 +176,7 @@ const mapDispatchToProps = (dispatch) => {
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
     getRate: () => dispatch(CartActions.cartGetCurrency()),
     addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
-    getCart: (accessToken) => dispatch(CartActions.cartRequest(accessToken))
+    getCart: (accessToken) => dispatch(CartActions.cartGetCartItems(accessToken))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)

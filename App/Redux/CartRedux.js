@@ -12,9 +12,9 @@ const { Types, Creators } = createActions({
   cartGetCurrency: [],
   cartGetCurrencySuccess: ['rates'],
   cartGetCurrencyFailure: ['error', 'message'],
-  cartRequest: ['accessToken'],
-  cartRequestSuccess: ['products'],
-  cartRequestFailure: ['message']
+  cartGetCartItems: ['accessToken'],
+  cartGetCartItemsSuccess: ['products'],
+  cartGetCartItemsFailure: ['message']
 })
 
 export const CartTypes = Types
@@ -63,17 +63,17 @@ export const getCurrencySuccess = (state, { rates }) => {
   return state.merge({ rates: rates })
 }
 
-export const request = (state, { accessToken }) => {
+export const getCartItems = (state, { accessToken }) => {
   return state.merge({ accessToken: accessToken })
 }
 
 // successful api lookup
-export const requestSuccess = (state, { items }) => {
+export const getCartItemsSuccess = (state, { items }) => {
   return state.merge({ fetching: false, error: false, items })
 }
 
 // Something went wrong somewhere.
-export const requestFailure = (state, { message }) =>
+export const getCartItemsFailure = (state, { message }) =>
 state.merge({ fetching: false, error: true, message })
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -83,7 +83,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_ADD_ITEM_FAILURE]: addItemFailure,
   [Types.CART_ITEM_REMOVED]: itemRemoved,
   [Types.CART_RESET]: reset,
-  [Types.CART_REQUEST]: request,
-  [Types.CART_REQUEST_SUCCESS]: requestSuccess,
-  [Types.CART_REQUEST_FAILURE]: requestFailure
+  [Types.CART_GET_CART_ITEMS]: getCartItems,
+  [Types.CART_GET_CART_ITEMS_SUCCESS]: getCartItemsSuccess,
+  [Types.CART_GET_CART_ITEMS_FAILURE]: getCartItemsFailure
 })
