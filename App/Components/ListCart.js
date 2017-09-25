@@ -27,7 +27,7 @@ class ListCart extends Component {
 
   render () {
     const { cartItems } = this.props
-    console.tron.log('total cart Items ' + cartItems.length)
+
     return (
       <FlatList style={styles.container}
         data={cartItems}

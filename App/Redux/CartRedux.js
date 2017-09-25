@@ -52,9 +52,7 @@ export const addItemFail = (state, { message }) => state.merge({ fetching: false
 export const getCurrencyFail = (state, { message }) =>
 state.merge({ error: true, message: message })
 
-export const getCurrencySuccess = (state, { rates }) => {
-  return state.merge({ rates: rates })
-}
+export const getCurrencySuccess = (state, { rates }) => state.merge({ fetching: true, rates: rates })
 
 // Something went wrong somewhere.
 export const failure = (state, { message }) =>
@@ -94,5 +92,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_REMOVE_ITEM_API]: removeItemAPI,
   [Types.CART_GET_ITEMS]: getItems,
   [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
-  [Types.CART_ADD_ITEM_FAIL]: addItemFail
+  [Types.CART_ADD_ITEM_FAIL]: addItemFail,
+  [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess
 })
