@@ -7,7 +7,6 @@ export function * getCurrency (exapi) {
   const { message, rates } = response.data
   if (response.status !== 200) {
     if (message !== '' || message != null) {
-      Alert.alert('Error', message)
       yield put(CartActions.cartGetCurrencyFailure(true, message))
     }
   } else {
@@ -24,7 +23,6 @@ export function * getItems (api, {accessToken}) {
   if (response.status !== 200) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
-
       yield put(CartActions.cartGetCartItemsFailure(true, message))
     }
   } else {
@@ -42,13 +40,12 @@ export function * addItem (api, {product, accessToken}) {
 
   if (response.status !== 200) {
     if (message !== '' || message != null) {
-      Alert.alert('Error', message)
-
-      // yield put(CartActions.cartAddItemSuccess(true, message))
+      yield put(CartActions.cartAddItemFail(true, message))
     }
   } else {
-    if (response.data !== null) {
-      yield put(CartActions.addItemSuccess())
+    if (response.details !== null) {
+      Alert.alert('Success', product.product_name + ' has been added to cart.')
+      yield put(CartActions.cartAddItemSuccess(response.details))
     }
   }
 }

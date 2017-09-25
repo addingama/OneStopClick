@@ -12,7 +12,7 @@ class ListCart extends Component {
     var found = false
     var index = 0
     for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].id === product.id) {
+      if (cartItems[i].product_id === product.id) {
         found = true
         index = i
         break
@@ -27,6 +27,7 @@ class ListCart extends Component {
 
   render () {
     const { cartItems } = this.props
+    console.tron.log('total cart Items ' + cartItems.length)
     return (
       <FlatList style={styles.container}
         data={cartItems}
@@ -39,7 +40,7 @@ class ListCart extends Component {
               <View style={styles.rowContainer}>
                 <Image
                   style={styles.image}
-                  source={{ uri: item.images[0].image_url }}
+                  source={{ uri: item.product.images[0].image_url }}
             />
                 <View style={styles.textContainer}>
                   <View>
@@ -47,7 +48,7 @@ class ListCart extends Component {
                       numberOfLines={2}
                       ellipsizeMode={'tail'}
                       style={styles.productTitle}>
-                      {item.product_name}
+                      {item.product.product_name}
                     </Text>
                   </View>
                   <View>
@@ -55,7 +56,7 @@ class ListCart extends Component {
                       numberOfLines={2}
                       ellipsizeMode={'tail'}
                       style={styles.productDesc}>
-                      {item.description}
+                      {item.product.description}
                     </Text>
                   </View>
                   <View>

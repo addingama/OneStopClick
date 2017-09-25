@@ -5,11 +5,13 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   cartAddItemRequest: ['product', 'accessToken'],
-  addItemSuccess: ['items'],
-  cartAddItemFail: ['error', 'message'],
+  cartAddItemSuccess: ['items'],
+  cartAddItemFail: null,
+  cartGetCurrencySuccess: ['rates'],
+  cartGetCurrencyFail: ['message'],
   cartItemRemoved: ['items'],
   cartReset: ['items'],
-  cartGetCurrency: [],
+  cartGetCurrencyRequest: [],
   cartGetItems: ['accessToken'],
   cartRemoveItem: ['accessToken', 'product'],
   cartSendPaymentId: ['paymentId']
@@ -38,20 +40,27 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// add cart items
-export const addItem = (state, { product, accessToken }) => {
-  state.merge({ adding: true, product: product, accessToken: accessToken })
-}
+// request the data from an api
+export const addItemRequest = (state, { accessToken, product }) =>
+state.merge({ fetching: true, accessToken, product })
 
 // successful api lookup
 export const addItemSuccess = (state, {items}) => {
-  return state.merge({ fetching: false, error: false, items: items })
+  console.tron.log('Add item success redux ' + items.length)
+  // return state.merge({ fetching: false, error: false, items: items })
 }
 
-export const addItemFail = (state, { Message }) => {
-  // state.merge({ fetching: false, error: false, items: items })
+export const addItemFail = (state, { message }) => {
+  state.merge({ fetching: false, message })
   console.tron.log('Add item fail redux ')
   // return state.merge({ fetching: false, error: false, items: items })
+}
+
+export const getCurrencyFail = (state, { message }) =>
+state.merge({ error: true, message: message })
+
+export const getCurrencySuccess = (state, { rates }) => {
+  return state.merge({ rates: rates })
 }
 
 // Something went wrong somewhere.
@@ -86,10 +95,11 @@ export const sendPaymentId = (state, { accessToken, paymentId }) => {
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.CART_ADD_ITEM_REQUEST]: addItemRequest,
   [Types.CART_ITEM_REMOVED]: itemRemoved,
   [Types.CART_RESET]: reset,
   [Types.CART_REMOVE_ITEM_API]: removeItemAPI,
   [Types.CART_GET_ITEMS]: getItems,
-  [Types.ADD_ITEM_SUCCESS]: addItemSuccess,
-  [Types.CART_ADD_ITEM_FAILURE]: addItemFail
+  [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
+  [Types.CART_ADD_ITEM_FAIL]: addItemFail
 })

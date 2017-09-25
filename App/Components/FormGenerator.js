@@ -72,40 +72,43 @@ export class Category extends Component {
 
 export class Products extends Component {
   addCartItem (product) {
-    const { cartItems, historyItems } = this.props
-    // checking duplication
-    var hasAdded = false
-    var hasBought = false
+    const { cartItems, historyItems, accessToken } = this.props
 
-    // on cart
-    for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].product_id === product.id) {
-        hasAdded = true
-        break
-      }
-    }
-
-    // on history
-    for (var i = 0; i < historyItems.length; i++) {
-      if (historyItems[i].id === product.id) {
-        hasBought = true
-        break
-      }
-    }
-
-    if (!hasAdded && !hasBought) {
-      /* var newCartItems = Object.assign([], cartItems)
-      newCartItems.push(product)
-      this.props.onBuyPress(newCartItems)
-      */
-      Alert.alert('Success', product.product_name + ' has been added to cart.')
+    if (accessToken === null || accessToken === '') {
+      Alert.alert('Error', 'Please login.')
     } else {
-      if (hasAdded) {
-        Alert.alert('Warning', 'You have already added ' + product.product_name + '.')
+      // checking duplication
+      var hasAdded = false
+      var hasBought = false
+
+      // on cart
+      for (var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].product_id === product.id) {
+          hasAdded = true
+          break
+        }
       }
 
-      if (hasBought) {
-        Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
+      // on history
+      for (var j = 0; j < historyItems.length; j++) {
+        if (historyItems[j].id === product.id) {
+          hasBought = true
+          break
+        }
+      }
+
+      if (!hasAdded && !hasBought) {
+        var newCartItems = Object.assign([], cartItems)
+        newCartItems.push(product)
+        this.props.onBuyPress(newCartItems)
+      } else {
+        if (hasAdded) {
+          Alert.alert('Warning', 'You have already added ' + product.product_name + '.')
+        }
+
+        if (hasBought) {
+          Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
+        }
       }
     }
   }

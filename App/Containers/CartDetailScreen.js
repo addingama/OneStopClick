@@ -17,9 +17,7 @@ import { Colors } from '../Themes/'
 
 class CartDetailScreen extends Component {
   componentWillMount () {
-    // this.props.getRate()
-
-    // this.props.getCart(this.props.accessToken)
+    this.props.getRate()
   }
 
   payNow () {
@@ -74,7 +72,7 @@ class CartDetailScreen extends Component {
     const { cartItems } = this.props
     var totalPayment = 0
     for (var i = 0; i < cartItems.length; i++) {
-      var price = parseFloat(cartItems[i].price)
+      var price = parseFloat(cartItems[i].product.price)
       totalPayment = totalPayment + price
     }
     return totalPayment
@@ -112,7 +110,7 @@ class CartDetailScreen extends Component {
     for (let i = 0; i < copyCartItems.length; i++) {
       var isDuplicate = false
       for (let j = 0; j < historyItems.length; j++) {
-        if (historyItems[j].id === copyCartItems[i].id) {
+        if (historyItems[j].product_id === copyCartItems[i].product_id) {
           isDuplicate = true
           break
         }
@@ -175,9 +173,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
-    getRate: () => dispatch(CartActions.cartGetCurrency()),
+    getRate: () => dispatch(CartActions.cartGetCurrencyRequest()),
     addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
-    getCart: (accessToken) => dispatch(CartActions.cartGetCartItems(accessToken)),
     sendPaymentId: (paymentId) => dispatch(CartActions.cartSendPaymentId(paymentId))
   }
 }
