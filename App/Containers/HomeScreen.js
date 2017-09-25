@@ -248,7 +248,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(ProductActions.getProductsRequest()),
-    addToCart: (item, accessToken) => dispatch(CartActions.cartAddItem(item, accessToken))
+    addToCart: (item, accessToken) => dispatch(CartActions.cartAddItemRequest(item, accessToken))
   }
 }
 

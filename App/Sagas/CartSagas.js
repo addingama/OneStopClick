@@ -3,9 +3,6 @@ import { call, put } from 'redux-saga/effects'
 import CartActions from '../Redux/CartRedux'
 
 export function * getCurrency (exapi) {
-  console.tron.log('CartSagas')
-  // make the call to the api
-  console.tron.log(exapi.baseURL)
   const response = yield call(exapi.getCurrency)
   const { message, rates } = response.data
   if (response.status !== 200) {
@@ -32,7 +29,6 @@ export function * getItems (api, {accessToken}) {
     }
   } else {
     if (response.data !== null) {
-      console.tron.log('not null response')
       yield put(CartActions.cartGetCartItemsSuccess(response.data))
     }
   }
@@ -52,8 +48,7 @@ export function * addItem (api, {product, accessToken}) {
     }
   } else {
     if (response.data !== null) {
-      console.tron.log('call cartAddItemSuccess')
-      yield put(CartActions.cartAddItemSuccess(response.details))
+      yield put(CartActions.addItemSuccess())
     }
   }
 }

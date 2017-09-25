@@ -79,7 +79,7 @@ export class Products extends Component {
 
     // on cart
     for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].id === product.id) {
+      if (cartItems[i].product_id === product.id) {
         hasAdded = true
         break
       }
@@ -94,10 +94,10 @@ export class Products extends Component {
     }
 
     if (!hasAdded && !hasBought) {
-      var newCartItems = Object.assign([], cartItems)
+      /* var newCartItems = Object.assign([], cartItems)
       newCartItems.push(product)
       this.props.onBuyPress(newCartItems)
-
+      */
       Alert.alert('Success', product.product_name + ' has been added to cart.')
     } else {
       if (hasAdded) {
