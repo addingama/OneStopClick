@@ -31,17 +31,18 @@ class ListCart extends Component {
     return (
       <FlatList style={styles.container}
         data={cartItems}
-        key={uuid.v1()}
+        key={cartItems.id}
         numColumns='1'
         renderItem={({ item }) =>
-        /* Adding touch event to activated scrolling */
+        /* Adding touch event to activated scrolling
+        <Image
+                  style={styles.image}
+                  source={{ uri: item.product.images[0].image_url }}
+            /> */
           <TouchableWithoutFeedback>
             <View>
               <View style={styles.rowContainer}>
-                <Image
-                  style={styles.image}
-                  source={{ uri: item.product.images[0].image_url }}
-            />
+
                 <View style={styles.textContainer}>
                   <View>
                     <Text
@@ -62,7 +63,7 @@ class ListCart extends Component {
                   <View>
                     <Text
                       style={styles.productPrice}>
-                    Rp. { currency(item.price) }
+                    Rp. { currency(item.product.price) }
                     </Text>
                   </View>
                 </View>

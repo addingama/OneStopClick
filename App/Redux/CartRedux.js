@@ -45,16 +45,9 @@ export const addItemRequest = (state, { accessToken, product }) =>
 state.merge({ fetching: true, accessToken, product })
 
 // successful api lookup
-export const addItemSuccess = (state, {items}) => {
-  console.tron.log('Add item success redux ' + items.length)
-  // return state.merge({ fetching: false, error: false, items: items })
-}
+export const addItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
 
-export const addItemFail = (state, { message }) => {
-  state.merge({ fetching: false, message })
-  console.tron.log('Add item fail redux ')
-  // return state.merge({ fetching: false, error: false, items: items })
-}
+export const addItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
 export const getCurrencyFail = (state, { message }) =>
 state.merge({ error: true, message: message })

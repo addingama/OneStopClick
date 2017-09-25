@@ -241,7 +241,8 @@ const mapStateToProps = (state) => {
     cartMessage: state.cart.message,
     cartItems: state.cart.items,
     historyItems: state.cart.histories,
-    accessToken: state.user.accessToken
+    accessToken: state.user.accessToken,
+    details: state.cart.details
   }
 }
 
