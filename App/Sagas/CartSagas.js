@@ -64,7 +64,6 @@ export function * removeCartItems (api, {accessToken, productId}) {
     }
   } else {
     if (response.data !== null) {
-      console.tron.log('not null response')
       // yield put(CartActions.cartGetCartItemsSuccess(response.data))
     }
   }

@@ -57,24 +57,15 @@ class HomeScreen extends HomeDrawerBase {
       for (let i = 0; i < categories.length; i++) {
         // handles filter, user routeName instead of selectedCategory
         var routeName = this.props.navigation.state.routeName
+        var willDisplay = false
         if (routeName !== 'Home' && routeName === categories[i].name) {
-          categoriesLabel.push(
-            <Category
-              key={i}
-              category={categories[i]}
-                />
-              )
-          categoriesLabel.push(
-            <Products
-              cartItems={cartItems}
-              key={uuid.v1()}
-              data={categories[i].products}
-              onBuyPress={(item) => this.props.addToCart(item, accessToken)}
-              onProductClick={(item) => this.openProductDetail(item)}
-              {...this.props}
-                />
-              )
+          willDisplay = true
         } else if (routeName === 'Home') {
+          willDisplay = true
+        }
+
+        // display it if true
+        if (willDisplay) {
           categoriesLabel.push(
             <Category
               key={i}

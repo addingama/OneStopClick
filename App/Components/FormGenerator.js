@@ -98,7 +98,7 @@ export class Products extends Component {
       }
 
       if (!hasAdded && !hasBought) {
-        var newCartItems = Object.assign([], cartItems)
+        var newCartItems = []
         newCartItems.push(product)
         this.props.onBuyPress(newCartItems)
       } else {
