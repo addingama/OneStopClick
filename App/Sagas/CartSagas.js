@@ -26,7 +26,7 @@ export function * getItems (api, {accessToken}) {
       yield put(CartActions.cartGetCartItemsFailure(true, message))
     }
   } else {
-    if (response.data !== null) {
+    if (message !== null) {
       yield put(CartActions.cartGetCartItemsSuccess(response.data))
     }
   }
@@ -40,19 +40,21 @@ export function * addItem (api, {product, accessToken}) {
 
   if (response.status !== 200) {
     if (message !== '' || message != null) {
+      Alert.alert('Error', product[0].product_name)
       yield put(CartActions.cartAddItemFail(true, message))
     }
   } else {
-    if (response.data !== null) {
+    if (message !== null) {
       Alert.alert('Success', product[0].product_name + ' has been added to cart.')
       yield put(CartActions.cartAddItemSuccess(response.data.details))
     }
   }
 }
 
-export function * removeCartItems (api, {accessToken, productId}) {
+export function * removeItem (api, { accessToken, product}) {
   // make the call to the api
-  const response = yield call(api.removeCartItems, accessToken, productId)
+  var productId = product.product_id
+  const response = yield call(api.removeFromCart, accessToken, productId)
 
   const { message } = response.data
 
@@ -60,11 +62,11 @@ export function * removeCartItems (api, {accessToken, productId}) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
 
-      // yield put(CartActions.cartGetCartItemsFailure(true, message))
+      yield put(CartActions.cartRemoveItemFail(true, message))
     }
   } else {
-    if (response.data !== null) {
-      // yield put(CartActions.cartGetCartItemsSuccess(response.data))
+    if (message !== null) {
+      yield put(CartActions.cartRemoveItemSuccess(response.data.details))
     }
   }
 }

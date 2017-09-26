@@ -5,28 +5,8 @@ import { currency } from '../Lib/numberFormatter.js'
 var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
-  deleteCartItem (product) {
-    const { cartItems } = this.props
-
-    // checking
-    var found = false
-    var index = 0
-    for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].product_id === product.id) {
-        found = true
-        index = i
-        break
-      }
-    }
-    if (found) {
-      var newCartItems = Object.assign([], cartItems)
-      newCartItems.splice(index, 1)
-      this.props.removeCartItem(newCartItems)
-    }
-  }
-
   render () {
-    const { cartItems } = this.props
+    const { cartItems, accessToken } = this.props
 
     return (
       <FlatList style={styles.container}
@@ -69,7 +49,7 @@ class ListCart extends Component {
                 </View>
                 <View style={styles.deleteContainer}>
                   <TouchableHighlight onPress={() => {
-                    this.deleteCartItem(item)
+                    this.props.removeCartItem(accessToken, item)
                   }}>
                     <Text style={styles.delete}>X</Text>
                   </TouchableHighlight>

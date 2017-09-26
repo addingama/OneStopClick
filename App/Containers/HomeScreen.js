@@ -36,7 +36,7 @@ class HomeScreen extends HomeDrawerBase {
 
   componentWillUpdate () {
         // set here to avoid update state transition issue in rendering
-    var categoryName = this.props.navigation.state.routeName == 'Home' ? 'All Categories' : this.props.navigation.state.routeName
+    var categoryName = this.props.navigation.state.routeName === 'Home' ? 'All Categories' : this.props.navigation.state.routeName
     if (categoryName !== 'All Categories') {
       this.handleSelectedCategoryChange(categoryName)
     }

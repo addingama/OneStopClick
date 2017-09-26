@@ -9,11 +9,12 @@ const { Types, Creators } = createActions({
   cartAddItemFail: null,
   cartGetCurrencySuccess: ['rates'],
   cartGetCurrencyFail: ['message'],
-  cartItemRemoved: ['items'],
   cartReset: ['items'],
   cartGetCurrencyRequest: [],
   cartGetItems: ['accessToken'],
-  cartRemoveItem: ['accessToken', 'product'],
+  cartRemoveItemRequest: ['accessToken', 'product'],
+  cartRemoveItemSuccess: ['items'],
+  cartRemoveItemFail: null,
   cartSendPaymentId: ['paymentId']
 })
 
@@ -30,7 +31,6 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   product: null,
   items: [],
-  actionType: 1,
   message: '',
   rates: [],
   histories: [],
@@ -40,13 +40,16 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// request the data from an api
-export const addItemRequest = (state, { accessToken, product }) =>
-state.merge({ fetching: true, accessToken, product })
+// ADD ITEM: request the data from an api
+export const addItemRequest = (state, { product, accessToken }) => {
+  console.tron.log('add product id ' + product.id)
+  return state.merge({ fetching: true, accessToken, productId: product.id })
+}
 
-// successful api lookup
+// ADD ITEM: successful api lookup
 export const addItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
 
+// ADD ITEM: failure api lookup
 export const addItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
 export const getCurrencyFail = (state, { message }) =>
@@ -64,6 +67,15 @@ export const toHistory = (state, { historyItems }) =>
 export const itemRemoved = (state, { items }) => {
   return state.merge({ adding: false, error: false, message: '', productId: null, items: items })
 }
+// ADD ITEM: request the data from an api
+export const removeItemRequest = (state, { accessToken, product }) =>
+state.merge({ fetching: true, accessToken, product })
+
+// ADD ITEM: successful api lookup
+export const removeItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
+
+// ADD ITEM: failure api lookup
+export const removeItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
 export const reset = (state, { items }) => {
   return state.merge({ histories: items, items: [] })
@@ -87,11 +99,13 @@ export const sendPaymentId = (state, { accessToken, paymentId }) => {
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_ADD_ITEM_REQUEST]: addItemRequest,
-  [Types.CART_ITEM_REMOVED]: itemRemoved,
+  [Types.CART_REMOVE_ITEM_REQUEST]: removeItemRequest,
   [Types.CART_RESET]: reset,
   [Types.CART_REMOVE_ITEM_API]: removeItemAPI,
   [Types.CART_GET_ITEMS]: getItems,
   [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
   [Types.CART_ADD_ITEM_FAIL]: addItemFail,
+  [Types.CART_REMOVE_ITEM_SUCCESS]: removeItemSuccess,
+  [Types.CART_REMOVE_ITEM_FAIL]: removeItemFail,
   [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess
 })

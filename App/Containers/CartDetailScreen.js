@@ -171,7 +171,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
+    removeCartItem: (accessToken, item) => dispatch(CartActions.cartRemoveItemRequest(accessToken, item)),
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
     getRate: () => dispatch(CartActions.cartGetCurrencyRequest()),
     addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
