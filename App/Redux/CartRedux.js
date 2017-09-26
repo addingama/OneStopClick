@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   cartAddItemFail: null,
   cartGetCurrencySuccess: ['rates'],
   cartGetCurrencyFail: ['message'],
-  cartReset: ['items'],
+  cartReset: [],
   cartGetCurrencyRequest: [],
   cartGetItems: ['accessToken'],
   cartRemoveItemRequest: ['accessToken', 'product'],
@@ -22,12 +22,6 @@ export const CartTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
-/* action type:
-  adding: 1
-  removing: 2
-  getAll: 3
-  currency: 4
-   */
 export const INITIAL_STATE = Immutable({
   product: null,
   items: [],
@@ -77,9 +71,8 @@ export const removeItemSuccess = (state, {items}) => state.merge({ fetching: tru
 // ADD ITEM: failure api lookup
 export const removeItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
-export const reset = (state, { items }) => {
-  return state.merge({ histories: items, items: [] })
-}
+export const reset = () => INITIAL_STATE
+// return state.merge({ histories: items, items: [] })
 
 // get cart items
 export const getItems = (state, { accessToken }) => {
