@@ -7,15 +7,17 @@ const { Types, Creators } = createActions({
   cartAddItemRequest: ['product', 'accessToken'],
   cartAddItemSuccess: ['items'],
   cartAddItemFail: null,
+  cartGetCurrencyRequest: [],
   cartGetCurrencySuccess: ['rates'],
   cartGetCurrencyFail: ['message'],
-  cartReset: [],
-  cartGetCurrencyRequest: [],
-  cartGetItems: ['accessToken'],
+  cartGetItemsRequest: ['accessToken'],
+  cartGetItemsSuccess: ['items'],
+  cartGetItemsFail: [],
   cartRemoveItemRequest: ['accessToken', 'product'],
   cartRemoveItemSuccess: ['items'],
   cartRemoveItemFail: null,
-  cartSendPaymentId: ['paymentId']
+  cartSendPaymentId: ['paymentId'],
+  cartReset: []
 })
 
 export const CartTypes = Types
@@ -51,33 +53,35 @@ state.merge({ error: true, message: message })
 
 export const getCurrencySuccess = (state, { rates }) => state.merge({ fetching: true, rates: rates })
 
-// Something went wrong somewhere.
-export const failure = (state, { message }) =>
-state.merge({ fetching: false, error: true, message })
-
 export const toHistory = (state, { historyItems }) =>
   state.merge({ historyItems: historyItems })
 
 export const itemRemoved = (state, { items }) => {
   return state.merge({ adding: false, error: false, message: '', productId: null, items: items })
 }
-// ADD ITEM: request the data from an api
+// REMOVE ITEM: request the data from an api
 export const removeItemRequest = (state, { accessToken, product }) =>
 state.merge({ fetching: true, accessToken, product })
 
-// ADD ITEM: successful api lookup
+// REMOVE ITEM: successful api lookup
 export const removeItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
 
-// ADD ITEM: failure api lookup
+// REMOVE ITEM: failure api lookup
 export const removeItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
+// RESET to initial state
 export const reset = () => INITIAL_STATE
-// return state.merge({ histories: items, items: [] })
 
-// get cart items
-export const getItems = (state, { accessToken }) => {
+// GET:  request the data from an api
+export const getItemsRequest = (state, { accessToken }) => {
   return state.merge({ accessToken: accessToken })
 }
+
+// GET:  request the data from an api
+export const getItemsSuccess = (state, { items }) => state.merge({ fetching: true, items: items })
+
+// GET:  request the data from an api
+export const getItemsFail = (state, { message }) => state.merge({ fetching: false, message })
 
 // get cart item
 export const removeItemAPI = (state, { accessToken, product }) => {
@@ -94,11 +98,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_ADD_ITEM_REQUEST]: addItemRequest,
   [Types.CART_REMOVE_ITEM_REQUEST]: removeItemRequest,
   [Types.CART_RESET]: reset,
-  [Types.CART_REMOVE_ITEM_API]: removeItemAPI,
-  [Types.CART_GET_ITEMS]: getItems,
+  [Types.CART_GET_ITEMS_REQUEST]: getItemsRequest,
   [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
   [Types.CART_ADD_ITEM_FAIL]: addItemFail,
   [Types.CART_REMOVE_ITEM_SUCCESS]: removeItemSuccess,
   [Types.CART_REMOVE_ITEM_FAIL]: removeItemFail,
-  [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess
+  [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess,
+  [Types.CART_GET_ITEMS_SUCCESS]: getItemsSuccess,
+  [Types.CART_GET_ITEMS_FAIL]: getItemsFail
 })

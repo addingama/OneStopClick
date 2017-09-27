@@ -36,7 +36,7 @@ export default function * root () {
     takeLatest(UserTypes.USER_PROFILE_UPDATE_REQUEST, updateUserProfile, api),
     takeLatest(CartTypes.CART_GET_CURRENCY_REQUEST, getCurrency, exapi),
     takeLatest(CartTypes.CART_ADD_ITEM_REQUEST, addItem, api),
-    takeLatest(CartTypes.CART_GET_ITEMS, getItems, api),
+    takeLatest(CartTypes.CART_GET_ITEMS_REQUEST, getItems, api),
     takeLatest(CartTypes.CART_REMOVE_ITEM_REQUEST, removeItem, api)
   ]
 }

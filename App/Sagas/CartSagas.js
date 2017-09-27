@@ -18,16 +18,16 @@ export function * getItems (api, {accessToken}) {
   // make the call to the api
   const response = yield call(api.getCart, accessToken)
 
-  const { message } = response.data
+  const { message, details } = response.data
 
   if (response.status !== 200) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
-      yield put(CartActions.cartGetCartItemsFailure(true, message))
+      yield put(CartActions.cartGetItemsFail(true, message))
     }
   } else {
     if (message !== null) {
-      yield put(CartActions.cartGetCartItemsSuccess(response.data))
+      yield put(CartActions.cartGetItemsSuccess(details))
     }
   }
 }
