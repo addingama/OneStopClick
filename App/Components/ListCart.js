@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableHighlight, FlatList, TouchableWithoutFeedback } from 'react-native'
 import styles from './Styles/ListCartStyle'
 import { currency } from '../Lib/numberFormatter.js'
-var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
   render () {
@@ -11,7 +10,7 @@ class ListCart extends Component {
     return (
       <FlatList style={styles.container}
         data={cartItems}
-        key={cartItems.id}
+        keyExtractor={(item, index) => item.id}
         numColumns='1'
         renderItem={({ item }) =>
         /* Adding touch event to activated scrolling

@@ -18,7 +18,7 @@ class TransactionHistoryScreen extends Component {
         </View>
         <FlatList style={styles.container}
           data={historyItems}
-          key={uuid.v1()}
+          keyExtractor={(item, index) => item.id}
           numColumns='1'
           renderItem={
               ({ item }) =>

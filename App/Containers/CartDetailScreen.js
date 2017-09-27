@@ -103,7 +103,6 @@ class CartDetailScreen extends Component {
 
     console.tron.log('PaymentId: ' + confirm.response.id + ', cart id ' + cartItems[0].chart_id)
     this.props.sendPaymentId(accessToken, confirm.response.id, cartItems[0].chart_id)
-    Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
   }
 
   resetCart () {
