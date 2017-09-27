@@ -22,20 +22,21 @@ class TransactionHistoryScreen extends Component {
           numColumns='1'
           renderItem={
               ({ item }) =>
-              /* Adding touch event to activated scrolling */
-                <TouchableWithoutFeedback>
-                  <View>
-                    <View style={styles.rowContainer}>
+              /* Adding touch event to activated scrolling
                       <Image
                         style={styles.image}
                         source={{ uri: item.images[0].image_url }} />
+              */
+                <TouchableWithoutFeedback>
+                  <View>
+                    <View style={styles.rowContainer}>
                       <View style={styles.textContainer}>
                         <View>
                           <Text
                             numberOfLines={2}
                             ellipsizeMode={'tail'}
                             style={styles.productTitle}>
-                            {item.product_name}
+                            {item.product.product_name}
                           </Text>
                         </View>
                         <View>
@@ -43,7 +44,7 @@ class TransactionHistoryScreen extends Component {
                             numberOfLines={2}
                             ellipsizeMode={'tail'}
                             style={styles.productDesc}>
-                            {item.description}
+                            {item.product.description}
                           </Text>
                         </View>
                         <View>

@@ -10,6 +10,7 @@ import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
 import { currency } from '../Lib/numberFormatter.js'
 import Toast from 'react-native-toast-native'
+import Reactotron from 'reactotron-react-native'
 
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
@@ -79,6 +80,7 @@ class CartDetailScreen extends Component {
   }
 
   transactionHistory (confirm) {
+    const { accessToken, cartItems } = this.props
     const style = {
       backgroundColor: Colors.successToast,
       width: 300,
@@ -93,11 +95,14 @@ class CartDetailScreen extends Component {
     }
 
     // push to API here
-    console.tron.log('console ' + confirm)
+    Reactotron.display({
+      name: 'Paypal response',
+      value: confirm,
+      preview: JSON.stringify(confirm).substr(0, 500)
+    })
 
-    // clear cart
-    this.resetCart()
-
+    console.tron.log('PaymentId: ' + confirm.response.id + ', cart id ' + cartItems[0].chart_id)
+    this.props.sendPaymentId(accessToken, confirm.response.id, cartItems[0].chart_id)
     Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
   }
 
@@ -175,7 +180,7 @@ const mapDispatchToProps = (dispatch) => {
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
     getRate: () => dispatch(CartActions.cartGetCurrencyRequest()),
     addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
-    sendPaymentId: (paymentId) => dispatch(CartActions.cartSendPaymentId(paymentId))
+    sendPaymentId: (accessToken, paymentId, cartId) => dispatch(CartActions.cartPaymentRequest(accessToken, paymentId, cartId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)

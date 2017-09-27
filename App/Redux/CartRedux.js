@@ -12,11 +12,13 @@ const { Types, Creators } = createActions({
   cartGetCurrencyFail: ['message'],
   cartGetItemsRequest: ['accessToken'],
   cartGetItemsSuccess: ['items'],
-  cartGetItemsFail: [],
+  cartGetItemsFail: ['message'],
   cartRemoveItemRequest: ['accessToken', 'product'],
   cartRemoveItemSuccess: ['items'],
   cartRemoveItemFail: null,
-  cartSendPaymentId: ['paymentId'],
+  cartPaymentRequest: ['accessToken', 'paymentId', 'cartId'],
+  cartPaymentSuccess: ['histories'],
+  cartPaymentFail: ['message'],
   cartReset: []
 })
 
@@ -31,7 +33,8 @@ export const INITIAL_STATE = Immutable({
   rates: [],
   histories: [],
   accessToken: null,
-  paymentId: null
+  paymentId: null,
+  cartId: null
 })
 
 /* ------------- Reducers ------------- */
@@ -77,10 +80,10 @@ export const getItemsRequest = (state, { accessToken }) => {
   return state.merge({ accessToken: accessToken })
 }
 
-// GET:  request the data from an api
+// GET:  successful api lookup
 export const getItemsSuccess = (state, { items }) => state.merge({ fetching: true, items: items })
 
-// GET:  request the data from an api
+// GET:  failure api lookup
 export const getItemsFail = (state, { message }) => state.merge({ fetching: false, message })
 
 // get cart item
@@ -88,10 +91,17 @@ export const removeItemAPI = (state, { accessToken, product }) => {
   return state.merge({ accessToken: accessToken, product: product })
 }
 
-// send payment item
-export const sendPaymentId = (state, { accessToken, paymentId }) => {
-  return state.merge({ accessToken: accessToken, paymentId: paymentId })
+// PAYMENT: send payment data to an api
+export const paymentRequest = (state, { accessToken, paymentId, cartId }) => {
+  return state.merge({ accessToken: accessToken, paymentId: paymentId, cartId: cartId })
 }
+
+// PAYMENT: successful api lookup
+export const paymentSuccess = (state, { histories }) => state.merge({ fetching: true, items: [], histories: histories })
+
+// PAYMENT: failure api lookup
+export const paymentFail = (state, { message }) => state.merge({ fetching: false, message })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -99,11 +109,14 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_REMOVE_ITEM_REQUEST]: removeItemRequest,
   [Types.CART_RESET]: reset,
   [Types.CART_GET_ITEMS_REQUEST]: getItemsRequest,
+  [Types.CART_PAYMENT_REQUEST]: paymentRequest,
   [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
   [Types.CART_ADD_ITEM_FAIL]: addItemFail,
   [Types.CART_REMOVE_ITEM_SUCCESS]: removeItemSuccess,
   [Types.CART_REMOVE_ITEM_FAIL]: removeItemFail,
   [Types.CART_GET_CURRENCY_SUCCESS]: getCurrencySuccess,
   [Types.CART_GET_ITEMS_SUCCESS]: getItemsSuccess,
-  [Types.CART_GET_ITEMS_FAIL]: getItemsFail
+  [Types.CART_GET_ITEMS_FAIL]: getItemsFail,
+  [Types.CART_PAYMENT_SUCCESS]: paymentSuccess,
+  [Types.CART_PAYMENT_FAIL]: paymentFail
 })

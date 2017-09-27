@@ -1,6 +1,8 @@
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import CartActions from '../Redux/CartRedux'
+import Toast from 'react-native-toast-native'
+import { Colors } from '../Themes/'
 
 export function * getCurrency (exapi) {
   const response = yield call(exapi.getCurrency)
@@ -51,7 +53,7 @@ export function * addItem (api, {product, accessToken}) {
   }
 }
 
-export function * removeItem (api, { accessToken, product}) {
+export function * removeItem (api, {accessToken, product}) {
   // make the call to the api
   var productId = product.product_id
   const response = yield call(api.removeFromCart, accessToken, productId)
@@ -71,9 +73,13 @@ export function * removeItem (api, { accessToken, product}) {
   }
 }
 
-export function * sendPaymentId (api, {accessToken, paymentId}) {
+export function * payment (api, {accessToken, paymentId, cartId}) {
   // make the call to the api
-  const response = yield call(api.paymentId, accessToken, paymentId)
+  // code 01 for paypal
+  // code 02 for wallet
+
+  var paymentCode = '01'
+  const response = yield call(api.sendPaymentId, accessToken, paymentId, paymentCode, cartId)
 
   const { message } = response.data
 
@@ -81,12 +87,24 @@ export function * sendPaymentId (api, {accessToken, paymentId}) {
     if (message !== '' || message != null) {
       Alert.alert('Error', message)
 
-      // yield put(CartActions.cartGetCartItemsFailure(true, message))
+      yield put(CartActions.cartPaymentFail(message))
     }
   } else {
     if (response.data !== null) {
-      console.tron.log('payment')
-      // yield put(CartActions.cartGetCartItemsSuccess(response.data))
+      const style = {
+        backgroundColor: Colors.errorToast,
+        width: 300,
+        height: Platform.OS === ('ios') ? 50 : 100,
+        color: '#ffffff',
+        fontSize: 12,
+        lineHeight: 2,
+        lines: 4,
+        borderRadius: 15,
+        fontWeight: 'bold',
+        yOffset: 40
+      }
+      Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
+      yield put(CartActions.cartPaymentSuccess(response.data.details))
     }
   }
 }

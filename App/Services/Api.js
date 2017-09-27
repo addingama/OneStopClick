@@ -77,7 +77,7 @@ const create = (baseURL = 'http://onestopclick.tk/') => {
   const removeFromCart = (accessToken, productId) => api.delete('api/chart/remove/' + productId, { }, {headers: {'Authorization': 'Bearer ' + accessToken}})
 
   // Paypall payment
-  const sendPaymentId = (accessToken, paymentId) => api.get('api/payment/add', {paymentId}, {headers: {'Authorization': 'Bearer ' + accessToken}})
+  const sendPaymentId = (accessToken, paymentId, paymentCode, cartId) => api.post('api/payment/create', {chart_id: cartId, payment_code: paymentCode, voucher_code: '', payment_id: paymentId}, {headers: {'Authorization': 'Bearer ' + accessToken}})
 
   // ------
   // STEP 3
