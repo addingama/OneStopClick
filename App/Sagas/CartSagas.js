@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects'
 import CartActions from '../Redux/CartRedux'
 import Toast from 'react-native-toast-native'
 import { Colors } from '../Themes/'
+import Reactotron from 'reactotron-react-native'
 
 export function * getCurrency (exapi) {
   const response = yield call(exapi.getCurrency)
@@ -28,7 +29,14 @@ export function * getItems (api, {accessToken}) {
       yield put(CartActions.cartGetItemsFail(true, message))
     }
   } else {
-    if (message !== null) {
+    Reactotron.display({
+      name: 'GetItems response',
+      value: response,
+      preview: JSON.stringify(response).substr(0, 500)
+    })
+    var resJSON = JSON.stringify(response.data)
+    if (resJSON !== '{}') {
+      console.tron.log('has data ' + resJSON)
       yield put(CartActions.cartGetItemsSuccess(details))
     }
   }
@@ -58,7 +66,7 @@ export function * removeItem (api, {accessToken, product}) {
   var productId = product.product_id
   const response = yield call(api.removeFromCart, accessToken, productId)
 
-  const { message } = response.data
+  const { message, details } = response.data
 
   if (response.status !== 200) {
     if (message !== '' || message != null) {
@@ -67,8 +75,17 @@ export function * removeItem (api, {accessToken, product}) {
       yield put(CartActions.cartRemoveItemFail(true, message))
     }
   } else {
-    if (message !== null) {
-      yield put(CartActions.cartRemoveItemSuccess(response.data.details))
+    Reactotron.display({
+      name: 'GetItems response',
+      value: response,
+      preview: JSON.stringify(response).substr(0, 500)
+    })
+
+    var resJSON = JSON.stringify(response.data)
+    if (resJSON !== '{}') {
+      console.tron.log('has data ' + resJSON)
+
+      yield put(CartActions.cartRemoveItemSuccess(details))
     }
   }
 }
