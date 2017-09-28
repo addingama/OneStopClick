@@ -84,6 +84,8 @@ export function * removeItem (api, {accessToken, product}) {
     var resJSON = JSON.stringify(response.data)
     if (resJSON !== '{}') {
       yield put(CartActions.cartRemoveItemSuccess(details))
+    } else {
+      yield put(CartActions.cartRemoveItemSuccess([]))
     }
   }
 }
