@@ -36,15 +36,15 @@ export function * getItems (api, {accessToken}) {
     })
     var resJSON = JSON.stringify(response.data)
     if (resJSON !== '{}') {
-      console.tron.log('has data ' + resJSON)
       yield put(CartActions.cartGetItemsSuccess(details))
     }
+    yield put(CartActions.cartGetTransactionRequest(accessToken))
   }
 }
 
 export function * addItem (api, {product, accessToken}) {
   // make the call to the api
-  console.tron.log(product[0].product_name)
+
   const response = yield call(api.addToCart, accessToken, product[0].id, 1)
   const { message } = response.data
 
@@ -83,8 +83,6 @@ export function * removeItem (api, {accessToken, product}) {
 
     var resJSON = JSON.stringify(response.data)
     if (resJSON !== '{}') {
-      console.tron.log('has data ' + resJSON)
-
       yield put(CartActions.cartRemoveItemSuccess(details))
     }
   }
@@ -108,6 +106,25 @@ export function * payment (api, {accessToken, paymentId, cartId}) {
     }
   } else {
     if (response.data !== null) {
+      yield put(CartActions.cartGetTransactionRequest(accessToken))
+    }
+  }
+}
+
+export function * getTransactionHistory (api, {accessToken}) {
+  // make the call to the api
+  const response = yield call(api.transactionHistory, accessToken)
+
+  const { message } = response.data
+
+  if (response.status !== 200) {
+    if (message !== '' || message != null) {
+      Alert.alert('Error', message)
+
+      yield put(CartActions.cartGetTransactionFail(message))
+    }
+  } else {
+    if (response.data !== null) {
       const style = {
         backgroundColor: Colors.errorToast,
         width: 300,
@@ -120,8 +137,11 @@ export function * payment (api, {accessToken, paymentId, cartId}) {
         fontWeight: 'bold',
         yOffset: 40
       }
-      Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
-      yield put(CartActions.cartPaymentSuccess(response.data.details))
+      // Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
+      var resJSON = JSON.stringify(response.data)
+      if (resJSON !== '{}') {
+        yield put(CartActions.cartGetTransactionSuccess(response.data))
+      }
     }
   }
 }

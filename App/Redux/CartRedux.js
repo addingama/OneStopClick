@@ -1,6 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
+import Reactotron from 'reactotron-react-native'
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -19,6 +21,9 @@ const { Types, Creators } = createActions({
   cartPaymentRequest: ['accessToken', 'paymentId', 'cartId'],
   cartPaymentSuccess: ['histories'],
   cartPaymentFail: ['message'],
+  cartGetTransactionRequest: ['accessToken'],
+  cartGetTransactionSuccess: ['histories'],
+  cartGetTransactionFail: ['message'],
   cartReset: []
 })
 
@@ -102,6 +107,22 @@ export const paymentSuccess = (state, { histories }) => state.merge({ fetching: 
 // PAYMENT: failure api lookup
 export const paymentFail = (state, { message }) => state.merge({ fetching: false, message })
 
+// TRANSACTION HISTORIES: get transaction data to an api
+export const getTransactionRequest = (state, { accessToken }) => state.merge({ accessToken: accessToken })
+
+// PAYMENT: successful api lookup
+export const getTransactionSuccess = (state, { histories }) => {
+  // push to API here
+  Reactotron.display({
+    name: 'transaction response',
+    value: histories,
+    preview: JSON.stringify(histories).substr(0, 500)
+  })
+  return state.merge({ fetching: true, histories: histories })
+}
+// PAYMENT: failure api lookup
+export const getTransactionFail = (state, { message }) => state.merge({ fetching: false, message })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -110,6 +131,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_RESET]: reset,
   [Types.CART_GET_ITEMS_REQUEST]: getItemsRequest,
   [Types.CART_PAYMENT_REQUEST]: paymentRequest,
+  [Types.CART_TRANSACTION_REQUEST]: getTransactionRequest,
   [Types.CART_ADD_ITEM_SUCCESS]: addItemSuccess,
   [Types.CART_ADD_ITEM_FAIL]: addItemFail,
   [Types.CART_REMOVE_ITEM_SUCCESS]: removeItemSuccess,
@@ -118,5 +140,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CART_GET_ITEMS_SUCCESS]: getItemsSuccess,
   [Types.CART_GET_ITEMS_FAIL]: getItemsFail,
   [Types.CART_PAYMENT_SUCCESS]: paymentSuccess,
-  [Types.CART_PAYMENT_FAIL]: paymentFail
+  [Types.CART_PAYMENT_FAIL]: paymentFail,
+  [Types.CART_GET_TRANSACTION_SUCCESS]: getTransactionSuccess,
+  [Types.CART_GET_TRANSACTION_FAILS]: getTransactionFail
 })
