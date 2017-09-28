@@ -7,10 +7,10 @@ import I18n from 'react-native-i18n'
 import styles from './Styles/TransactionHistoryScreenStyle'
 
 class TransactionHistoryScreen extends Component {
-  generateProducts () {
+  generateHistories () {
     const { historyItems } = this.props
     var products = []
-    if (historyItems.length > 0) {
+    if (historyItems.data.length > 0) {
       for (var i = 0; i < historyItems.data.length; i++) {
         for (var j = 0; j < historyItems.data[i].details.length; j++) {
           console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)
@@ -28,7 +28,7 @@ class TransactionHistoryScreen extends Component {
           <BackHeader title='Transaction History' {...this.props} />
         </View>
         <FlatList style={styles.container}
-          data={this.generateProducts()}
+          data={this.generateHistories()}
           keyExtractor={(item, index) => item.id}
           numColumns='1'
           renderItem={

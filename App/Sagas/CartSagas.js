@@ -108,6 +108,7 @@ export function * payment (api, {accessToken, paymentId, cartId}) {
     }
   } else {
     if (response.data !== null) {
+      yield put(CartActions.cartPaymentSuccess())
       yield put(CartActions.cartGetTransactionRequest(accessToken))
     }
   }

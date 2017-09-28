@@ -101,8 +101,8 @@ export const paymentRequest = (state, { accessToken, paymentId, cartId }) => {
   return state.merge({ accessToken: accessToken, paymentId: paymentId, cartId: cartId })
 }
 
-// PAYMENT: successful api lookup
-export const paymentSuccess = (state, { histories }) => state.merge({ fetching: true, items: [], histories: histories })
+// PAYMENT: successful api lookup then reset items
+export const paymentSuccess = (state) => state.merge({ fetching: true, items: [] })
 
 // PAYMENT: failure api lookup
 export const paymentFail = (state, { message }) => state.merge({ fetching: false, message })
@@ -111,15 +111,7 @@ export const paymentFail = (state, { message }) => state.merge({ fetching: false
 export const getTransactionRequest = (state, { accessToken }) => state.merge({ accessToken: accessToken })
 
 // PAYMENT: successful api lookup
-export const getTransactionSuccess = (state, { histories }) => {
-  // push to API here
-  Reactotron.display({
-    name: 'transaction response',
-    value: histories,
-    preview: JSON.stringify(histories).substr(0, 500)
-  })
-  return state.merge({ fetching: true, histories: histories })
-}
+export const getTransactionSuccess = (state, { histories }) => state.merge({ fetching: true, histories: histories })
 // PAYMENT: failure api lookup
 export const getTransactionFail = (state, { message }) => state.merge({ fetching: false, message })
 
