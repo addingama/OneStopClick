@@ -108,7 +108,7 @@ export class Products extends Component {
       if (!hasAdded && !hasBought) {
         var newCartItems = []
         newCartItems.push(product)
-        this.props.onBuyPress(newCartItems)
+        this.props.onBuyPress(product)
       } else {
         if (hasAdded) {
           Alert.alert('Warning', 'You have already added ' + product.product_name + '.')

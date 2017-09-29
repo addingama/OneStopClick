@@ -8,6 +8,7 @@ import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
 import CartActions from '../Redux/CartRedux'
+import Reactotron from 'reactotron-react-native'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
@@ -94,20 +95,33 @@ class ProductDetailScreen extends Component {
   }
 
   addCartItem (product) {
-    const { cartItems, historyItems } = this.props
-
+    const { cartItems, historyItems, accessToken } = this.props
+    var histories = []
+    if (historyItems.data.length > 0) {
+      for (var i = 0; i < historyItems.data.length; i++) {
+        for (var j = 0; j < historyItems.data[i].details.length; j++) {
+          console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)
+          histories.push(historyItems.data[i].details[j].product)
+        }
+      }
+    }
     // checking duplication
     var hasAdded = false
     var hasBought = false
+    Reactotron.display({
+      name: 'Cart items',
+      value: cartItems,
+      preview: JSON.stringify(cartItems).substr(0, 500)
+    })
     for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].id === product.id) {
+      if (cartItems[i].product_id === product.id) {
         hasAdded = true
         break
       }
     }
 
-    for (var j = 0; j < historyItems.length; j++) {
-      if (historyItems[j].id === product.id) {
+    for (var j = 0; j < histories.length; j++) {
+      if (histories[j].id === product.id) {
         hasBought = true
         break
       }
@@ -116,9 +130,7 @@ class ProductDetailScreen extends Component {
     if (!hasAdded) {
       var newCartItems = Object.assign([], cartItems)
       newCartItems.push(product)
-      this.props.addToCart(newCartItems)
-
-      Alert.alert('Success', product.product_name + ' has been added to cart.')
+      this.props.addToCart(product, accessToken)
       return true
     } else {
       if (hasAdded) {
@@ -193,13 +205,14 @@ class ProductDetailScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cart.items,
-    historyItems: state.cart.histories
+    historyItems: state.cart.histories,
+    accessToken: state.user.accessToken
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
+    addToCart: (item, accessToken) => dispatch(CartActions.cartAddItemRequest(item, accessToken))
   }
 }
 

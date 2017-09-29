@@ -44,18 +44,18 @@ export function * getItems (api, {accessToken}) {
 
 export function * addItem (api, {product, accessToken}) {
   // make the call to the api
-
-  const response = yield call(api.addToCart, accessToken, product[0].id, 1)
+  console.tron.log(product.id)
+  const response = yield call(api.addToCart, accessToken, product.id, 1)
   const { message } = response.data
 
   if (response.status !== 200) {
     if (message !== '' || message != null) {
-      Alert.alert('Error', product[0].product_name)
+      Alert.alert('Error', product.product_name)
       yield put(CartActions.cartAddItemFail(true, message))
     }
   } else {
     if (message !== null) {
-      Alert.alert('Success', product[0].product_name + ' has been added to cart.')
+      Alert.alert('Success', product.product_name + ' has been added to cart.')
       yield put(CartActions.cartAddItemSuccess(response.data.details))
     }
   }
