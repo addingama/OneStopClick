@@ -100,7 +100,7 @@ class EditProfileScreen extends Component {
                 />
                 <CustomInputField
                   field={email}
-                  editable={!fetching}
+                  editable={false}
                   state={this.state.fields}
                   updateState={this.updateState}
                 />
