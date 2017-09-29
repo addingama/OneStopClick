@@ -36,7 +36,7 @@ class HomeScreen extends HomeDrawerBase {
 
   componentWillUpdate () {
         // set here to avoid update state transition issue in rendering
-    var categoryName = this.props.navigation.state.routeName == 'Home' ? 'All Categories' : this.props.navigation.state.routeName
+    var categoryName = this.props.navigation.state.routeName === 'Home' ? 'All Categories' : this.props.navigation.state.routeName
     if (categoryName !== 'All Categories') {
       this.handleSelectedCategoryChange(categoryName)
     }
@@ -51,29 +51,21 @@ class HomeScreen extends HomeDrawerBase {
     var categoriesLabel = []
     var categories = categoriesData
 
-    var { cartItems } = this.props
+    var { cartItems, accessToken } = this.props
+
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
         // handles filter, user routeName instead of selectedCategory
         var routeName = this.props.navigation.state.routeName
+        var willDisplay = false
         if (routeName !== 'Home' && routeName === categories[i].name) {
-          categoriesLabel.push(
-            <Category
-              key={i}
-              category={categories[i]}
-                />
-              )
-          categoriesLabel.push(
-            <Products
-              cartItems={cartItems}
-              key={uuid.v1()}
-              data={categories[i].products}
-              onBuyPress={(items) => this.props.addToCart(items)}
-              onProductClick={(item) => this.openProductDetail(item)}
-              {...this.props}
-                />
-              )
+          willDisplay = true
         } else if (routeName === 'Home') {
+          willDisplay = true
+        }
+
+        // display it if true
+        if (willDisplay) {
           categoriesLabel.push(
             <Category
               key={i}
@@ -85,7 +77,7 @@ class HomeScreen extends HomeDrawerBase {
               cartItems={cartItems}
               key={uuid.v1()}
               data={categories[i].products}
-              onBuyPress={(items) => this.props.addToCart(items)}
+              onBuyPress={(item) => this.props.addToCart(item, accessToken)}
               onProductClick={(item) => this.openProductDetail(item)}
               {...this.props}
             />
@@ -239,14 +231,16 @@ const mapStateToProps = (state) => {
     cartError: state.cart.error,
     cartMessage: state.cart.message,
     cartItems: state.cart.items,
-    historyItems: state.cart.histories
+    historyItems: state.cart.histories,
+    accessToken: state.user.accessToken,
+    details: state.cart.details
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(ProductActions.getProductsRequest()),
-    addToCart: (items) => dispatch(CartActions.cartItemAdded(items))
+    addToCart: (item, accessToken) => dispatch(CartActions.cartAddItemRequest(item, accessToken))
   }
 }
 

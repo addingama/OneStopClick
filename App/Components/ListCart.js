@@ -2,52 +2,33 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableHighlight, FlatList, TouchableWithoutFeedback } from 'react-native'
 import styles from './Styles/ListCartStyle'
 import { currency } from '../Lib/numberFormatter.js'
-var uuid = require('react-native-uuid')
 
 class ListCart extends Component {
-  deleteCartItem (product) {
-    const { cartItems } = this.props
-
-    // checking
-    var found = false
-    var index = 0
-    for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].id === product.id) {
-        found = true
-        index = i
-        break
-      }
-    }
-    if (found) {
-      var newCartItems = Object.assign([], cartItems)
-      newCartItems.splice(index, 1)
-      this.props.removeCartItem(newCartItems)
-    }
-  }
-
   render () {
-    const { cartItems } = this.props
+    const { cartItems, accessToken } = this.props
+
     return (
       <FlatList style={styles.container}
         data={cartItems}
-        key={uuid.v1()}
+        keyExtractor={(item, index) => item.id}
         numColumns='1'
         renderItem={({ item }) =>
-        /* Adding touch event to activated scrolling */
+        /* Adding touch event to activated scrolling
+        <Image
+                  style={styles.image}
+                  source={{ uri: item.product.images[0].image_url }}
+            /> */
           <TouchableWithoutFeedback>
             <View>
               <View style={styles.rowContainer}>
-                <Image
-                  style={styles.image}
-                  source={{ uri: item.images[0].image_url }}
-            />
+
                 <View style={styles.textContainer}>
                   <View>
                     <Text
                       numberOfLines={2}
                       ellipsizeMode={'tail'}
                       style={styles.productTitle}>
-                      {item.product_name}
+                      {item.product.product_name}
                     </Text>
                   </View>
                   <View>
@@ -55,19 +36,19 @@ class ListCart extends Component {
                       numberOfLines={2}
                       ellipsizeMode={'tail'}
                       style={styles.productDesc}>
-                      {item.description}
+                      {item.product.description}
                     </Text>
                   </View>
                   <View>
                     <Text
                       style={styles.productPrice}>
-                    Rp. { currency(item.price) }
+                    Rp. { currency(item.product.price) }
                     </Text>
                   </View>
                 </View>
                 <View style={styles.deleteContainer}>
                   <TouchableHighlight onPress={() => {
-                    this.deleteCartItem(item)
+                    this.props.removeCartItem(accessToken, item)
                   }}>
                     <Text style={styles.delete}>X</Text>
                   </TouchableHighlight>

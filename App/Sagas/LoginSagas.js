@@ -2,6 +2,7 @@ import { Alert } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 import UserActions from '../Redux/UserRedux'
+import CartActions from '../Redux/CartRedux'
 import StorageService from '../Services/StorageService'
 
 export function * login (api, {username, password}) {
@@ -17,6 +18,7 @@ export function * login (api, {username, password}) {
     StorageService.saveSession(access_token, refresh_token)
     yield put(LoginActions.loginSuccess(access_token, refresh_token))
     yield put(UserActions.userProfileRequest(access_token))
+    yield put(CartActions.cartGetItemsRequest(access_token))
   }
 }
 

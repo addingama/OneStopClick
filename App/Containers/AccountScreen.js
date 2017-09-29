@@ -9,6 +9,7 @@ import AccountDrawerBase from './Bases/AccountDrawerBase'
 import DrawerHeader from '../Components/DrawerHeader'
 import UserActions from '../Redux/UserRedux'
 import LoginActions from '../Redux/LoginRedux'
+import CartActions from '../Redux/CartRedux'
 
 // Styles
 import styles from './Styles/AccountScreenStyle'
@@ -79,9 +80,10 @@ class AccountScreen extends AccountDrawerBase {
       action: NavigationActions.navigate({ routeName: 'Home' })
     })
     StorageService.removeSession()
-    // dispatch reset login and user state
+    // dispatch reset login, user and cart state
     this.props.resetLogin()
     this.props.resetUser()
+    this.props.resetCart()
     this.props.navigation.dispatch(resetAction)
   }
 
@@ -132,7 +134,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attempGetProfile: (accessToken) => dispatch(UserActions.userProfileRequest(accessToken)),
     resetLogin: () => dispatch(LoginActions.logout()),
-    resetUser: () => dispatch(UserActions.userReset())
+    resetUser: () => dispatch(UserActions.userReset()),
+    resetCart: () => dispatch(CartActions.cartReset())
   }
 }
 

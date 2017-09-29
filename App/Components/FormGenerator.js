@@ -73,40 +73,52 @@ export class Category extends Component {
 
 export class Products extends Component {
   addCartItem (product) {
-    const { cartItems, historyItems } = this.props
-    // checking duplication
-    var hasAdded = false
-    var hasBought = false
-
-    // on cart
-    for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].id === product.id) {
-        hasAdded = true
-        break
+    const { cartItems, historyItems, accessToken } = this.props
+    var histories = []
+    if (historyItems.data.length > 0) {
+      for (var i = 0; i < historyItems.data.length; i++) {
+        for (var j = 0; j < historyItems.data[i].details.length; j++) {
+          console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)
+          histories.push(historyItems.data[i].details[j].product)
+        }
       }
     }
-
-    // on history
-    for (var i = 0; i < historyItems.length; i++) {
-      if (historyItems[i].id === product.id) {
-        hasBought = true
-        break
-      }
-    }
-
-    if (!hasAdded && !hasBought) {
-      var newCartItems = Object.assign([], cartItems)
-      newCartItems.push(product)
-      this.props.onBuyPress(newCartItems)
-
-      Alert.alert('Success', product.product_name + ' has been added to cart.')
+    if (accessToken === null || accessToken === '') {
+      Alert.alert('Error', 'Please login.')
     } else {
-      if (hasAdded) {
-        Alert.alert('Warning', 'You have already added ' + product.product_name + '.')
+      // checking duplication
+      var hasAdded = false
+      var hasBought = false
+
+      // on cart
+      for (var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].product_id === product.id) {
+          hasAdded = true
+          break
+        }
       }
 
-      if (hasBought) {
-        Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
+      // on history
+      for (var j = 0; j < histories.length; j++) {
+        if (histories[j].id === product.id) {
+          hasBought = true
+          break
+        }
+      }
+
+
+      if (!hasAdded && !hasBought) {
+        var newCartItems = []
+        newCartItems.push(product)
+        this.props.onBuyPress(product)
+      } else {
+        if (hasAdded) {
+          Alert.alert('Warning', 'You have already added ' + product.product_name + '.')
+        }
+
+        if (hasBought) {
+          Alert.alert('Warning', 'You have already bought ' + product.product_name + '. Please download from history transaction.')
+        }
       }
     }
   }

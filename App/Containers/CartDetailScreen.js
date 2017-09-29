@@ -10,6 +10,7 @@ import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
 import { currency } from '../Lib/numberFormatter.js'
 import Toast from 'react-native-toast-native'
+import Reactotron from 'reactotron-react-native'
 
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
@@ -44,7 +45,7 @@ class CartDetailScreen extends Component {
           alert('Failed to convert currency.')
         } else {
           // PayPal.initialize(PayPal.PRODUCTION, 'AYshIbtN2_ZHCg3wz1jV6a9Bc62bfqWK3h1YbCDAsGxbnYIwjL5hJIAlWdEMrRcq9rJ5pzw6slOge9PH')
-          PayPal.initialize(PayPal.SANDBOX, 'AWJl6EO2yfm9T9t0OPWRM0WF4V3xJe4zg8P6dLXJs1dpR2jl96WD08gRjo3buNH5QmHzC04ffJPkZycL')
+          PayPal.initialize(PayPal.SANDBOX, 'AWP4eLNwBrtKnPUCXFKYYoJITd57H-bE4j7DpdxMkPCWX46-t4goWpN1EE7bFtDGG4BrfWuaafGwL4ti')
           PayPal.pay({
             price: total.toString(),
             currency: 'USD',
@@ -72,13 +73,14 @@ class CartDetailScreen extends Component {
     const { cartItems } = this.props
     var totalPayment = 0
     for (var i = 0; i < cartItems.length; i++) {
-      var price = parseFloat(cartItems[i].price)
+      var price = parseFloat(cartItems[i].product.price)
       totalPayment = totalPayment + price
     }
     return totalPayment
   }
 
   transactionHistory (confirm) {
+    const { accessToken, cartItems } = this.props
     const style = {
       backgroundColor: Colors.successToast,
       width: 300,
@@ -93,11 +95,14 @@ class CartDetailScreen extends Component {
     }
 
     // push to API here
+    Reactotron.display({
+      name: 'Paypal response',
+      value: confirm,
+      preview: JSON.stringify(confirm).substr(0, 500)
+    })
 
-    // clear cart
-    this.resetCart()
-
-    Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
+    console.tron.log('PaymentId: ' + confirm.response.id + ', cart id ' + cartItems[0].chart_id)
+    this.props.sendPaymentId(accessToken, confirm.response.id, cartItems[0].chart_id)
   }
 
   resetCart () {
@@ -109,7 +114,7 @@ class CartDetailScreen extends Component {
     for (let i = 0; i < copyCartItems.length; i++) {
       var isDuplicate = false
       for (let j = 0; j < historyItems.length; j++) {
-        if (historyItems[j].id === copyCartItems[i].id) {
+        if (historyItems[j].product_id === copyCartItems[i].product_id) {
           isDuplicate = true
           break
         }
@@ -164,15 +169,17 @@ const mapStateToProps = (state) => {
     rates: state.cart.rates,
     error: state.cart.error,
     historyItems: state.cart.histories,
-    user: state.user.user
+    user: state.user.user,
+    accessToken: state.user.accessToken
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeCartItem: (item) => dispatch(CartActions.cartItemRemoved(item)),
+    removeCartItem: (accessToken, item) => dispatch(CartActions.cartRemoveItemRequest(accessToken, item)),
     resetCart: (items) => dispatch(CartActions.cartReset(items)),
-    getRate: () => dispatch(CartActions.cartGetCurrency()),
-    addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items))
+    getRate: () => dispatch(CartActions.cartGetCurrencyRequest()),
+    addToHistory: (items) => dispatch(TransactionHistoryActions.addToHistory(items)),
+    sendPaymentId: (accessToken, paymentId, cartId) => dispatch(CartActions.cartPaymentRequest(accessToken, paymentId, cartId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartDetailScreen)
