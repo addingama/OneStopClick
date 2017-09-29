@@ -3,14 +3,17 @@ import { View, Text, FlatList, Image, TouchableWithoutFeedback } from 'react-nat
 import { connect } from 'react-redux'
 import BackHeader from '../Components/BackHeader'
 import I18n from 'react-native-i18n'
+import Reactotron from 'reactotron-react-native'
 // Styles
 import styles from './Styles/TransactionHistoryScreenStyle'
 
 class TransactionHistoryScreen extends Component {
   generateHistories () {
     const { historyItems } = this.props
+
+    var histories = JSON.stringify(historyItems)
     var products = []
-    if (historyItems.data.length > 0) {
+    if (histories !== '[]' && historyItems.data.length > 0) {
       for (var i = 0; i < historyItems.data.length; i++) {
         for (var j = 0; j < historyItems.data[i].details.length; j++) {
           console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)

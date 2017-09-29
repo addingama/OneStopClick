@@ -74,8 +74,11 @@ export class Category extends Component {
 export class Products extends Component {
   addCartItem (product) {
     const { cartItems, historyItems, accessToken } = this.props
+
     var histories = []
-    if (historyItems.data.length > 0) {
+
+    var historiesStr = JSON.stringify(historyItems)
+    if (historiesStr !== '[]' && historyItems.data.length > 0) {
       for (var i = 0; i < historyItems.data.length; i++) {
         for (var j = 0; j < historyItems.data[i].details.length; j++) {
           console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)
@@ -105,7 +108,6 @@ export class Products extends Component {
           break
         }
       }
-
 
       if (!hasAdded && !hasBought) {
         var newCartItems = []
