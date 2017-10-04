@@ -50,8 +50,8 @@ class HomeScreen extends HomeDrawerBase {
   generateListProducts (categoriesData) {
     var categoriesLabel = []
     var categories = categoriesData
-
     var { cartItems, accessToken } = this.props
+    const { selectedCategory } = this.state
 
     if (categories) {
       for (let i = 0; i < categories.length; i++) {
@@ -60,7 +60,7 @@ class HomeScreen extends HomeDrawerBase {
         var willDisplay = false
         if (routeName !== 'Home' && routeName === categories[i].name) {
           willDisplay = true
-        } else if (routeName === 'Home') {
+        } else if (routeName === 'Home' && (selectedCategory === categories[i].name || selectedCategory === 'All Categories')) {
           willDisplay = true
         }
 
