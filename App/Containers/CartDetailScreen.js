@@ -10,7 +10,6 @@ import PayPal from 'react-native-paypal-wrapper'
 import I18n from 'react-native-i18n'
 import { currency } from '../Lib/numberFormatter.js'
 import Toast from 'react-native-toast-native'
-import Reactotron from 'reactotron-react-native'
 
 // Styles
 import styles from './Styles/CartDetailScreenStyle'
@@ -93,13 +92,6 @@ class CartDetailScreen extends Component {
       fontWeight: 'bold',
       yOffset: 40
     }
-
-    // push to API here
-    Reactotron.display({
-      name: 'Paypal response',
-      value: confirm,
-      preview: JSON.stringify(confirm).substr(0, 500)
-    })
 
     console.tron.log('PaymentId: ' + confirm.response.id + ', cart id ' + cartItems[0].chart_id)
     this.props.sendPaymentId(accessToken, confirm.response.id, cartItems[0].chart_id)

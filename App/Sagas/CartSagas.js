@@ -1,9 +1,6 @@
-import { Alert, Platform } from 'react-native'
+import { Alert } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import CartActions from '../Redux/CartRedux'
-import Toast from 'react-native-toast-native'
-import { Colors } from '../Themes/'
-import Reactotron from 'reactotron-react-native'
 
 export function * getCurrency (exapi) {
   const response = yield call(exapi.getCurrency)
@@ -29,11 +26,6 @@ export function * getItems (api, {accessToken}) {
       yield put(CartActions.cartGetItemsFail(true, message))
     }
   } else {
-    Reactotron.display({
-      name: 'GetItems response',
-      value: response,
-      preview: JSON.stringify(response).substr(0, 500)
-    })
     var resJSON = JSON.stringify(response.data)
     if (resJSON !== '{}') {
       yield put(CartActions.cartGetItemsSuccess(details))
@@ -44,7 +36,6 @@ export function * getItems (api, {accessToken}) {
 
 export function * addItem (api, {product, accessToken}) {
   // make the call to the api
-  console.tron.log(product.id)
   const response = yield call(api.addToCart, accessToken, product.id, 1)
   const { message } = response.data
 
@@ -75,12 +66,6 @@ export function * removeItem (api, {accessToken, product}) {
       yield put(CartActions.cartRemoveItemFail(true, message))
     }
   } else {
-    Reactotron.display({
-      name: 'GetItems response',
-      value: response,
-      preview: JSON.stringify(response).substr(0, 500)
-    })
-
     var resJSON = JSON.stringify(response.data)
     if (resJSON !== '{}') {
       yield put(CartActions.cartRemoveItemSuccess(details))
@@ -128,19 +113,6 @@ export function * getTransactionHistory (api, {accessToken}) {
     }
   } else {
     if (response.data !== null) {
-      const style = {
-        backgroundColor: Colors.errorToast,
-        width: 300,
-        height: Platform.OS === ('ios') ? 50 : 100,
-        color: '#ffffff',
-        fontSize: 12,
-        lineHeight: 2,
-        lines: 4,
-        borderRadius: 15,
-        fontWeight: 'bold',
-        yOffset: 40
-      }
-      // Toast.show('Payment completed. Download link available in Transaction History.', Toast.SHORT, Toast.TOP, style)
       var resJSON = JSON.stringify(response.data)
       if (resJSON !== '{}') {
         yield put(CartActions.cartGetTransactionSuccess(response.data))

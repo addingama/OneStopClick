@@ -8,7 +8,6 @@ import { currency } from '../Lib/numberFormatter.js'
 import Carousel from 'react-native-looped-carousel'
 import ImageViewer from 'ImageViewer'
 import CartActions from '../Redux/CartRedux'
-import Reactotron from 'reactotron-react-native'
 
 // Styles
 import styles from './Styles/ProductDetailScreenStyle'
@@ -109,11 +108,6 @@ class ProductDetailScreen extends Component {
     // checking duplication
     var hasAdded = false
     var hasBought = false
-    Reactotron.display({
-      name: 'Cart items',
-      value: cartItems,
-      preview: JSON.stringify(cartItems).substr(0, 500)
-    })
     for (var i = 0; i < cartItems.length; i++) {
       if (cartItems[i].product_id === product.id) {
         hasAdded = true

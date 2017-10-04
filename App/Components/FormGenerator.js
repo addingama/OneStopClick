@@ -76,7 +76,6 @@ export class Products extends Component {
     const { cartItems, historyItems, accessToken } = this.props
 
     var histories = []
-
     var historiesStr = JSON.stringify(historyItems)
     if (historiesStr !== '[]' && historyItems.data.length > 0) {
       for (var i = 0; i < historyItems.data.length; i++) {

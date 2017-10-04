@@ -1,8 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
-import Reactotron from 'reactotron-react-native'
-
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -45,10 +43,7 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // ADD ITEM: request the data from an api
-export const addItemRequest = (state, { product, accessToken }) => {
-  console.tron.log('add product id ' + product.id)
-  return state.merge({ fetching: true, accessToken, productId: product.id })
-}
+export const addItemRequest = (state, { product, accessToken }) => state.merge({ fetching: true, accessToken, productId: product.id })
 
 // ADD ITEM: successful api lookup
 export const addItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })

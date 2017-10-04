@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, TouchableWithoutFeedback } from 'react-nat
 import { connect } from 'react-redux'
 import BackHeader from '../Components/BackHeader'
 import I18n from 'react-native-i18n'
-import Reactotron from 'reactotron-react-native'
+
 // Styles
 import styles from './Styles/TransactionHistoryScreenStyle'
 
