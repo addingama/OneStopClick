@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, Text, Alert } from 'react-native'
+import { ScrollView, View, Text, Alert, NetInfo } from 'react-native'
 import { connect } from 'react-redux'
 import {cloneDeep} from 'lodash'
 import I18n from 'react-native-i18n'
@@ -64,6 +64,12 @@ class EditProfileScreen extends Component {
         isValid = false
       }
     }
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if (!isConnected) {
+        isValid = false
+        Alert.alert('Error', 'No internet connection')
+      }
+    })
     return isValid
   }
 
