@@ -95,11 +95,11 @@ class ForgotPasswordScreen extends AccountDrawerBase {
                   title={I18n.t('sendPasswordResetLink')}
                 />
 
-                <View style={styles.rememberPassword}>
-                  <TouchableOpacity onPress={() => this.goToLoginScreen()}>
+                <TouchableOpacity onPress={() => this.goToLoginScreen()}>
+                  <View style={styles.rememberPassword}>
                     <Text>{I18n.t('rememberYourPassword?')}</Text>
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
               </View>
               <ProgressIndicator show={processing} />
             </View>

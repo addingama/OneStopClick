@@ -221,11 +221,11 @@ class LoginScreen extends AccountDrawerBase {
                   title={I18n.t('signIn')}
                 />
 
-                <View style={styles.forgotPassword}>
-                  <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
+                <TouchableOpacity onPress={() => this.goToForgotPasswordScreen()}>
+                  <View style={styles.forgotPassword}>
                     <Text>{I18n.t('forgotYourPassword?')}</Text>
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
 
                 <View style={styles.doNotHaveAccount}>
                   <Text>{I18n.t('doNotHaveAnAccount?')}</Text>
