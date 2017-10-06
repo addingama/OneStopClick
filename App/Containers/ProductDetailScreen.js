@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedback, Alert, BackHandler } from 'react-native'
 import { Text, Rating, Button, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -27,6 +27,19 @@ class ProductDetailScreen extends Component {
   _onLayoutDidChange = (e) => {
     const layout = e.nativeEvent.layout
     this.setState({ size: { width: layout.width, height: 250 } })
+  }
+
+  componentWillMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  backPressed = () => {
+    this.props.navigation.goBack()
+    return true
   }
 
   generateImageSlider (product) {

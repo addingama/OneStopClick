@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Image, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, FlatList, BackHandler, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 import BackHeader from '../Components/BackHeader'
 import I18n from 'react-native-i18n'
@@ -8,6 +8,19 @@ import I18n from 'react-native-i18n'
 import styles from './Styles/TransactionHistoryScreenStyle'
 
 class TransactionHistoryScreen extends Component {
+  componentWillMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  backPressed = () => {
+    this.props.navigation.goBack()
+    return true
+  }
+
   generateHistories () {
     const { historyItems } = this.props
 

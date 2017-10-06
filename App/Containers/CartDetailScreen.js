@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableWithoutFeedback, Platform } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, Platform, BackHandler } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
@@ -19,6 +19,16 @@ import { Colors } from '../Themes/'
 class CartDetailScreen extends Component {
   componentWillMount () {
     this.props.getRate()
+    BackHandler.addEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  backPressed = () => {
+    this.props.navigation.goBack()
+    return true
   }
 
   payNow () {
