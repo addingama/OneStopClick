@@ -153,7 +153,8 @@ class LoginScreen extends AccountDrawerBase {
       }
     },
       function (error) {
-        if (error.indexOf('INTERNET_DISCONNECTED') > -1) {
+        var errorStr = error.toString()
+        if (errorStr.includes('INTERNET_DISCONNECTED')) {
           alert('Login fail with error: no internet connection')
         } else {
           alert('Login fail with error: ' + error)
