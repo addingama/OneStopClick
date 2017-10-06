@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity, BackHandler } from 'react-native'
 import I18n from 'react-native-i18n'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -37,6 +37,19 @@ class ForgotPasswordScreen extends AccountDrawerBase {
 
   updateState (newFieldState) {
     this.setState({fields: newFieldState})
+  }
+
+  componentWillMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  backPressed = () => {
+    this.props.navigation.goBack()
+    return true
   }
 
   validateFields () {

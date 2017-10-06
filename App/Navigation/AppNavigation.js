@@ -27,6 +27,21 @@ const AccountStack = StackNavigator({
   }
 })
 
+const ProductStack = StackNavigator({
+  Home: { screen: HomeScreen },
+  ProductDetailScreen: { screen: ProductDetailScreen },
+  CartDetailScreen: { screen: CartDetailScreen },
+  TransactionHistoryScreen: { screen: TransactionHistoryScreen }
+
+}, {
+  stateName: 'ProductStack',
+  headerMode: 'none',
+  initialRouteName: 'Home',
+  navigationOptions: {
+    headerStyle: styles.header
+  }
+})
+
 const ParentDrawerLabel = ({ label }) => (
   <View style={styles.parentViewDrawerLabel}>
     <View>
@@ -42,21 +57,6 @@ const ChildDrawerLabel = ({ label }) => (
     </View>
   </View>
 )
-
-const ProductStack = StackNavigator({
-  Home: { screen: HomeScreen },
-  ProductDetailScreen: { screen: ProductDetailScreen },
-  CartDetailScreen: { screen: CartDetailScreen },
-  TransactionHistoryScreen: { screen: TransactionHistoryScreen }
-
-}, {
-  stateName: 'ProductStack',
-  headerMode: 'none',
-  initialRouteName: 'Home',
-  navigationOptions: {
-    headerStyle: styles.header
-  }
-})
 
 const PrimaryNav = DrawerNavigator(
   {

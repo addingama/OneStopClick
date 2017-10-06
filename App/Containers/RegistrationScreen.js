@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, View, BackHandler } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import {cloneDeep} from 'lodash'
@@ -33,7 +33,18 @@ class RegistrationScreen extends AccountDrawerBase {
     this.updateState = this.updateState.bind(this)
     this.handlePressRegister = this.handlePressRegister.bind(this)
   }
+  componentWillMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.backPressed)
+  }
 
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
+  }
+
+  backPressed = () => {
+    this.props.navigation.goBack()
+    return true
+  }
   updateState (newFieldState) {
     this.setState({ fields: newFieldState })
   }
