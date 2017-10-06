@@ -4,6 +4,7 @@ import { Button, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import ListCart from '../Components/ListCart.js'
 import BackHeader from '../Components/BackHeader'
+import ProgressIndicator from '../Components/ProgressIndicator'
 import CartActions from '../Redux/CartRedux'
 import TransactionHistoryActions from '../Redux/TransactionHistoryRedux'
 import PayPal from 'react-native-paypal-wrapper'
@@ -80,19 +81,6 @@ class CartDetailScreen extends Component {
 
   transactionHistory (confirm) {
     const { accessToken, cartItems } = this.props
-    const style = {
-      backgroundColor: Colors.successToast,
-      width: 300,
-      height: Platform.OS === ('ios') ? 50 : 100,
-      color: '#ffffff',
-      fontSize: 12,
-      lineHeight: 2,
-      lines: 4,
-      borderRadius: 15,
-      fontWeight: 'bold',
-      yOffset: 40
-    }
-
     console.tron.log('PaymentId: ' + confirm.response.id + ', cart id ' + cartItems[0].chart_id)
     this.props.sendPaymentId(accessToken, confirm.response.id, cartItems[0].chart_id)
   }
@@ -120,7 +108,25 @@ class CartDetailScreen extends Component {
   }
 
   render () {
-    const { navigation } = this.props
+    const { navigation, showMessage, message, fetching } = this.props
+    const style = {
+      backgroundColor: Colors.successToast,
+      width: 300,
+      height: Platform.OS === ('ios') ? 50 : 100,
+      color: '#ffffff',
+      fontSize: 12,
+      lineHeight: 2,
+      lines: 4,
+      borderRadius: 15,
+      fontWeight: 'bold',
+      yOffset: 40
+    }
+
+    console.tron.log('show message: ' + showMessage)
+    if (showMessage) {
+      Toast.show(message, Toast.LONG, Toast.TOP, style)
+    }
+
     var historyIcon = <View>
       <TouchableWithoutFeedback>
         <View style={{ flexDirection: 'row' }}>
@@ -151,6 +157,7 @@ class CartDetailScreen extends Component {
             onPress={() => this.payNow()}
             title={I18n.t('checkout')} />
         </View>
+        <ProgressIndicator show={fetching} text={I18n.t('fetching')} />
       </View>
     )
   }
@@ -162,7 +169,10 @@ const mapStateToProps = (state) => {
     error: state.cart.error,
     historyItems: state.cart.histories,
     user: state.user.user,
-    accessToken: state.user.accessToken
+    accessToken: state.user.accessToken,
+    showMessage: state.cart.showMessage,
+    message: state.cart.message,
+    fetching: state.cart.fetching
   }
 }
 const mapDispatchToProps = (dispatch) => {

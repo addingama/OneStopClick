@@ -33,6 +33,8 @@ export const INITIAL_STATE = Immutable({
   product: null,
   items: [],
   message: '',
+  showMessage: false,
+  fetching: false,
   rates: [],
   histories: [],
   accessToken: null,
@@ -43,18 +45,18 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // ADD ITEM: request the data from an api
-export const addItemRequest = (state, { product, accessToken }) => state.merge({ fetching: true, accessToken, productId: product.id })
+export const addItemRequest = (state, { product, accessToken }) => state.merge({ fetching: false, accessToken, productId: product.id })
 
 // ADD ITEM: successful api lookup
-export const addItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
+export const addItemSuccess = (state, {items}) => state.merge({ fetching: false, items: items })
 
 // ADD ITEM: failure api lookup
 export const addItemFail = (state, { message }) => state.merge({ fetching: false, message })
 
 export const getCurrencyFail = (state, { message }) =>
-state.merge({ error: true, message: message })
+state.merge({ error: true, message: message, showMessage: false })
 
-export const getCurrencySuccess = (state, { rates }) => state.merge({ fetching: true, rates: rates })
+export const getCurrencySuccess = (state, { rates }) => state.merge({ fetching: false, rates: rates, showMessage: false })
 
 export const toHistory = (state, { historyItems }) =>
   state.merge({ historyItems: historyItems })
@@ -67,7 +69,7 @@ export const removeItemRequest = (state, { accessToken, product }) =>
 state.merge({ fetching: true, accessToken, product })
 
 // REMOVE ITEM: successful api lookup
-export const removeItemSuccess = (state, {items}) => state.merge({ fetching: true, items: items })
+export const removeItemSuccess = (state, {items}) => state.merge({ fetching: false, items: items })
 
 // REMOVE ITEM: failure api lookup
 export const removeItemFail = (state, { message }) => state.merge({ fetching: false, message })
@@ -77,38 +79,33 @@ export const reset = () => INITIAL_STATE
 
 // GET:  request the data from an api
 export const getItemsRequest = (state, { accessToken }) => {
-  return state.merge({ accessToken: accessToken })
+  return state.merge({ accessToken: accessToken, fetching: true })
 }
 
 // GET:  successful api lookup
-export const getItemsSuccess = (state, { items }) => state.merge({ fetching: true, items: items })
+export const getItemsSuccess = (state, { items }) => state.merge({ fetching: false, showMessage: false, items: items })
 
 // GET:  failure api lookup
 export const getItemsFail = (state, { message }) => state.merge({ fetching: false, message })
 
-// get cart item
-export const removeItemAPI = (state, { accessToken, product }) => {
-  return state.merge({ accessToken: accessToken, product: product })
-}
-
 // PAYMENT: send payment data to an api
 export const paymentRequest = (state, { accessToken, paymentId, cartId }) => {
-  return state.merge({ accessToken: accessToken, paymentId: paymentId, cartId: cartId })
+  return state.merge({ accessToken: accessToken, paymentId: paymentId, cartId: cartId, showMessage: false, fetching: true })
 }
 
 // PAYMENT: successful api lookup then reset items
-export const paymentSuccess = (state) => state.merge({ fetching: true, items: [] })
+export const paymentSuccess = (state) => state.merge({ fetching: false, items: [], message: 'Payment completed. Go to Transaction Histories for downloading.', showMessage: true })
 
 // PAYMENT: failure api lookup
 export const paymentFail = (state, { message }) => state.merge({ fetching: false, message })
 
 // TRANSACTION HISTORIES: get transaction data to an api
-export const getTransactionRequest = (state, { accessToken }) => state.merge({ accessToken: accessToken })
+export const getTransactionRequest = (state, { accessToken }) => state.merge({ accessToken: accessToken, fetching: true, showMessage: false })
 
 // PAYMENT: successful api lookup
-export const getTransactionSuccess = (state, { histories }) => state.merge({ fetching: true, histories: histories })
+export const getTransactionSuccess = (state, { histories }) => state.merge({ fetching: false, histories: histories })
 // PAYMENT: failure api lookup
-export const getTransactionFail = (state, { message }) => state.merge({ fetching: false, message })
+export const getTransactionFail = (state, { message }) => state.merge({ fetching: false, message, showMessage: true })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
