@@ -188,7 +188,7 @@ class LoginScreen extends AccountDrawerBase {
           this.responseInfoCallback(false, user)
         })
         .catch((err) => {
-          alert(err)
+          alert(err.message)
         })
         .done()
     })
