@@ -77,15 +77,15 @@ export class Products extends Component {
 
     var histories = []
     var historiesStr = JSON.stringify(historyItems)
-    if (historiesStr !== '[]' && historyItems.data.length > 0) {
-      for (var i = 0; i < historyItems.data.length; i++) {
-        for (var j = 0; j < historyItems.data[i].details.length; j++) {
-          console.tron.log(historyItems.data[i].id + '; product id ' + historyItems.data[i].details[j].product.id)
-          histories.push(historyItems.data[i].details[j].product)
-        }
+    if (historiesStr !== '[]' && historyItems.length > 0) {
+      for (var i = 0; i < historyItems.length; i++) {
+        // for (var j = 0; j < historyItems[i].details.length; j++) {
+        //   console.tron.log(historyItems[i].id + '; product id ' + historyItems[i].details[j].product.id)
+          histories.push(historyItems[i])
+        // }
       }
     }
-    if (accessToken === null || accessToken === '') {
+    if (accessToken === null || accessToken === '' || accessToken === undefined) {
       Alert.alert('Error', 'Please login.')
     } else {
       // checking duplication
